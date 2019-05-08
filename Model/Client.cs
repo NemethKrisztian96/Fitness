@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model
 {
@@ -16,6 +17,8 @@ namespace Model
         public DateTime BirthDate { get; set; }
         public string Sex { get; set; }
         public DateTime InsertDate { get; set; }
+        [NotMapped]
         public User Inserter { get; set; }
+        public int InserterId { get; set; }
     }
 }
