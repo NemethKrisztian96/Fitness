@@ -1,5 +1,6 @@
 ﻿namespace Fitness.Common.MVVM
 {
+    using Fitness.Model;
     using System;
     using System.Collections.Generic;
     using System.Windows;
@@ -18,7 +19,7 @@
         /// The opened windows
         /// </summary>
         private static Dictionary<ViewModelBase, Window> openedWindows;
-
+        
         /// <summary>
         /// Initializes the <see cref="ViewService"/> class.
         /// </summary>

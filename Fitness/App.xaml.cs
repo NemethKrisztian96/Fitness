@@ -1,4 +1,5 @@
-﻿using Fitness.Common.MVVM;
+﻿using Fitness.Common.Helpers;
+using Fitness.Common.MVVM;
 using Fitness.View;
 using Fitness.ViewModel;
 using System.Windows;
@@ -26,7 +27,7 @@ namespace Fitness
         private void OpenMainWindow()
         {
             MainWindow mainWindow = new MainWindow();
-            MainWindowViewModel mainWindowViewModel = new MainWindowViewModel();
+            MainWindowViewModel mainWindowViewModel = MainWindowViewModel.Instance;
 
             ViewService.AddMainWindowToOpened(mainWindowViewModel, mainWindow);
             ViewService.ShowDialog(mainWindowViewModel);
@@ -39,7 +40,7 @@ namespace Fitness
 
         //    {
         //        DBInitializer dbinit = new DBInitializer();
-        //        dbinit.InitializeDatabase(new TMCatalogDB());
+        //        dbinit.InitializeDatabase(new FitnessDB());
         //    }
         //    catch (Exception ex)
         //    {
