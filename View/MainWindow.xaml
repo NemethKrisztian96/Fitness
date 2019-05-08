@@ -4,9 +4,56 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Fitness.View"
+        xmlns:controls="clr-namespace:Fitness.View.UserControls"
+        xmlns:templateSelectors="clr-namespace:Fitness.View.TemplateSelectors"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Fitness" Height="350" Width="525"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResize"
+        WindowState="Maximized">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Fitness.View;component/Resources/Style.xaml"/>
+                <ResourceDictionary Source="/Fitness.View;component/Resources/FitnessContentTemplates.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <templateSelectors:FitnessContentSelector x:Key="TemplateSelector"/>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        </ResourceDictionary>
+    </Window.Resources>
+    
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--<TabControl Grid.Row="0"
+                    SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
+            <TabItem Header="Home">
+                <controls:Home DataContext="{Binding HomeVM}"/>
+            </TabItem>
+        </TabControl>-->
+        <TabControl Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    Visibility="{Binding IsSignedIn, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    ItemsSource="{Binding Contents}"
+                    SelectedItem="{Binding SelectedContent, Mode=TwoWay}"
+                    ContentTemplateSelector="{StaticResource TemplateSelector}">
+        </TabControl>
+
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Button
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Content="Log out"
+                Command="{Binding LogOutCommand}"/>
+            <Button
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Content="Close"
+                Command="{Binding CloseCommand}"/>
+        </StackPanel>
     </Grid>
 </Window>

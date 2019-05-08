@@ -1,0 +1,13 @@
+﻿<!--///19-->
+<!--from style.xaml copy first 2 rows(xmlns)-->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:userControls="clr-namespace:Fitness.View.UserControls"
+                    xmlns:types="clr-namespace:Fitness.Common.FitnessTabContents;assembly=Fitness.Common">
+    <DataTemplate x:Key="HomeTemplate"
+                  DataType="{x:Type types:IHomeContent}">
+        <userControls:Home/>
+
+    </DataTemplate>
+
+</ResourceDictionary>

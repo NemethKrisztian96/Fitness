@@ -7,8 +7,8 @@
     <ProjectGuid>{B52D2E80-536C-4F50-A7A0-54320AAEBFF3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ViewModel</RootNamespace>
-    <AssemblyName>ViewModel</AssemblyName>
+    <RootNamespace>Fitness.ViewModel</RootNamespace>
+    <AssemblyName>Fitness.ViewModel</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -43,14 +43,17 @@
   <ItemGroup>
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\HomeViewModel.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserControls\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Common\Fitness.Common.csproj">
       <Project>{EE19542D-4065-46A9-B01F-93D430EC8AF8}</Project>
       <Name>Fitness.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Fitness.Model.csproj">
+      <Project>{BD883682-8B0D-4BE4-80AC-3902AA5CE745}</Project>
+      <Name>Fitness.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
