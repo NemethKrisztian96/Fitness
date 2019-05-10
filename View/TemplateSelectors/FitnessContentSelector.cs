@@ -19,11 +19,15 @@ namespace Fitness.View.TemplateSelectors
                 return Application.Current.MainWindow.TryFindResource("HomeTemplate") as DataTemplate;
                 //                                                      WATCH IT!!!
             }
-            /*else if (item is )
+            else if (item is IClientOperationsContent)
             {
-                return Application.Current.MainWindow.TryFindResource("SomeTemplate") as DataTemplate;
+                return Application.Current.MainWindow.TryFindResource("ClientOperationsTemplate") as DataTemplate;
             }
-            else if (item is )
+            else if (item is INewClientContent)
+            {
+                return Application.Current.MainWindow.TryFindResource("AddNewClientTemplate") as DataTemplate;
+            }
+            /*else if (item is )
             {
                 return Application.Current.MainWindow.TryFindResource("SomeTemplate") as DataTemplate;
             }*/

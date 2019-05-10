@@ -9,20 +9,18 @@ using System.Threading.Tasks;
 
 namespace Fitness.ViewModel.UserControls
 {
-    public class ClientOperationsViewModel : IClientOperationsContent
+    public class AddNewClientViewModel : INewClientContent
     {
-        public Client Client { get; set; }
-
-        public int ClientId { get; set; }
-
-        public string Header => Client.FirstName + " " + Client.LastName;
+        private User user;
+        public string Header => "Add new client";
 
         public RelayCommand CloseTabItemCommand { get; set; }
 
         public bool ShowCloseButton => true;
 
-        public ClientOperationsViewModel()
+        public AddNewClientViewModel(int userId)
         {
+            this.user = user;
             this.CloseTabItemCommand = new RelayCommand(this.ClosetabItemExecute);
         }
 

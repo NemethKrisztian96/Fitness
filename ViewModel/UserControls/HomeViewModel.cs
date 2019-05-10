@@ -60,7 +60,7 @@ namespace Fitness.ViewModel.UserControls
         public RelayCommand ListClientsCommand { get; set; }
         public RelayCommand OpenClientTabCommand { get; set; }
 
-        public int UserId => -1; //TODO
+        public int UserId { get; private set; }
 
         public bool ShowClientsList { get; set; }
 
@@ -89,10 +89,11 @@ namespace Fitness.ViewModel.UserControls
             }
         }
 
-        public HomeViewModel(bool isAdmin)
+        public HomeViewModel(int userId, bool isAdmin)
         {
             this.ShowClientsList = false;
             IsAdmin = isAdmin;
+            UserId = userId;
             this.CloseTabItemCommand = new RelayCommand(this.CloseTabItemExecute);
             this.CreateClientCommand = new RelayCommand(this.CreateClientExecute);
             this.SearchClientCommand = new RelayCommand(this.SearchClientExecute);
@@ -113,7 +114,7 @@ namespace Fitness.ViewModel.UserControls
         private void CreateClientExecute()
         {
             this.ShowClientsList = false;
-            //________________TODO_________________________________________________________
+            MainWindowViewModel.Instance.CreateAddNewClientTab(UserId);
         }
 
         private void SearchClientExecute()

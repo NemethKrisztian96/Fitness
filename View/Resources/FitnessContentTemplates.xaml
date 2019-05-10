@@ -7,7 +7,14 @@
     <DataTemplate x:Key="HomeTemplate"
                   DataType="{x:Type types:IHomeContent}">
         <userControls:Home/>
-
+    </DataTemplate>
+    <DataTemplate x:Key="ClientOperationsTemplate"
+                  DataType="{x:Type types:IClientOperationsContent}">
+        <userControls:ClientOperations/>
+    </DataTemplate>
+    <DataTemplate x:Key="AddNewClientTemplate"
+                  DataType="{x:Type types:INewClientContent}">
+        <userControls:AddNewClient/>
     </DataTemplate>
 
 </ResourceDictionary>

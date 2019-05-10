@@ -138,10 +138,10 @@ namespace Fitness.ViewModel
             }
         }
 
-        private void GenerateHomeView(bool isAdmin)
+        private void GenerateHomeView(int userId, bool isAdmin)
         {
             this.Contents = new ObservableCollection<IFitnessContent>();
-            IHomeContent homeViewModel = new HomeViewModel(isAdmin);
+            IHomeContent homeViewModel = new HomeViewModel(userId, isAdmin);
             this.contents.Add(homeViewModel);
 
             this.SelectedContent = this.Contents.First();  //not empty => no exception
@@ -199,9 +199,10 @@ namespace Fitness.ViewModel
             {
                 this.IsSignedIn = true;
 
-                //get user role
+                //get userId and role
+                int userId = -1; //= get userId where username == Username
                 string role = ""; //= get role where username == Username
-                this.GenerateHomeView(role.ToLower().Equals("admin") ? true : false);
+                this.GenerateHomeView(userId, role.ToLower().Equals("admin") ? true : false);
             }
             else
             {
@@ -221,7 +222,24 @@ namespace Fitness.ViewModel
                 clientOpViewModel.Client = client;
                 this.Contents.Add(clientOpViewModel);
 
-                this.SelectedContent = this.Contents.LastOrDefault();  //has at least 2 elements, but requires more attention(won't be last) if shopping basket is in the list too
+                this.SelectedContent = this.Contents.LastOrDefault();  //has at least one element
+            }
+            else
+            {
+                this.SelectedContent = clientOpContent;
+            }
+        }
+
+        public void CreateAddNewClientTab(int userId)
+        {
+            //searching for duplicates of the exact same tab (same state...)
+            INewClientContent clientOpContent = this.Contents.FirstOrDefault(c => c is INewClientContent) as INewClientContent;
+            if (clientOpContent == null)
+            {
+                AddNewClientViewModel addClientViewModel = new AddNewClientViewModel(userId);
+                this.Contents.Add(addClientViewModel);
+
+                this.SelectedContent = this.Contents.LastOrDefault();  //has at least one element
             }
             else
             {
