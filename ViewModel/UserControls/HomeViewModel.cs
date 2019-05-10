@@ -15,6 +15,7 @@ namespace Fitness.ViewModel.UserControls
         private List<Client> clients;
         private string searchBarcode;
         private string searchName;
+        private Client selectedClient;
 
         public bool IsAdmin { get; private set; }
 
@@ -38,7 +39,8 @@ namespace Fitness.ViewModel.UserControls
             }
         }
 
-        public string SearchName {
+        public string SearchName
+        {
             get
             {
                 return this.searchName;
@@ -56,10 +58,36 @@ namespace Fitness.ViewModel.UserControls
         public RelayCommand ListTicketsCommand { get; set; }
         public RelayCommand ReportsCommand { get; set; }
         public RelayCommand ListClientsCommand { get; set; }
+        public RelayCommand OpenClientTabCommand { get; set; }
 
         public int UserId => -1; //TODO
 
         public bool ShowClientsList { get; set; }
+
+        public Client SelectedClient
+        {
+            get
+            {
+                return this.selectedClient;
+            }
+            set
+            {
+                this.selectedClient = value;
+                this.RaisePropertyChanged();
+            }
+        }
+        public List<Client> Clients
+        {
+            get
+            {
+                return this.clients;
+            }
+            set
+            {
+                this.clients = value;
+                this.RaisePropertyChanged();
+            }
+        }
 
         public HomeViewModel(bool isAdmin)
         {
@@ -68,6 +96,7 @@ namespace Fitness.ViewModel.UserControls
             this.CloseTabItemCommand = new RelayCommand(this.CloseTabItemExecute);
             this.CreateClientCommand = new RelayCommand(this.CreateClientExecute);
             this.SearchClientCommand = new RelayCommand(this.SearchClientExecute);
+            this.OpenClientTabCommand = new RelayCommand(this.OpenClientTabExecute);
             if (IsAdmin)
             {
                 this.ListTicketsCommand = new RelayCommand(this.ListTicketsExecute);
@@ -94,8 +123,16 @@ namespace Fitness.ViewModel.UserControls
             //checks if search is by barcode or name
             //if it is by barcode => open new tab
             //if it is by name 
-            //there are multiple results => show a list of clients first
-            //there is only one result => open the new tab
+            if (Clients?.Count > 1)
+            {   //there are multiple results => show a list of clients first
+
+
+                this.ShowClientsList = true;
+            }
+            else
+            {   //there is only one result => open the new tab
+
+            }
 
             //if no results found
             PopupMessage.OkButtonPopupMessage("No client found", "Please check if the barcode or the name is correct");
@@ -117,6 +154,15 @@ namespace Fitness.ViewModel.UserControls
         {
             this.ShowClientsList = false;
             //________________TODO_________________________________________________________
+        }
+
+        private void OpenClientTabExecute()
+        {
+            this.ShowClientsList = false;
+            if (this.SelectedClient != null)
+            {
+                MainWindowViewModel.Instance.SetClientToClientOperationsTab(this.selectedClient);
+            }
         }
     }
 }

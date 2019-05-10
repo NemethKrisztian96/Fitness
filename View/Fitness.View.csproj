@@ -61,7 +61,6 @@
     <Compile Include="UserControls\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\PopupMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xaml">
