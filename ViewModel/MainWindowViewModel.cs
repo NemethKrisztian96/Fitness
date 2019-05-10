@@ -26,7 +26,10 @@ namespace Fitness.ViewModel
 
         private User signedInUser;
         public User SignedInUser {
-            get => signedInUser;
+            get
+            {
+                return signedInUser;
+            }
             set {
                 signedInUser = value;
                 if (signedInUser != null)
