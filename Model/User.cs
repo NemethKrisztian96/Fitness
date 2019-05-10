@@ -11,5 +11,6 @@ namespace Fitness.Model
         public string Password { get; set; }
         public string Role { get; set; }
         public string Status { get; set; }
+        public double Salary { get; set; }
     }
 }
