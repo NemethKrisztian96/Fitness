@@ -1,6 +1,7 @@
 ﻿using Fitness.Common.FitnessTabContents;
 using Fitness.Common.Helpers;
 using Fitness.Common.MVVM;
+using Fitness.Logic;
 using Fitness.Model;
 using Fitness.ViewModel.UserControls;
 using System;
@@ -190,18 +191,18 @@ namespace Fitness.ViewModel
                 //Console.WriteLine(normalString);
                 password = GetHashString(Marshal.PtrToStringBSTR(stringPointer));
             }
-            
+
             //get pwd from DB
-            string dbPassword=""; //= get pwd where username == Username 
-            
+            string dbPassword = Data.Fitness.GetPassword(Username);
+
             //compare the pwd's
             if (password.Equals(dbPassword))
             {
                 this.IsSignedIn = true;
 
                 //get userId and role
-                int userId = -1; //= get userId where username == Username
-                string role = ""; //= get role where username == Username
+                int userId = Data.Fitness.GetUserId(Username);
+                string role = Data.Fitness.GetRole(Username);
                 this.GenerateHomeView(userId, role.ToLower().Equals("admin") ? true : false);
             }
             else

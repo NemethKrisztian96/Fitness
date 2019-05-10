@@ -65,6 +65,10 @@
       <Project>{EE19542D-4065-46A9-B01F-93D430EC8AF8}</Project>
       <Name>Fitness.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Logic\Fitness.Logic.csproj">
+      <Project>{95A71EED-DC14-4555-BCFB-071E4ED2A297}</Project>
+      <Name>Fitness.Logic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model\Fitness.Model.csproj">
       <Project>{BD883682-8B0D-4BE4-80AC-3902AA5CE745}</Project>
       <Name>Fitness.Model</Name>
