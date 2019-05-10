@@ -9,6 +9,7 @@ namespace Fitness.Model
         public string Name { get; set; }
         public int DayNumber { get; set; }
         public int OccasionNumber { get; set; }
+        public int MaximumUsagePerDay { get; set; }
         public int StartHour { get; set; }
         public int EndHour { get; set; }
         public double Price { get; set; }

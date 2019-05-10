@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Fitness.Model
 {
-    public class Entries
+    public class Entry
     {
         [Key]
         public int Id { get; set; }
