@@ -14,6 +14,5 @@ namespace Fitness.Common.FitnessTabContents
         ///22
         RelayCommand CloseTabItemCommand { get; set; }
         bool ShowCloseButton { get; }
-
     }
 }

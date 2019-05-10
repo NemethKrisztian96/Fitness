@@ -1,6 +1,7 @@
 ﻿using Fitness.Common.FitnessTabContents;
 using Fitness.Common.Helpers;
 using Fitness.Common.MVVM;
+using Fitness.Logic;
 using Fitness.Model;
 using Fitness.ViewModel.UserControls;
 using System;
@@ -102,7 +103,7 @@ namespace Fitness.ViewModel
             this.LogOutDialog(this);
         }
 
-        public void LogOutDialog(ViewModelBase viewModel)
+        private void LogOutDialog(ViewModelBase viewModel)
         {
             //TODO close all tabs
             foreach(var item in Contents.Reverse())
@@ -138,10 +139,10 @@ namespace Fitness.ViewModel
             }
         }
 
-        private void GenerateHomeView(bool isAdmin)
+        private void GenerateHomeView(int userId, bool isAdmin)
         {
             this.Contents = new ObservableCollection<IFitnessContent>();
-            IHomeContent homeViewModel = new HomeViewModel(isAdmin);
+            IHomeContent homeViewModel = new HomeViewModel(userId, isAdmin);
             this.contents.Add(homeViewModel);
 
             this.SelectedContent = this.Contents.First();  //not empty => no exception
@@ -190,18 +191,19 @@ namespace Fitness.ViewModel
                 //Console.WriteLine(normalString);
                 password = GetHashString(Marshal.PtrToStringBSTR(stringPointer));
             }
-            
+
             //get pwd from DB
-            string dbPassword=""; //= get pwd where username == Username 
-            
+            string dbPassword = Data.Fitness.GetPassword(Username);
+
             //compare the pwd's
             if (password.Equals(dbPassword))
             {
                 this.IsSignedIn = true;
 
-                //get user role
-                string role = ""; //= get role where username == Username
-                this.GenerateHomeView(role.ToLower().Equals("admin") ? true : false);
+                //get userId and role
+                int userId = Data.Fitness.GetUserId(Username);
+                string role = Data.Fitness.GetRole(Username);
+                this.GenerateHomeView(userId, role.ToLower().Equals("admin") ? true : false);
             }
             else
             {
@@ -209,6 +211,41 @@ namespace Fitness.ViewModel
             }
             Username = "";
             SecurePassword?.Clear();
+        }
+
+        public void SetClientToClientOperationsTab(Client client)
+        {
+            //searching for duplicates of the exact same tab (same state...)
+            IClientOperationsContent clientOpContent = this.Contents.FirstOrDefault(c => c is IClientOperationsContent && (c as IClientOperationsContent).ClientId == client.Id) as IClientOperationsContent;
+            if (clientOpContent == null)
+            {
+                ClientOperationsViewModel clientOpViewModel = new ClientOperationsViewModel();
+                clientOpViewModel.Client = client;
+                this.Contents.Add(clientOpViewModel);
+
+                this.SelectedContent = this.Contents.LastOrDefault();  //has at least one element
+            }
+            else
+            {
+                this.SelectedContent = clientOpContent;
+            }
+        }
+
+        public void CreateAddNewClientTab(int userId)
+        {
+            //searching for duplicates of the exact same tab (same state...)
+            INewClientContent clientOpContent = this.Contents.FirstOrDefault(c => c is INewClientContent) as INewClientContent;
+            if (clientOpContent == null)
+            {
+                AddNewClientViewModel addClientViewModel = new AddNewClientViewModel(userId);
+                this.Contents.Add(addClientViewModel);
+
+                this.SelectedContent = this.Contents.LastOrDefault();  //has at least one element
+            }
+            else
+            {
+                this.SelectedContent = clientOpContent;
+            }
         }
     }
 }
