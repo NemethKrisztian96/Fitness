@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Runtime.InteropServices;
+using System.Security;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Fitness.View
 {
@@ -17,6 +20,14 @@ namespace Fitness.View
         private void MainWindow_Closed(object sender, EventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (this.DataContext != null)
+            {
+                ((dynamic)this.DataContext).SecurePassword = ((PasswordBox)sender).SecurePassword;
+            }
         }
     }
 }

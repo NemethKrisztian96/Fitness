@@ -51,6 +51,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\DataGridRowNumberConverter.cs" />
     <Compile Include="FitnessTabContents\IFitnessContent.cs" />
     <Compile Include="FitnessTabContents\IHomeContent.cs" />
     <Compile Include="Helpers\PopupMessage.cs" />
@@ -68,5 +69,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

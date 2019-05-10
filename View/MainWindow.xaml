@@ -24,16 +24,53 @@
     
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <!--<TabControl Grid.Row="0"
-                    SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
-            <TabItem Header="Home">
-                <controls:Home DataContext="{Binding HomeVM}"/>
-            </TabItem>
-        </TabControl>-->
-        <TabControl Grid.Row="0"
+        
+        <!--Login-->
+        <Grid Visibility="{Binding ShouldSignIn, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" 
+               Grid.ColumnSpan="2"
+               Content="Sign in:"/>
+            <Label Grid.Row="1" 
+               Grid.Column="0"
+               Content="Username:"
+               HorizontalAlignment="Center"/>
+            <TextBox Grid.Row="1"
+                 Grid.Column="1"
+                 Text="{Binding Username, Mode=TwoWay}"
+                 Margin="5"/>
+            <Label Grid.Row="2" 
+               Grid.Column="0"
+               Content="Password:"
+               HorizontalAlignment="Center"/>
+            <PasswordBox Grid.Row="2"
+                 Grid.Column="1"
+                 Margin="5"
+                 PasswordChar="*"
+                 PasswordChanged="PasswordChanged"/>
+            <Button Grid.Row="3"
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Center"
+                Content="Sign in"
+                Width="90"
+                Height="30"
+                Command="{Binding SignInCommand}"/>
+        </Grid>
+        
+        <TabControl Grid.Row="1"
                     Grid.ColumnSpan="2"
                     Visibility="{Binding IsSignedIn, Converter={StaticResource BooleanToVisibilityConverter}}"
                     ItemsSource="{Binding Contents}"
@@ -41,13 +78,14 @@
                     ContentTemplateSelector="{StaticResource TemplateSelector}">
         </TabControl>
 
-        <StackPanel Grid.Row="1"
+        <StackPanel Grid.Row="2"
                     Orientation="Horizontal"
                     HorizontalAlignment="Right">
             <Button
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"
                 Content="Log out"
+                Visibility="{Binding IsSignedIn, Converter={StaticResource BooleanToVisibilityConverter}}"
                 Command="{Binding LogOutCommand}"/>
             <Button
                 HorizontalAlignment="Right"
