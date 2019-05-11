@@ -25,11 +25,12 @@ namespace Fitness.ViewModel
         private bool shouldSignIn = true;
 
         private User signedInUser;
-        public User SignedInUser
-        {
-            get => signedInUser;
-            set
+        public User SignedInUser {
+            get
             {
+                return signedInUser;
+            }
+            set {
                 signedInUser = value;
                 if (signedInUser != null)
                 {
