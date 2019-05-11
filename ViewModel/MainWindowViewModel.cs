@@ -13,6 +13,8 @@ using System.Security;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Fitness.ViewModel
 {
@@ -23,14 +25,16 @@ namespace Fitness.ViewModel
         private static readonly MainWindowViewModel instance = new MainWindowViewModel();
         private bool isSignedIn = false;
         private bool shouldSignIn = true;
-
+        public SecureString securePassword;
         private User signedInUser;
-        public User SignedInUser {
+        public User SignedInUser
+        {
             get
             {
                 return signedInUser;
             }
-            set {
+            set
+            {
                 signedInUser = value;
                 if (signedInUser != null)
                 {
@@ -82,7 +86,18 @@ namespace Fitness.ViewModel
 
         public string Username { get; set; }
 
-        public SecureString SecurePassword { private get; set; }
+        public SecureString SecurePassword
+        {
+            get
+            {
+                return this.securePassword;
+            }
+            set
+            {
+                this.securePassword = value;
+                this.RaisePropertyChanged();
+            }
+        }
 
         public static MainWindowViewModel Instance
         {
@@ -146,7 +161,7 @@ namespace Fitness.ViewModel
         {
             this.Contents = new ObservableCollection<IFitnessContent>();
             IHomeContent homeViewModel = new HomeViewModel(userId, isAdmin);
-            this.contents.Add(homeViewModel);
+            this.Contents.Add(homeViewModel);
 
             this.SelectedContent = this.Contents.First();  //not empty => no exception
         }
@@ -182,42 +197,47 @@ namespace Fitness.ViewModel
             return sb.ToString();
         }
 
-        public void SignInDialog(ViewModelBase viewModel)
+        private void SignInDialog(ViewModelBase viewModel)
         {
+            //Console.WriteLine(Username+"-"+ Marshal.PtrToStringBSTR(Marshal.SecureStringToBSTR(SecurePassword)));
             if ((Username?.Length ?? 0) < 1 || (SecurePassword?.Length ?? 0) < 1)
             {
-                return;
-            }
-            //_________________________TODO _________________________________________________________________________________________________________
-            string password = "";
-            if (SecurePassword?.Length > 0)
-            {
-                IntPtr stringPointer = Marshal.SecureStringToBSTR(SecurePassword);
-                //string normalString = Marshal.PtrToStringBSTR(stringPointer);
-                //Marshal.ZeroFreeBSTR(stringPointer);
-                //Console.WriteLine(normalString);
-                password = GetHashString(Marshal.PtrToStringBSTR(stringPointer));
-            }
-
-            //get pwd from DB
-            string dbPassword = Data.Fitness.GetPassword(Username);
-
-            //compare the pwd's
-            if (password.Equals(dbPassword))
-            {
-                this.IsSignedIn = true;
-
-                //get userId and role
-                int userId = Data.Fitness.GetUserId(Username);
-                string role = Data.Fitness.GetRole(Username);
-                this.GenerateHomeView(userId, role.ToLower().Equals("admin") ? true : false);
+                PopupMessage.OkButtonPopupMessage("Missing credentials", "Missing username or password");
             }
             else
             {
-                PopupMessage.OkButtonPopupMessage("Incorrect credentials", "Incorrect username or password");
+                string password = "";
+                if (SecurePassword?.Length > 0)
+                {
+                    IntPtr stringPointer = Marshal.SecureStringToBSTR(SecurePassword);
+                    string normalString = Marshal.PtrToStringBSTR(stringPointer);
+                    Marshal.ZeroFreeBSTR(stringPointer);
+                    //Console.WriteLine(normalString);
+                    password = GetHashString(normalString);
+                }
+                Console.WriteLine(password);
+                //get pwd from DB
+                string dbPassword = Data.Fitness.GetPassword(Username);
+                Console.WriteLine(dbPassword);
+                
+                //compare the pwd's
+                if (password.Equals(dbPassword))
+                {
+                    this.IsSignedIn = true;
+
+                    //get userId and role
+                    int userId = Data.Fitness.GetUserId(Username);
+                    string role = Data.Fitness.GetRole(Username);
+                    this.SignedInUser = Data.Fitness.GetUserById(userId);
+                    this.GenerateHomeView(userId, role.ToLower().Equals("admin") ? true : false);
+                }
+                else
+                {
+                    PopupMessage.OkButtonPopupMessage("Incorrect credentials", "Incorrect username or password");
+                }
             }
-            Username = "";
-            SecurePassword?.Clear();
+            //Username = "";
+            //SecurePassword?.Clear();
         }
 
         public void SetClientToClientOperationsTab(Client client)

@@ -1,6 +1,7 @@
 ﻿namespace Fitness.Model.DBContext
 {
     using System.Data.Entity;
+    using System.Linq;
     using Fitness.Model;
 
     /// <summary>
@@ -15,7 +16,7 @@
             base.Seed(context);
             this.AddTicketTypes(context);
             this.AddUsers(context);
-            this.AddClients(context);
+            //this.AddClients(context);
         }
 
         private void AddTicketTypes(FitnessDB context)
@@ -29,7 +30,7 @@
 
         private void AddUsers(FitnessDB context)
         {
-            context.Users.Add(new User { Id = 0, UserName = "Admin", Password = "8C6976E5B5410415BDE908BD4DEE15DFB167A9C873FC4BB8A81F6F2AB448A918", Role = "Admin", Salary = 10000, Status = "Admin"});
+            context.Users.Add(new User { Id = 0, UserName = "admin", Password = "8C6976E5B5410415BDE908BD4DEE15DFB167A9C873FC4BB8A81F6F2AB448A918", Role = "Admin", Salary = 10000, Status = "Admin"});
             context.Users.Add(new User { Id = 1, UserName="nancross", FirstName = "Nancy", LastName = "Ross", Password = "CF43E029EFE6476E1F7F84691F89C876818610C2EAEAEB881103790A48745B82", Role = "Manager", Salary = 3000, Status = "Active" });
             context.Users.Add(new User { Id = 2, UserName = "briaedwa", FirstName = "Brian", LastName = "Edwards", Password = "2DED0942480E1BAB8F783C2CA16AFE0AD2B27567E831E629801EE09DC394283A", Role = "Manager", Salary = 3000, Status = "Active" });
             context.Users.Add(new User { Id = 3, UserName = "douglong", FirstName = "Douglas", LastName = "Long", Password = "B37B03A62CF77B2767CA4261A756FB3269FB00C1D0830581778EA07A175C42F3", Role = "Receptionist",Salary = 1700, Status = "Active" });
@@ -70,5 +71,13 @@
             context.Clients.Add(new Client { Id = 1021, BarCode = "781475044160", FirstName = "Angela", LastName = "Russell", PhoneNumber = "0733976716", Sex = "F", InsertDate = new System.DateTime(2019, 3, 26), InserterId = 5 });
         }
 
+        public override void InitializeDatabase(FitnessDB context)
+        {
+            base.InitializeDatabase(context);
+            if (context.Users.Count()<1) {
+                this.Seed(context);
+                context.SaveChanges();
+            }
+        }
     }
 }

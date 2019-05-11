@@ -26,7 +26,9 @@ namespace Fitness.View
         {
             if (this.DataContext != null)
             {
+                //Console.WriteLine(((dynamic)this.DataContext).Username);
                 ((dynamic)this.DataContext).SecurePassword = ((PasswordBox)sender).SecurePassword;
+                //Console.WriteLine(Marshal.PtrToStringBSTR(Marshal.SecureStringToBSTR(((dynamic)this.DataContext).SecurePassword)));
             }
         }
     }

@@ -96,9 +96,9 @@
 
             </DataGrid>
         </StackPanel>
-
+        
         <!--ADMIN FEATURES-->
-        <StackPanel Grid.Row="6"
+        <StackPanel Grid.Row="7"
                     Grid.ColumnSpan="2"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center"

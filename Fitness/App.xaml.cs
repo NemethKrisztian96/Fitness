@@ -1,5 +1,6 @@
 ﻿using Fitness.Common.Helpers;
 using Fitness.Common.MVVM;
+using Fitness.Logic;
 using Fitness.Model.DBContext;
 using Fitness.View;
 using Fitness.ViewModel;
@@ -19,6 +20,7 @@ namespace Fitness
             this.Initialize();
             this.InitializeData();
             this.OpenMainWindow();
+            Data.Fitness.FitnessDatabase.SaveChanges();
         }
 
         private void Initialize()
@@ -39,10 +41,9 @@ namespace Fitness
         private void InitializeData()
         {
             try
-
             {
                 DBInitializer dbinit = new DBInitializer();
-                dbinit.InitializeDatabase(new FitnessDB());
+                dbinit.InitializeDatabase(Data.Fitness.FitnessDatabase);
             }
             catch (Exception ex)
             {

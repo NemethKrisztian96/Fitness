@@ -30,7 +30,7 @@
         </Grid.RowDefinitions>
         
         <!--Login-->
-        <Grid Visibility="{Binding ShouldSignIn, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <Grid Grid.Row="0" Visibility="{Binding ShouldSignIn, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -51,7 +51,8 @@
             <TextBox Grid.Row="1"
                  Grid.Column="1"
                  Text="{Binding Username, Mode=TwoWay}"
-                 Margin="5"/>
+                 Margin="5"
+                 Name="userTB"/>
             <Label Grid.Row="2" 
                Grid.Column="0"
                Content="Password:"
@@ -60,7 +61,8 @@
                  Grid.Column="1"
                  Margin="5"
                  PasswordChar="*"
-                 PasswordChanged="PasswordChanged"/>
+                 PasswordChanged="PasswordChanged"
+                 Name="passPB"/>
             <Button Grid.Row="3"
                 Grid.ColumnSpan="2"
                 HorizontalAlignment="Center"
@@ -80,7 +82,8 @@
 
         <StackPanel Grid.Row="2"
                     Orientation="Horizontal"
-                    HorizontalAlignment="Right">
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom">
             <Button
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"

@@ -1,6 +1,7 @@
 ﻿using Fitness.Common.FitnessTabContents;
 using Fitness.Common.Helpers;
 using Fitness.Common.MVVM;
+using Fitness.Logic;
 using Fitness.Model;
 using System;
 using System.Collections.Generic;
@@ -91,6 +92,9 @@ namespace Fitness.ViewModel.UserControls
 
         public HomeViewModel(int userId, bool isAdmin)
         {
+            this.Clients = new List<Client>();
+            this.SearchBarcode = "";
+            this.SearchName = "";
             this.ShowClientsList = false;
             IsAdmin = isAdmin;
             UserId = userId;
@@ -106,63 +110,81 @@ namespace Fitness.ViewModel.UserControls
             }
         }
 
-        private void CloseTabItemExecute()
+        public void CloseTabItemExecute()
         {
             MainWindowViewModel.Instance.CloseTabItem(this);
         }
 
-        private void CreateClientExecute()
+        public void CreateClientExecute()
         {
             this.ShowClientsList = false;
             MainWindowViewModel.Instance.CreateAddNewClientTab(UserId);
         }
 
-        private void SearchClientExecute()
+        public void SearchClientExecute()
         {
             this.ShowClientsList = false;
+            this.Clients.Clear();
             //________________TODO_________________________________________________________
             //checks if search is by barcode or name
-            //if it is by barcode => open new tab
-            //if it is by name 
-            if (Clients?.Count > 1)
-            {   //there are multiple results => show a list of clients first
-
-
-                this.ShowClientsList = true;
+            if (SearchBarcode.Length > 0)
+            {   //if it is by barcode => open new tab
+                Client client = Data.Fitness.GetClientByBarcode(SearchBarcode);
+                if (client != null)
+                {
+                    MainWindowViewModel.Instance.SetClientToClientOperationsTab(client);
+                }
+                else
+                {
+                    PopupMessage.OkButtonPopupMessage("Client not found", "Please check if the barcode is correct");
+                }
             }
             else
-            {   //there is only one result => open the new tab
-
-            }
-
-            //if no results found
-            PopupMessage.OkButtonPopupMessage("No client found", "Please check if the barcode or the name is correct");
+            {   //if it is by name 
+                this.Clients = Data.Fitness.GetClientsByName(SearchName);
+                if (this.Clients.Count > 1)
+                {   //there are multiple results => show a list of clients first
+                    this.ShowClientsList = true;
+                    //todo what else??...
+                }
+                else
+                {
+                    if (this.Clients.Count == 1)
+                    {   //there is only one result => open the new tab
+                        MainWindowViewModel.Instance.SetClientToClientOperationsTab(this.Clients.First());
+                    }
+                    else
+                    {   //no results found
+                        PopupMessage.OkButtonPopupMessage("No results found", "There is no client with the given name");
+                    }
+                }
+            }        
         }
 
-        private void ListTicketsExecute()
+        public void ListTicketsExecute()
         {
             this.ShowClientsList = false;
             //________________TODO_________________________________________________________
         }
 
-        private void ReportsExecute()
+        public void ReportsExecute()
         {
             this.ShowClientsList = false;
             //________________TODO_________________________________________________________
         }
 
-        private void ListClientsExecute()
+        public void ListClientsExecute()
         {
             this.ShowClientsList = false;
             //________________TODO_________________________________________________________
         }
 
-        private void OpenClientTabExecute()
+        public void OpenClientTabExecute()
         {
             this.ShowClientsList = false;
             if (this.SelectedClient != null)
             {
-                MainWindowViewModel.Instance.SetClientToClientOperationsTab(this.selectedClient);
+                MainWindowViewModel.Instance.SetClientToClientOperationsTab(this.SelectedClient);
             }
         }
     }

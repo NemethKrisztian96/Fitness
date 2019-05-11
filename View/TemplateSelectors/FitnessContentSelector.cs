@@ -9,9 +9,9 @@ using System.Windows.Controls;
 
 namespace Fitness.View.TemplateSelectors
 {
-    public class FitnessContentSelector : DataTemplateSelector ///14
+    public class FitnessContentSelector : DataTemplateSelector 
     {
-        public override DataTemplate SelectTemplate(object item, DependencyObject container)  ///15
+        public override DataTemplate SelectTemplate(object item, DependencyObject container)  
         {
             //deciding which template to use and search for the appropriate control
             if (item is IHomeContent)
