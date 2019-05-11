@@ -103,6 +103,10 @@
       <Project>{EE19542D-4065-46A9-B01F-93D430EC8AF8}</Project>
       <Name>Fitness.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Model\Fitness.Model.csproj">
+      <Project>{BD883682-8B0D-4BE4-80AC-3902AA5CE745}</Project>
+      <Name>Fitness.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ViewModel\Fitness.ViewModel.csproj">
       <Project>{B52D2E80-536C-4F50-A7A0-54320AAEBFF3}</Project>
       <Name>Fitness.ViewModel</Name>

@@ -18,17 +18,18 @@ namespace Fitness.Logic
 
         public string GetPassword(string username)
         {
-            return this.fitnessDatabase.Users.Where(u => u.UserName == username).First()?.Password ?? "";
+            Console.WriteLine(this.fitnessDatabase.Users.Where(u => u.UserName == username).ToList().FirstOrDefault());
+            return this.fitnessDatabase.Users.Where(u => u.UserName == username)?.First().Password ?? "";
         }
 
         public int GetUserId(string username)
         {
-            return this.fitnessDatabase.Users.Where(u => u.UserName == username).First()?.Id ?? -1;
+            return this.fitnessDatabase.Users.Where(u => u.UserName == username)?.First().Id ?? -1;
         }
 
         public string GetRole(string username)
         {
-            return this.fitnessDatabase.Users.Where(u => u.UserName == username).First()?.Role ?? "";
+            return this.fitnessDatabase.Users.Where(u => u.UserName == username)?.First().Role ?? "";
         }
     }
 }

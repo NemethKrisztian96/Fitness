@@ -1,7 +1,9 @@
 ﻿using Fitness.Common.Helpers;
 using Fitness.Common.MVVM;
+using Fitness.Model.DBContext;
 using Fitness.View;
 using Fitness.ViewModel;
+using System;
 using System.Windows;
 
 namespace Fitness
@@ -15,7 +17,7 @@ namespace Fitness
         {
             base.OnStartup(e);
             this.Initialize();
-            //this.InitializeData();
+            this.InitializeData();
             this.OpenMainWindow();
         }
 
@@ -34,18 +36,18 @@ namespace Fitness
             ViewService.CloseDialog(mainWindowViewModel);
         }
 
-        //private void InitializeData()
-        //{
-        //    try
+        private void InitializeData()
+        {
+            try
 
-        //    {
-        //        DBInitializer dbinit = new DBInitializer();
-        //        dbinit.InitializeDatabase(new FitnessDB());
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //}
+            {
+                DBInitializer dbinit = new DBInitializer();
+                dbinit.InitializeDatabase(new FitnessDB());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

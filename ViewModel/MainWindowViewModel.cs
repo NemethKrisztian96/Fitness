@@ -25,9 +25,11 @@ namespace Fitness.ViewModel
         private bool shouldSignIn = true;
 
         private User signedInUser;
-        public User SignedInUser {
+        public User SignedInUser
+        {
             get => signedInUser;
-            set {
+            set
+            {
                 signedInUser = value;
                 if (signedInUser != null)
                 {
@@ -106,7 +108,7 @@ namespace Fitness.ViewModel
         private void LogOutDialog(ViewModelBase viewModel)
         {
             //TODO close all tabs
-            foreach(var item in Contents.Reverse())
+            foreach (var item in Contents.Reverse())
             {
                 CloseTabItem(item);
             }
@@ -181,9 +183,13 @@ namespace Fitness.ViewModel
 
         public void SignInDialog(ViewModelBase viewModel)
         {
+            if ((Username?.Length ?? 0) < 1 || (SecurePassword?.Length ?? 0) < 1)
+            {
+                return;
+            }
             //_________________________TODO _________________________________________________________________________________________________________
             string password = "";
-            if (SecurePassword?.Length>0)
+            if (SecurePassword?.Length > 0)
             {
                 IntPtr stringPointer = Marshal.SecureStringToBSTR(SecurePassword);
                 //string normalString = Marshal.PtrToStringBSTR(stringPointer);

@@ -12,10 +12,10 @@
     {
         protected override void Seed(FitnessDB context)
         {
+            base.Seed(context);
             this.AddTicketTypes(context);
             this.AddUsers(context);
             this.AddClients(context);
-            //base.Seed(context);
         }
 
         private void AddTicketTypes(FitnessDB context)
