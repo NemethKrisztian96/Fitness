@@ -5,8 +5,108 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Fitness.View.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="500">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0"
+               Grid.ColumnSpan="2"
+               HorizontalAlignment="Center"
+               FontSize="14"
+               Content="Please fill out the following form:"/>
+
+        <Label Grid.Row="1"
+               Grid.Column="0"
+               Content="Barcode:"
+               Margin="50 0 0 0"/>
+        <TextBox Grid.Row="1"
+                Grid.Column="1"
+                Text="{Binding Barcode, Mode=TwoWay}"
+                Margin="5 5 50 5"/>
+
+        <Label Grid.Row="2"
+               Grid.Column="0"
+               Content="First name:"
+               Margin="50 0 0 0"/>
+        <TextBox Grid.Row="2"
+                 Grid.Column="1"
+                 Text="{Binding FirstName, Mode=TwoWay}"
+                 Margin="5 5 50 5"/>
+
+        <Label Grid.Row="3"
+               Grid.Column="0"
+               Content="Last name:"
+               Margin="50 0 0 0"/>
+        <TextBox Grid.Row="3"
+                 Grid.Column="1"
+                 Text="{Binding LastName, Mode=TwoWay}"
+                 Margin="5 5 50 5"/>
+
+        <Label Grid.Row="4"
+               Grid.Column="0"
+               Content="Phone number:"
+               Margin="50 0 0 0"/>
+        <TextBox Grid.Row="4"
+                 Grid.Column="1"
+                 Text="{Binding PhoneNumber, Mode=TwoWay}"
+                 Margin="5 5 50 5"/>
+
+        <Label Grid.Row="5"
+               Grid.Column="0"
+               Content="Email:"
+               Margin="50 0 0 0"/>
+        <TextBox Grid.Row="5"
+                 Grid.Column="1"
+                 Text="{Binding Email, Mode=TwoWay}"
+                 Margin="5 5 50 5"/>
+
+        <Label Grid.Row="6"
+               Grid.Column="0"
+               Content="Birth date:"
+               Margin="50 0 0 0"/>
+        <DatePicker Grid.Row="6"
+                    Grid.Column="1"
+                    Text="{Binding BirthDate, Mode=TwoWay}"
+                    Margin="5 5 50 5"
+                    Width="150"
+                    HorizontalAlignment="Left"/>
+
+        <Label Grid.Row="7"
+               Grid.Column="0"
+               Content="Gender:"
+               Margin="50 0 0 0"/>
+        <ComboBox Grid.Row="7"
+                  Grid.Column="1"
+                  Text="{Binding Barcode, Mode=TwoWay}"
+                  Margin="5 5 50 5"
+                  Width="150"
+                  HorizontalAlignment="Left">
+            <ComboBoxItem Content="Male"/>
+            <ComboBoxItem Content="Female"/>
+            <ComboBoxItem Content="Other"/>
+        </ComboBox>
+
+        <Button Grid.Row="8"
+                Grid.ColumnSpan="2"
+                HorizontalAlignment="Center"
+                Content="Create client"
+                Command="{Binding CreateClientCommand}"
+                Margin="20"
+                MinHeight="30"/>
     </Grid>
 </UserControl>

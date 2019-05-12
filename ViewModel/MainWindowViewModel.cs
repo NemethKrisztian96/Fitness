@@ -258,13 +258,13 @@ namespace Fitness.ViewModel
             }
         }
 
-        public void CreateAddNewClientTab(int userId)
+        public void CreateAddNewClientTab()
         {
             //searching for duplicates of the exact same tab (same state...)
             INewClientContent clientOpContent = this.Contents.FirstOrDefault(c => c is INewClientContent) as INewClientContent;
             if (clientOpContent == null)
             {
-                AddNewClientViewModel addClientViewModel = new AddNewClientViewModel(userId);
+                AddNewClientViewModel addClientViewModel = new AddNewClientViewModel(this.SignedInUser);
                 this.Contents.Add(addClientViewModel);
 
                 this.SelectedContent = this.Contents.LastOrDefault();  //has at least one element

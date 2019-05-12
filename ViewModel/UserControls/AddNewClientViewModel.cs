@@ -1,5 +1,7 @@
 ﻿using Fitness.Common.FitnessTabContents;
+using Fitness.Common.Helpers;
 using Fitness.Common.MVVM;
+using Fitness.Logic;
 using Fitness.Model;
 using System;
 using System.Collections.Generic;
@@ -9,24 +11,39 @@ using System.Threading.Tasks;
 
 namespace Fitness.ViewModel.UserControls
 {
-    public class AddNewClientViewModel : INewClientContent
+    public class AddNewClientViewModel : ViewModelBase, INewClientContent
     {
-        private User user;
+        public User Inserter { get; set; }
         public string Header => "Add new client";
 
         public RelayCommand CloseTabItemCommand { get; set; }
 
         public bool ShowCloseButton => true;
 
-        public AddNewClientViewModel(int userId)
+        public string Barcode { get; set; }
+        public string FistName { get; set; }
+        public string LastName { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
+        public string Gender { get; set; }
+        public DateTime BirthDate { get; set; }
+
+        public AddNewClientViewModel(User user)
         {
-            this.user = user;
-            this.CloseTabItemCommand = new RelayCommand(this.ClosetabItemExecute);
+            this.Inserter = user;
+            this.CloseTabItemCommand = new RelayCommand(this.ClosetabItemExecute, this.CloseTabItemCanExecute);
+            this.BirthDate = new DateTime(1980,1,1);
+            this.RaisePropertyChanged();
         }
 
-        private void ClosetabItemExecute()
+        public void ClosetabItemExecute()
         {
             MainWindowViewModel.Instance.CloseTabItem(this);
+        }
+
+        public bool CloseTabItemCanExecute()
+        {
+            return true;
         }
     }
 }

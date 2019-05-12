@@ -118,7 +118,7 @@ namespace Fitness.ViewModel.UserControls
         public void CreateClientExecute()
         {
             this.ShowClientsList = false;
-            MainWindowViewModel.Instance.CreateAddNewClientTab(UserId);
+            MainWindowViewModel.Instance.CreateAddNewClientTab();
         }
 
         public void SearchClientExecute()
