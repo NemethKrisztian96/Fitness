@@ -11,10 +11,12 @@ namespace Fitness.Model
         [NotMapped]
         public Ticket UserTicket { get; set; }
         public int UserTicketId { get; set; }
+        [Required]
         public string BarCode { get; set; }
         public DateTime LoginTime { get; set; }
         [NotMapped]
         public User Inserter { get; set; }
+        [Required]
         public int InserterId { get; set; }
     }
 }

@@ -6,14 +6,16 @@ namespace Fitness.Model
     {
         [Key]
         public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
-        public int DayNumber { get; set; }
-        public int OccasionNumber { get; set; }
-        public int MaximumUsagePerDay { get; set; }
-        public int StartHour { get; set; }
-        public int EndHour { get; set; }
+        public int? DayNumber { get; set; }
+        public int? OccasionNumber { get; set; }
+        public int? MaximumUsagePerDay { get; set; }
+        public int? StartHour { get; set; }
+        public int? EndHour { get; set; }
         public double Price { get; set; }
         public string Description { get; set; }
+        [Required]
         public string Status { get; set; }
     }
 }

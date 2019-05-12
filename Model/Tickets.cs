@@ -11,7 +11,10 @@ namespace Fitness.Model
         [NotMapped]
         public Client Owner { get; set; }
         public int OwnerId { get; set; }
+        [NotMapped]
         public TicketType Type { get; set; }
+        [Required]
+        public int TicketTypeId { get; set; }
         public DateTime BuyingDate { get; set; }
         public DateTime FirstUsingDate { get; set; }
         public DateTime LastUsingDate { get; set; }
@@ -20,6 +23,7 @@ namespace Fitness.Model
         [NotMapped]
         public User Seller { get; set; }
         public int SellerId { get; set; }
+        [Required]
         public string Status { get; set; }
     }
 }

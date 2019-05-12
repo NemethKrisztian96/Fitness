@@ -9,14 +9,14 @@
     /// </summary>
     /// <seealso cref="System.Data.Entity.CreateDatabaseIfNotExists{Fitness.Model.DBContext.FitnessDB}" />
 
-    public class DBInitializer: CreateDatabaseIfNotExists<FitnessDB>
+    public class DBInitializer: DropCreateDatabaseAlways<FitnessDB>//CreateDatabaseIfNotExists<FitnessDB>
     {
         protected override void Seed(FitnessDB context)
         {
             base.Seed(context);
             this.AddTicketTypes(context);
             this.AddUsers(context);
-            //this.AddClients(context);
+            this.AddClients(context);
         }
 
         private void AddTicketTypes(FitnessDB context)
