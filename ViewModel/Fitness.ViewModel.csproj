@@ -54,7 +54,7 @@
   <ItemGroup>
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserControls\AddNewClientViewModel.cs" />
+    <Compile Include="UserControls\ManageClientViewModel.cs" />
     <Compile Include="UserControls\ClientOperationsViewModel.cs" />
     <Compile Include="UserControls\HomeViewModel.cs" />
   </ItemGroup>

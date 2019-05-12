@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Fitness.Common.FitnessTabContents
 {
-    public interface INewClientContent : IFitnessContent
+    public interface IManageClientContent : IFitnessContent
     {
+        int ClientId { get; set; }
     }
 }

@@ -243,35 +243,34 @@ namespace Fitness.ViewModel
         public void SetClientToClientOperationsTab(Client client)
         {
             //searching for duplicates of the exact same tab (same state...)
-            IClientOperationsContent clientOpContent = this.Contents.FirstOrDefault(c => c is IClientOperationsContent && (c as IClientOperationsContent).ClientId == client.Id) as IClientOperationsContent;
-            if (clientOpContent == null)
+            IManageClientContent clientManContent = this.Contents.FirstOrDefault(c => c is IManageClientContent && (c as IManageClientContent).ClientId == client.Id) as IManageClientContent;
+            if (clientManContent == null)
             {
-                ClientOperationsViewModel clientOpViewModel = new ClientOperationsViewModel();
-                clientOpViewModel.Client = client;
-                this.Contents.Add(clientOpViewModel);
+                ManageClientViewModel clientManViewModel = new ManageClientViewModel(SignedInUser,false,client);
+                this.Contents.Add(clientManViewModel);
 
                 this.SelectedContent = this.Contents.LastOrDefault();  //has at least one element
             }
             else
             {
-                this.SelectedContent = clientOpContent;
+                this.SelectedContent = clientManContent;
             }
         }
 
         public void CreateAddNewClientTab()
         {
             //searching for duplicates of the exact same tab (same state...)
-            INewClientContent clientOpContent = this.Contents.FirstOrDefault(c => c is INewClientContent) as INewClientContent;
-            if (clientOpContent == null)
+            IManageClientContent clientManContent = this.Contents.FirstOrDefault(c => c is IManageClientContent && (c as IManageClientContent).ClientId == -1) as IManageClientContent;
+            if (clientManContent == null)
             {
-                AddNewClientViewModel addClientViewModel = new AddNewClientViewModel(this.SignedInUser);
-                this.Contents.Add(addClientViewModel);
+                ManageClientViewModel clientManViewModel = new ManageClientViewModel(this.SignedInUser,true);
+                this.Contents.Add(clientManViewModel);
 
                 this.SelectedContent = this.Contents.LastOrDefault();  //has at least one element
             }
             else
             {
-                this.SelectedContent = clientOpContent;
+                this.SelectedContent = clientManContent;
             }
         }
     }

@@ -13,7 +13,7 @@
         <userControls:ClientOperations/>
     </DataTemplate>
     <DataTemplate x:Key="AddNewClientTemplate"
-                  DataType="{x:Type types:INewClientContent}">
+                  DataType="{x:Type types:IManageClientContent}">
         <userControls:AddNewClient/>
     </DataTemplate>
 

@@ -34,7 +34,7 @@
                Grid.ColumnSpan="2"
                HorizontalAlignment="Center"
                FontSize="14"
-               Content="Please fill out the following form:"/>
+               Content="{Binding LabelContent}"/>
 
         <Label Grid.Row="1"
                Grid.Column="0"
@@ -100,19 +100,20 @@
                Margin="50 0 0 0"/>
         <ComboBox Grid.Row="7"
                   Grid.Column="1"
-                  Text="{Binding Gender, Mode=TwoWay}"
+                  ItemsSource="{Binding GendersList}"
+                  SelectedValue="{Binding Gender, Mode=TwoWay}"
                   Margin="5 5 50 5"
                   Width="150"
                   HorizontalAlignment="Left">
-            <ComboBoxItem Content="Male"/>
+            <!--<ComboBoxItem Content="Male"/>
             <ComboBoxItem Content="Female"/>
-            <ComboBoxItem Content="Other"/>
+            <ComboBoxItem Content="Other"/>-->
         </ComboBox>
 
         <Button Grid.Row="8"
                 Grid.ColumnSpan="2"
                 HorizontalAlignment="Center"
-                Content="Create client"
+                Content="{Binding ButtonContent}"
                 Command="{Binding CreateClientCommand}"
                 Margin="20"
                 MinHeight="30"/>

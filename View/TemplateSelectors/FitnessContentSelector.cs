@@ -23,7 +23,7 @@ namespace Fitness.View.TemplateSelectors
             {
                 return Application.Current.MainWindow.TryFindResource("ClientOperationsTemplate") as DataTemplate;
             }
-            else if (item is INewClientContent)
+            else if (item is IManageClientContent)
             {
                 return Application.Current.MainWindow.TryFindResource("AddNewClientTemplate") as DataTemplate;
             }

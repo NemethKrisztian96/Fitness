@@ -67,8 +67,8 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplateSelectors\FitnessContentSelector.cs" />
-    <Compile Include="UserControls\AddNewClient.xaml.cs">
-      <DependentUpon>AddNewClient.xaml</DependentUpon>
+    <Compile Include="UserControls\ManageClient.xaml.cs">
+      <DependentUpon>ManageClient.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ClientOperations.xaml.cs">
       <DependentUpon>ClientOperations.xaml</DependentUpon>
@@ -90,7 +90,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\AddNewClient.xaml">
+    <Page Include="UserControls\ManageClient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
