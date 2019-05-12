@@ -75,7 +75,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Barcode"
                                     Width="*"
-                                    Binding="{Binding Barcode}"/>
+                                    Binding="{Binding BarCode}"/>
                     <DataGridTextColumn Header="First name"
                                     Width="*"
                                     Binding="{Binding FirstName}"/>
@@ -85,6 +85,9 @@
                     <DataGridTextColumn Header="Phone number"
                                     Width="auto"
                                     Binding="{Binding PhoneNumber}"/>
+                    <DataGridTextColumn Header="Email"
+                                    Width="auto"
+                                    Binding="{Binding Email}"/>
                 </DataGrid.Columns>
 
                 <DataGrid.RowHeaderTemplate>
@@ -98,7 +101,7 @@
         </StackPanel>
         
         <!--ADMIN FEATURES-->
-        <StackPanel Grid.Row="7"
+        <StackPanel Grid.Row="6"
                     Grid.ColumnSpan="2"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center"

@@ -17,6 +17,7 @@ namespace Fitness.ViewModel.UserControls
         private string searchBarcode;
         private string searchName;
         private Client selectedClient;
+        private bool showClientsList;
 
         public bool IsAdmin { get; private set; }
 
@@ -49,7 +50,7 @@ namespace Fitness.ViewModel.UserControls
             set
             {
                 this.searchName = value;
-                this.searchBarcode = "";
+                //this.searchBarcode = "";
                 this.RaisePropertyChanged();
             }
         }
@@ -63,7 +64,18 @@ namespace Fitness.ViewModel.UserControls
 
         public int UserId { get; private set; }
 
-        public bool ShowClientsList { get; set; }
+        public bool ShowClientsList
+        {
+            get
+            {
+                return this.showClientsList;
+            }
+            set
+            {
+                this.showClientsList = value;
+                this.RaisePropertyChanged();
+            }
+        }
 
         public Client SelectedClient
         {
@@ -158,7 +170,7 @@ namespace Fitness.ViewModel.UserControls
                         PopupMessage.OkButtonPopupMessage("No results found", "There is no client with the given name");
                     }
                 }
-            }        
+            }
         }
 
         public void ListTicketsExecute()

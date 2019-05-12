@@ -215,10 +215,10 @@ namespace Fitness.ViewModel
                     //Console.WriteLine(normalString);
                     password = GetHashString(normalString);
                 }
-                Console.WriteLine(password);
+                //Console.WriteLine(password);
                 //get pwd from DB
                 string dbPassword = Data.Fitness.GetPassword(Username);
-                Console.WriteLine(dbPassword);
+                //Console.WriteLine(dbPassword);
                 
                 //compare the pwd's
                 if (password.Equals(dbPassword))

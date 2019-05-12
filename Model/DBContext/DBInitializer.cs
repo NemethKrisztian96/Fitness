@@ -69,6 +69,7 @@
             context.Clients.Add(new Client { Id = 1019, BarCode = "957018351346", FirstName = "Sandra", LastName = "Perry", PhoneNumber = "0748528709", Sex = "F", InsertDate = new System.DateTime(2019, 3, 24), InserterId = 3 });
             context.Clients.Add(new Client { Id = 1020, BarCode = "730081343503", FirstName = "Denise", LastName = "Scott", PhoneNumber = "0729541904", Sex = "F", InsertDate = new System.DateTime(2019, 3, 25), InserterId = 4 });
             context.Clients.Add(new Client { Id = 1021, BarCode = "781475044160", FirstName = "Angela", LastName = "Russell", PhoneNumber = "0733976716", Sex = "F", InsertDate = new System.DateTime(2019, 3, 26), InserterId = 5 });
+            context.Clients.Add(new Client { Id = 1022, BarCode = "781475044161", FirstName = "Angela", LastName = "Murphy", PhoneNumber = "0733976717", Sex = "F", InsertDate = new System.DateTime(2019, 3, 28), InserterId = 5 });
         }
 
         public override void InitializeDatabase(FitnessDB context)

@@ -48,5 +48,15 @@ namespace Fitness.Logic
             List<string> nameList = name.Split(' ').ToList();
             return this.FitnessDatabase.Clients.Where(c => nameList.Contains(c.FirstName) || nameList.Contains(c.LastName))?.ToList() ?? new List<Client>();
         }
+
+        public int GetNextClientId()
+        {
+            return this.FitnessDatabase.Clients.Max(c => c.Id) + 1;
+        }
+
+        public void AddClient(Client client)
+        {
+            this.FitnessDatabase.Clients.Add(client);
+        }
     }
 }
