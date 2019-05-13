@@ -11,111 +11,116 @@
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         </ResourceDictionary>
     </UserControl.Resources>
-    
-    <Grid Visibility="{Binding FormIsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="2*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
+    <StackPanel>
+        <Grid Visibility="{Binding FormIsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
 
-        <Label Grid.Row="0"
-               Grid.ColumnSpan="2"
-               HorizontalAlignment="Center"
-               FontSize="14"
-               Content="{Binding LabelContent}"/>
+            <Label Grid.Row="0"
+                   Grid.ColumnSpan="2"
+                   HorizontalAlignment="Center"
+                   FontSize="14"
+                   Content="{Binding LabelContent}"/>
 
-        <Label Grid.Row="1"
-               Grid.Column="0"
-               Content="Barcode:"
-               Margin="50 0 0 0"/>
-        <TextBox Grid.Row="1"
-                Grid.Column="1"
-                Text="{Binding Barcode, Mode=TwoWay}"
-                KeyDown="AllowOnlyDigits"
-                Margin="5 5 50 5"/>
-
-        <Label Grid.Row="2"
-               Grid.Column="0"
-               Content="First name:"
-               Margin="50 0 0 0"/>
-        <TextBox Grid.Row="2"
-                 Grid.Column="1"
-                 Text="{Binding FirstName, Mode=TwoWay}"
-                 Margin="5 5 50 5"/>
-
-        <Label Grid.Row="3"
-               Grid.Column="0"
-               Content="Last name:"
-               Margin="50 0 0 0"/>
-        <TextBox Grid.Row="3"
-                 Grid.Column="1"
-                 Text="{Binding LastName, Mode=TwoWay}"
-                 Margin="5 5 50 5"/>
-
-        <Label Grid.Row="4"
-               Grid.Column="0"
-               Content="Phone number:"
-               Margin="50 0 0 0"/>
-        <TextBox Grid.Row="4"
-                 Grid.Column="1"
-                 Text="{Binding PhoneNumber, Mode=TwoWay}"
-                 KeyDown="AllowOnlyDigits"
-                 Margin="5 5 50 5"/>
-
-        <Label Grid.Row="5"
-               Grid.Column="0"
-               Content="Email:"
-               Margin="50 0 0 0"/>
-        <TextBox Grid.Row="5"
-                 Grid.Column="1"
-                 Text="{Binding Email, Mode=TwoWay}"
-                 Margin="5 5 50 5"/>
-
-        <Label Grid.Row="6"
-               Grid.Column="0"
-               Content="Birth date:"
-               Margin="50 0 0 0"/>
-        <DatePicker Grid.Row="6"
+            <Label Grid.Row="1"
+                   Grid.Column="0"
+                   Content="Barcode:"
+                   Margin="50 0 0 0"/>
+            <TextBox Grid.Row="1"
                     Grid.Column="1"
-                    Text="{Binding BirthDate, Mode=TwoWay}"
-                    Margin="5 5 50 5"
-                    Width="150"
-                    HorizontalAlignment="Left"/>
+                    Text="{Binding Barcode, Mode=TwoWay}"
+                    KeyDown="AllowOnlyDigits"
+                    Margin="5 5 50 5"/>
 
-        <Label Grid.Row="7"
-               Grid.Column="0"
-               Content="Gender:"
-               Margin="50 0 0 0"/>
-        <ComboBox Grid.Row="7"
-                  Grid.Column="1"
-                  ItemsSource="{Binding GendersList}"
-                  SelectedValue="{Binding Gender, Mode=TwoWay}"
-                  Margin="5 5 50 5"
-                  Width="150"
-                  HorizontalAlignment="Left">
-            <!--<ComboBoxItem Content="Male"/>
-            <ComboBoxItem Content="Female"/>
-            <ComboBoxItem Content="Other"/>-->
-        </ComboBox>
+            <Label Grid.Row="2"
+                   Grid.Column="0"
+                   Content="First name:"
+                   Margin="50 0 0 0"/>
+            <TextBox Grid.Row="2"
+                     Grid.Column="1"
+                     Text="{Binding FirstName, Mode=TwoWay}"
+                     Margin="5 5 50 5"/>
 
-        <Button Grid.Row="8"
-                Grid.ColumnSpan="2"
-                HorizontalAlignment="Center"
-                Content="{Binding ButtonContent}"
-                Command="{Binding CreateClientCommand}"
-                Margin="20"
-                MinHeight="30"/>
-    </Grid>
+            <Label Grid.Row="3"
+                   Grid.Column="0"
+                   Content="Last name:"
+                   Margin="50 0 0 0"/>
+            <TextBox Grid.Row="3"
+                     Grid.Column="1"
+                     Text="{Binding LastName, Mode=TwoWay}"
+                     Margin="5 5 50 5"/>
+
+            <Label Grid.Row="4"
+                   Grid.Column="0"
+                   Content="Phone number:"
+                   Margin="50 0 0 0"/>
+            <TextBox Grid.Row="4"
+                     Grid.Column="1"
+                     Text="{Binding PhoneNumber, Mode=TwoWay}"
+                     KeyDown="AllowOnlyDigits"
+                     Margin="5 5 50 5"/>
+
+            <Label Grid.Row="5"
+                   Grid.Column="0"
+                   Content="Email:"
+                   Margin="50 0 0 0"/>
+            <TextBox Grid.Row="5"
+                     Grid.Column="1"
+                     Text="{Binding Email, Mode=TwoWay}"
+                     Margin="5 5 50 5"/>
+
+            <Label Grid.Row="6"
+                   Grid.Column="0"
+                   Content="Birth date:"
+                   Margin="50 0 0 0"/>
+            <DatePicker Grid.Row="6"
+                        Grid.Column="1"
+                        Text="{Binding BirthDate, Mode=TwoWay}"
+                        Margin="5 5 50 5"
+                        Width="150"
+                        HorizontalAlignment="Left"/>
+
+            <Label Grid.Row="7"
+                   Grid.Column="0"
+                   Content="Gender:"
+                   Margin="50 0 0 0"/>
+            <ComboBox Grid.Row="7"
+                      Grid.Column="1"
+                      ItemsSource="{Binding GendersList}"
+                      SelectedValue="{Binding Gender, Mode=TwoWay}"
+                      Margin="5 5 50 5"
+                      Width="150"
+                      HorizontalAlignment="Left">
+                <!--<ComboBoxItem Content="Male"/>
+                <ComboBoxItem Content="Female"/>
+                <ComboBoxItem Content="Other"/>-->
+            </ComboBox>
+
+            <Button Grid.Row="8"
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Center"
+                    Content="{Binding ButtonContent}"
+                    Command="{Binding CreateClientCommand}"
+                    Margin="20"
+                    MinHeight="30"/>
+        </Grid>
+
+        <Grid Visibility="{Binding WebcamIsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+        </Grid>
+    </StackPanel>
 </UserControl>

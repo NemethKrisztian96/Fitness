@@ -5,8 +5,10 @@ using Fitness.Logic;
 using Fitness.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Fitness.ViewModel.UserControls
@@ -15,6 +17,7 @@ namespace Fitness.ViewModel.UserControls
     {
         private bool isCreating;
         private bool formIsVisible = true;
+        private bool webcamIsVisible = false;
 
         public Client Client { get; set; }
 
@@ -29,6 +32,20 @@ namespace Fitness.ViewModel.UserControls
             set
             {
                 this.formIsVisible = value;
+                this.WebcamIsVisible = !this.FormIsVisible;
+                this.RaisePropertyChanged();
+            }
+        }
+
+        public bool WebcamIsVisible
+        {
+            get
+            {
+                return this.webcamIsVisible;
+            }
+            set
+            {
+                this.webcamIsVisible = value;
                 this.RaisePropertyChanged();
             }
         }
@@ -102,6 +119,12 @@ namespace Fitness.ViewModel.UserControls
             if (takePicture)
             {   //take picture
                 this.FormIsVisible = false;
+
+                /*CameraCaptureUI captureUI = new CameraCaptureUI();
+                captureUI.PhotoSettings.Format = CameraCaptureUIPhotoFormat.Jpeg;
+                captureUI.PhotoSettings.CroppedSizeInPixels = new Size(200, 200);
+
+                StorageFile photo = await captureUI.CaptureFileAsync(CameraCaptureUIMode.Photo);*/
                 //this.ImagePath =
             }
             else
@@ -167,6 +190,105 @@ namespace Fitness.ViewModel.UserControls
 
         private bool IsValidForm()
         {
+            if (!IsValidBarcode() || !IsValidName() || !IsAcceptablePhoneNumber() || !IsAcceptableEmail())
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool IsValidBarcode()
+        {
+            if (this.Barcode.Length != 12) { return false; }
+            if (!this.Barcode.All(char.IsDigit)) { return false; }
+
+            return true;
+        }
+
+        private bool IsValidName()
+        {
+            if (string.IsNullOrEmpty(this.FirstName) || string.IsNullOrEmpty(this.LastName)) { return false; } //just in case
+            if (!(new Regex("^[a-zA-Z0-9 ]*$")).IsMatch(this.FirstName) || !(new Regex("^[a-zA-Z0-9 ]*$")).IsMatch(this.LastName)) { return false; }
+            if(!IsCapitalAllFirtsLetter(this.FirstName) || !IsCapitalAllFirtsLetter(this.LastName)) { return false; }
+
+            return true;
+        }
+
+        private static bool IsCapitalAllFirtsLetter(string input)
+        {
+            char[] helper = input.ToCharArray();
+            if(helper.Length >= 1)
+            {
+                if (char.IsLower(helper[0]))
+                {
+                    return false;
+                }
+            }
+
+            for( int i = 1; i < helper.Length; i++)
+            {
+                if(helper[i-1] ==' ')
+                {
+                    if (char.IsLower(helper[i]))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+
+        //the phone num and the email are not required, so it is acceptable it these are empty
+        private bool IsValidPhoneNumber()
+        {
+            //the length must be 10 and only contains digit
+            if(this.PhoneNumber.Length != 10) { return false; }
+            if(!this.PhoneNumber.All(char.IsDigit)) { return false; }
+
+            return true;
+        }
+
+        private bool IsAcceptablePhoneNumber()
+        {
+            if (string.IsNullOrEmpty(this.PhoneNumber))
+            {
+                return true;
+            }
+            else
+            {
+                if (IsValidPhoneNumber())
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private bool IsValidEmail()
+        {
+            if(new EmailAddressAttribute().IsValid(this.Email)) { return true; }
+
+            return false;
+        }
+
+        private bool IsAcceptableEmail()
+        {
+            if (string.IsNullOrEmpty(this.Email))
+            {
+                return true;
+            }
+            else
+            {
+                if (IsValidEmail())
+                {
+                    return true;
+                }
+            }
+
             return false;
         }
 
