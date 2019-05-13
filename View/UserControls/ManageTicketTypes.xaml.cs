@@ -16,13 +16,25 @@ using System.Windows.Shapes;
 namespace Fitness.View.UserControls
 {
     /// <summary>
-    /// Interaction logic for ClientOperations.xaml
+    /// Interaction logic for ManageTicketTypes.xaml
     /// </summary>
-    public partial class ClientOperations : UserControl
+    public partial class ManageTicketTypes : UserControl
     {
-        public ClientOperations()
+        public ManageTicketTypes()
         {
             InitializeComponent();
+        }
+
+        public void AllowOnlyDigits(object sender, KeyEventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "[.0-9]"))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
     }
 }

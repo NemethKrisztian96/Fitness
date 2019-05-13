@@ -8,13 +8,16 @@
                   DataType="{x:Type types:IHomeContent}">
         <userControls:Home/>
     </DataTemplate>
-    <DataTemplate x:Key="ClientOperationsTemplate"
-                  DataType="{x:Type types:IClientOperationsContent}">
-        <userControls:ClientOperations/>
-    </DataTemplate>
-    <DataTemplate x:Key="AddNewClientTemplate"
+    <DataTemplate x:Key="ManageClientTemplate"
                   DataType="{x:Type types:IManageClientContent}">
-        <userControls:AddNewClient/>
+        <userControls:ManageClient/>
     </DataTemplate>
-
+    <DataTemplate x:Key="ListTicketTypesTemplate"
+                  DataType="{x:Type types:IListTicketTypesContent}">
+        <userControls:ListTicketTypes/>
+    </DataTemplate>
+    <DataTemplate x:Key="ManageTicketTypeTemplate"
+                  DataType="{x:Type types:IManageTicketTypeContent}">
+        <userControls:ManageTicketTypes/>
+    </DataTemplate>
 </ResourceDictionary>
