@@ -57,6 +57,33 @@ namespace Fitness.Logic
         public void AddClient(Client client)
         {
             this.FitnessDatabase.Clients.Add(client);
+            this.FitnessDatabase.SaveChanges();
+        }
+
+        public List<TicketType> GetActiveTicketTypes()
+        {
+            return this.FitnessDatabase.TicketTypes.Where(tt=>tt.Status.ToLower()=="active").ToList();
+        }
+
+        public List<TicketType> GetTicketTypes()
+        {
+            return this.FitnessDatabase.TicketTypes.ToList();
+        }
+
+        public void AddTicketType(TicketType ticketType)
+        {
+            this.FitnessDatabase.TicketTypes.Add(ticketType);
+            this.FitnessDatabase.SaveChanges();
+        }
+
+        public int GetNextTicketTypeId()
+        {
+            return this.FitnessDatabase.TicketTypes.Max(c => c.Id) + 1;
+        }
+
+        public void SaveAllChanges()
+        {
+            this.FitnessDatabase.SaveChanges();
         }
     }
 }

@@ -77,7 +77,7 @@ namespace Fitness.ViewModel.UserControls
         {
             this.isCreating = create;
             this.Inserter = user;
-            this.CloseTabItemCommand = new RelayCommand(this.ClosetabItemExecute);
+            this.CloseTabItemCommand = new RelayCommand(this.CloseTabItemExecute);
             this.CreateClientCommand = new RelayCommand(this.CreateClientExecute, this.CreateClientCanExecute);
             this.BirthDate = new DateTime(1980, 1, 1);
             this.InitializeGendersList();
@@ -101,7 +101,7 @@ namespace Fitness.ViewModel.UserControls
             this.RaisePropertyChanged();
         }
 
-        public void ClosetabItemExecute()
+        public void CloseTabItemExecute()
         {
             MainWindowViewModel.Instance.CloseTabItem(this);
         }
@@ -159,6 +159,8 @@ namespace Fitness.ViewModel.UserControls
             else
             {   //update client
 
+                //commit
+                Data.Fitness.SaveAllChanges();
 
                 //display confirmation and close the tab
                 PopupMessage.OkButtonPopupMessage("Done", "Client modified successfully!");

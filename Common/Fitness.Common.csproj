@@ -61,10 +61,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\DataGridRowNumberConverter.cs" />
-    <Compile Include="FitnessTabContents\IClientOperationsContent.cs" />
     <Compile Include="FitnessTabContents\IFitnessContent.cs" />
     <Compile Include="FitnessTabContents\IHomeContent.cs" />
     <Compile Include="FitnessTabContents\IManageClientContent.cs" />
+    <Compile Include="FitnessTabContents\IListTicketTypesContent.cs" />
+    <Compile Include="FitnessTabContents\IManageTicketTypeContent.cs" />
     <Compile Include="Helpers\CustomDateTime.cs" />
     <Compile Include="Helpers\PopupMessage.cs" />
     <Compile Include="MVVM\RelayCommand.cs" />

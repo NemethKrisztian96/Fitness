@@ -240,7 +240,7 @@ namespace Fitness.ViewModel
             //SecurePassword?.Clear();
         }
 
-        public void SetClientToClientOperationsTab(Client client)
+        public void SetClientManageClientTab(Client client)
         {
             //searching for duplicates of the exact same tab (same state...)
             IManageClientContent clientManContent = this.Contents.FirstOrDefault(c => c is IManageClientContent && (c as IManageClientContent).ClientId == client.Id) as IManageClientContent;
@@ -271,6 +271,70 @@ namespace Fitness.ViewModel
             else
             {
                 this.SelectedContent = clientManContent;
+            }
+        }
+
+        public void OpenListTicketTypeTab()
+        {
+            //searching for duplicates of the exact same tab (same state...)
+            IListTicketTypesContent listTicketTypesContent = this.Contents.FirstOrDefault(c => c is IListTicketTypesContent) as IListTicketTypesContent;
+            if (listTicketTypesContent == null)
+            {
+                ListTicketTypesViewModel listTicketTypesViewModel = new ListTicketTypesViewModel();
+                this.Contents.Add(listTicketTypesViewModel);
+
+                this.SelectedContent = this.Contents.LastOrDefault();  //has at least one element
+            }
+            else
+            {
+                this.SelectedContent = listTicketTypesContent;
+            }
+        }
+
+        public void OpenManageTicketTypeTab(TicketType ticketType)
+        {
+            //searching for duplicates of the exact same tab (same state...)
+            IManageTicketTypeContent manTicketTypesContent = this.Contents.FirstOrDefault(c => c is IManageTicketTypeContent && (c as IManageTicketTypeContent).TicketTypeId == ticketType.Id) as IManageTicketTypeContent;
+            if (manTicketTypesContent == null)
+            {
+                ManageTicketTypesViewModel ticketTypesManViewModel = new ManageTicketTypesViewModel(ticketType);
+                this.Contents.Add(ticketTypesManViewModel);
+
+                this.SelectedContent = this.Contents.LastOrDefault();  //has at least one element
+            }
+            else
+            {
+                this.SelectedContent = manTicketTypesContent;
+            }
+        }
+
+        public void OpenAddNewTicketTypeTab()
+        {
+            //searching for duplicates of the exact same tab (same state...)
+            IManageTicketTypeContent manTicketTypesContent = this.Contents.FirstOrDefault(c => c is IManageTicketTypeContent && (c as IManageTicketTypeContent).TicketTypeId == -1) as IManageTicketTypeContent;
+            if (manTicketTypesContent == null)
+            {
+                ManageTicketTypesViewModel ticketTypesManViewModel = new ManageTicketTypesViewModel();
+                this.Contents.Add(ticketTypesManViewModel);
+
+                this.SelectedContent = this.Contents.LastOrDefault();  //has at least one element
+            }
+            else
+            {
+                this.SelectedContent = manTicketTypesContent;
+            }
+        }
+
+        public void RefreshTicketTypeList()
+        {
+            IListTicketTypesContent listTicketTypesContent = this.Contents.FirstOrDefault(c => c is IListTicketTypesContent) as IListTicketTypesContent;
+            if (listTicketTypesContent != null)
+            {
+                ListTicketTypesViewModel listTicketTypesViewModel = listTicketTypesContent as ListTicketTypesViewModel;
+                if (listTicketTypesViewModel != null)
+                {
+                    listTicketTypesViewModel.RefreshList();
+                }
             }
         }
     }

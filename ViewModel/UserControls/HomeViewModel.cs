@@ -57,7 +57,7 @@ namespace Fitness.ViewModel.UserControls
 
         public RelayCommand CreateClientCommand { get; set; }
         public RelayCommand SearchClientCommand { get; set; }
-        public RelayCommand ListTicketsCommand { get; set; }
+        public RelayCommand ListTicketTypesCommand { get; set; }
         public RelayCommand ReportsCommand { get; set; }
         public RelayCommand ListClientsCommand { get; set; }
         public RelayCommand OpenClientTabCommand { get; set; }
@@ -116,7 +116,7 @@ namespace Fitness.ViewModel.UserControls
             this.OpenClientTabCommand = new RelayCommand(this.OpenClientTabExecute);
             if (IsAdmin)
             {
-                this.ListTicketsCommand = new RelayCommand(this.ListTicketsExecute);
+                this.ListTicketTypesCommand = new RelayCommand(this.ListTicketTypesExecute);
                 this.ReportsCommand = new RelayCommand(this.ReportsExecute);
                 this.ListClientsCommand = new RelayCommand(this.ListClientsExecute);
             }
@@ -144,7 +144,7 @@ namespace Fitness.ViewModel.UserControls
                 Client client = Data.Fitness.GetClientByBarcode(SearchBarcode);
                 if (client != null)
                 {
-                    MainWindowViewModel.Instance.SetClientToClientOperationsTab(client);
+                    MainWindowViewModel.Instance.SetClientManageClientTab(client);
                 }
                 else
                 {
@@ -163,7 +163,7 @@ namespace Fitness.ViewModel.UserControls
                 {
                     if (this.Clients.Count == 1)
                     {   //there is only one result => open the new tab
-                        MainWindowViewModel.Instance.SetClientToClientOperationsTab(this.Clients.First());
+                        MainWindowViewModel.Instance.SetClientManageClientTab(this.Clients.First());
                     }
                     else
                     {   //no results found
@@ -173,10 +173,10 @@ namespace Fitness.ViewModel.UserControls
             }
         }
 
-        public void ListTicketsExecute()
+        public void ListTicketTypesExecute()
         {
             this.ShowClientsList = false;
-            //________________TODO_________________________________________________________
+            MainWindowViewModel.Instance.OpenListTicketTypeTab();
         }
 
         public void ReportsExecute()
@@ -196,7 +196,7 @@ namespace Fitness.ViewModel.UserControls
             this.ShowClientsList = false;
             if (this.SelectedClient != null)
             {
-                MainWindowViewModel.Instance.SetClientToClientOperationsTab(this.SelectedClient);
+                MainWindowViewModel.Instance.SetClientManageClientTab(this.SelectedClient);
             }
         }
     }

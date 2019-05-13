@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="Fitness.View.UserControls.ListTicketTypes"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Fitness.View.UserControls"
+             xmlns:converters="clr-namespace:Fitness.Common.Converters;assembly=Fitness.Common"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converters:DataGridRowNumberConverter x:Key="DataGridRowNumberConverter"/>
+    </UserControl.Resources>
+    
+    <StackPanel Orientation="Vertical">
+        <Label Content="The ticket types are:"
+               FontSize="16"/>
+        <DataGrid Margin="5"
+                  ItemsSource="{Binding TicketTypes}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectedItem="{Binding SelectedTicketType}">
+            <DataGrid.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ManageTicketTypeCommand}"/>
+            </DataGrid.InputBindings>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name"
+                                    Width="*"
+                                    Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Price"
+                                    Width="auto"
+                                    Binding="{Binding Price}"/>
+                <DataGridTextColumn Header="Description"
+                                    Width="2*"
+                                    Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="Status"
+                                    Width="auto"
+                                    Binding="{Binding Status}"/>
+            </DataGrid.Columns>
+
+            <DataGrid.RowHeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource DataGridRowNumberConverter}}"
+                               Margin="2,0,2,0"/>
+                </DataTemplate>
+            </DataGrid.RowHeaderTemplate>
+        </DataGrid>
+
+        <Button Content="Add new ticket type"
+                Command="{Binding AddNewTicketTypeCommand}"
+                Height="25"
+                MaxWidth="150"/>
+    </StackPanel>
+</UserControl>

@@ -96,7 +96,6 @@
                                Margin="2,0,2,0"/>
                     </DataTemplate>
                 </DataGrid.RowHeaderTemplate>
-
             </DataGrid>
         </StackPanel>
         
@@ -110,7 +109,7 @@
                     Height="25"
                     Width="80"
                     Margin="25"
-                    Command="{Binding ListTicketsCommand}"/>
+                    Command="{Binding ListTicketTypesCommand}"/>
             <Button Content="Reports"
                     Height="25"
                     Width="80"

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Fitness.View.UserControls.AddNewClient"
+﻿<UserControl x:Class="Fitness.View.UserControls.ManageClient"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -30,11 +30,11 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0"
-                   Grid.ColumnSpan="2"
-                   HorizontalAlignment="Center"
-                   FontSize="14"
-                   Content="{Binding LabelContent}"/>
+        <Label Grid.Row="0"
+               Grid.ColumnSpan="2"
+               HorizontalAlignment="Center"
+               FontSize="16"
+               Content="{Binding LabelContent}"/>
 
             <Label Grid.Row="1"
                    Grid.Column="0"
