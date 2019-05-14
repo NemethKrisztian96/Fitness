@@ -59,7 +59,7 @@ namespace Fitness.ViewModel.UserControls
         public RelayCommand SearchClientCommand { get; set; }
         public RelayCommand ListTicketTypesCommand { get; set; }
         public RelayCommand ReportsCommand { get; set; }
-        public RelayCommand ListClientsCommand { get; set; }
+        public RelayCommand ListUsersCommand { get; set; }
         public RelayCommand OpenClientTabCommand { get; set; }
 
         public int UserId { get; private set; }
@@ -118,7 +118,7 @@ namespace Fitness.ViewModel.UserControls
             {
                 this.ListTicketTypesCommand = new RelayCommand(this.ListTicketTypesExecute);
                 this.ReportsCommand = new RelayCommand(this.ReportsExecute);
-                this.ListClientsCommand = new RelayCommand(this.ListClientsExecute);
+                this.ListUsersCommand = new RelayCommand(this.ListUsersExecute);
             }
         }
 
@@ -185,10 +185,10 @@ namespace Fitness.ViewModel.UserControls
             //________________TODO_________________________________________________________
         }
 
-        public void ListClientsExecute()
+        public void ListUsersExecute()
         {
             this.ShowClientsList = false;
-            //________________TODO_________________________________________________________
+            MainWindowViewModel.Instance.OpenListUsersTab();
         }
 
         public void OpenClientTabExecute()

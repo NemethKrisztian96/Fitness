@@ -182,21 +182,6 @@ namespace Fitness.ViewModel
             this.SignInDialog(this);
         }
 
-        private static byte[] GetHash(string inputString)
-        {
-            HashAlgorithm algorithm = SHA256.Create();
-            return algorithm.ComputeHash(Encoding.UTF8.GetBytes(inputString));
-        }
-
-        private static string GetHashString(string inputString)
-        {
-            StringBuilder sb = new StringBuilder();
-            foreach (byte b in GetHash(inputString))
-                sb.Append(b.ToString("X2"));
-
-            return sb.ToString();
-        }
-
         private void SignInDialog(ViewModelBase viewModel)
         {
             //Console.WriteLine(Username+"-"+ Marshal.PtrToStringBSTR(Marshal.SecureStringToBSTR(SecurePassword)));
@@ -213,7 +198,7 @@ namespace Fitness.ViewModel
                     string normalString = Marshal.PtrToStringBSTR(stringPointer);
                     Marshal.ZeroFreeBSTR(stringPointer);
                     //Console.WriteLine(normalString);
-                    password = GetHashString(normalString);
+                    password = CustomHash.GetHashString(normalString);
                 }
                 //Console.WriteLine(password);
                 //get pwd from DB
@@ -334,6 +319,53 @@ namespace Fitness.ViewModel
                 if (listTicketTypesViewModel != null)
                 {
                     listTicketTypesViewModel.RefreshList();
+                }
+            }
+        }
+
+        public void OpenListUsersTab()
+        {
+            //searching for duplicates of the exact same tab (same state...)
+            IListUsersContent listUsersContent = this.Contents.FirstOrDefault(c => c is IListUsersContent) as IListUsersContent;
+            if (listUsersContent == null)
+            {
+                ListUsersViewModel listUsersViewModel = new ListUsersViewModel();
+                this.Contents.Add(listUsersViewModel);
+
+                this.SelectedContent = this.Contents.LastOrDefault();  //has at least one element
+            }
+            else
+            {
+                this.SelectedContent = listUsersContent;
+            }
+        }
+
+        public void OpenManageUserTab(User user=null)
+        {
+            //searching for duplicates of the exact same tab (same state...)
+            IManageUserContent manUserContent = this.Contents.FirstOrDefault(c => c is IManageUserContent && (c as IManageUserContent).UserId == (user?.Id ?? -1)) as IManageUserContent;
+            if (manUserContent == null)
+            {
+                ManageUserViewModel userManViewModel = new ManageUserViewModel(user);
+                this.Contents.Add(userManViewModel);
+
+                this.SelectedContent = this.Contents.LastOrDefault();  //has at least one element
+            }
+            else
+            {
+                this.SelectedContent = manUserContent;
+            }
+        }
+
+        public void RefreshUsersList()
+        {
+            IListUsersContent listUsersContent = this.Contents.FirstOrDefault(c => c is IListUsersContent) as IListUsersContent;
+            if (listUsersContent != null)
+            {
+                ListUsersViewModel listUsersViewModel = listUsersContent as ListUsersViewModel;
+                if (listUsersViewModel != null)
+                {
+                    listUsersViewModel.RefreshList();
                 }
             }
         }

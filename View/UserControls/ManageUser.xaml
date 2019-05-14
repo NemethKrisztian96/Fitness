@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Fitness.View.UserControls.ManageTicketTypes"
+﻿<UserControl x:Class="Fitness.View.UserControls.ManageUser"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -26,7 +26,6 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0"
@@ -37,72 +36,74 @@
 
         <Label Grid.Row="1"
                Grid.Column="0"
-               Content="Name:"
+               Content="Username:"
                Margin="50 0 0 0"/>
         <TextBox Grid.Row="1"
                 Grid.Column="1"
-                Text="{Binding TicketTypeName, Mode=TwoWay}"
+                Text="{Binding UserUsername, Mode=TwoWay}"
                 Margin="5 5 50 5"/>
 
         <Label Grid.Row="2"
                Grid.Column="0"
-               Content="Number of days:"
+               Content="First name:"
                Margin="50 0 0 0"/>
         <TextBox Grid.Row="2"
                  Grid.Column="1"
-                 Text="{Binding TicketTypeDayNumber, Mode=TwoWay}"
-                 KeyDown="AllowOnlyDigits"
+                 Text="{Binding UserFirstname, Mode=TwoWay}"
                  Margin="5 5 50 5"/>
 
         <Label Grid.Row="3"
                Grid.Column="0"
-               Content="Number of occasions:"
+               Content="Last name:"
                Margin="50 0 0 0"/>
         <TextBox Grid.Row="3"
                  Grid.Column="1"
-                 Text="{Binding TicketTypeOccasionNumber, Mode=TwoWay}"
-                 KeyDown="AllowOnlyDigits"
+                 Text="{Binding UserLastname, Mode=TwoWay}"
                  Margin="5 5 50 5"/>
 
         <Label Grid.Row="4"
                Grid.Column="0"
-               Content="Maximum usage per day:"
+               Content="Password:"
                Margin="50 0 0 0"/>
-        <TextBox Grid.Row="4"
+        <PasswordBox Grid.Row="4"
                  Grid.Column="1"
-                 Text="{Binding TicketTypeMaximumUsagePerDay, Mode=TwoWay}"
-                 KeyDown="AllowOnlyDigits"
-                 Margin="5 5 50 5"/>
+                 Margin="5 5 50 5"
+                 PasswordChar="*"
+                 PasswordChanged="PasswordChanged1"
+                 Name="pass1PB"
+                 Password="#####"/>
 
         <Label Grid.Row="5"
                Grid.Column="0"
-               Content="Start hour:"
+               Content="Confirm password:"
                Margin="50 0 0 0"/>
-        <TextBox Grid.Row="5"
+        <PasswordBox Grid.Row="5"
                  Grid.Column="1"
-                 Text="{Binding TicketTypeStartHour, Mode=TwoWay}"
-                 KeyDown="AllowOnlyDigits"
-                 Margin="5 5 50 5"/>
+                 Margin="5 5 50 5"
+                 PasswordChar="*"
+                 PasswordChanged="PasswordChanged2"
+                 Name="pass2PB"
+                 Password="*****"/>
 
         <Label Grid.Row="6"
                Grid.Column="0"
-               Content="End hour:"
+               Content="Role:"
                Margin="50 0 0 0"/>
-        <TextBox Grid.Row="6"
-                 Grid.Column="1"
-                 Text="{Binding TicketTypeEndHour, Mode=TwoWay}"
-                 KeyDown="AllowOnlyDigits"
-                 Margin="5 5 50 5"
-                 Width="150"
-                 HorizontalAlignment="Left"/>
+        <ComboBox Grid.Row="6"
+                  Grid.Column="1"
+                  ItemsSource="{Binding RoleList}"
+                  SelectedValue="{Binding UserRole, Mode=TwoWay}"
+                  Margin="5 5 50 5"
+                  Width="150"
+                  HorizontalAlignment="Left"/>
 
         <Label Grid.Row="7"
                Grid.Column="0"
-               Content="Price:"
+               Content="Salary:"
                Margin="50 0 0 0"/>
         <TextBox Grid.Row="7"
                  Grid.Column="1"
-                 Text="{Binding TicketTypePrice, Mode=TwoWay}"
+                 Text="{Binding UserSalary, Mode=TwoWay}"
                  KeyDown="AllowOnlyDigits"
                  Margin="5 5 50 5"
                  Width="150"
@@ -110,43 +111,29 @@
 
         <Label Grid.Row="8"
                Grid.Column="0"
-               Content="Description:"
+               Content="Status:"
                Margin="50 0 0 0"/>
-        <TextBox Grid.Row="8"
-                 Grid.Column="1"
-                 Text="{Binding TicketTypeDescription, Mode=TwoWay}"
-                 Margin="5 5 50 5"
-                 Width="150"
-                 HorizontalAlignment="Left"/>
-
-        <Label Grid.Row="9"
-               Grid.Column="0"
-               Content="Gender:"
-               Margin="50 0 0 0"/>
-        <ComboBox Grid.Row="9"
+        <ComboBox Grid.Row="8"
                   Grid.Column="1"
                   ItemsSource="{Binding StatusList}"
-                  SelectedValue="{Binding TicketTypeStatus, Mode=TwoWay}"
+                  SelectedValue="{Binding UserStatus, Mode=TwoWay}"
                   Margin="5 5 50 5"
                   Width="150"
                   HorizontalAlignment="Left">
-            <!--<ComboBoxItem Content="Male"/>
-            <ComboBoxItem Content="Female"/>
-            <ComboBoxItem Content="Other"/>-->
         </ComboBox>
 
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center"
                     Grid.ColumnSpan="2"
-                    Grid.Row="10">
+                    Grid.Row="9">
             <Button HorizontalAlignment="Center"
                     Content="{Binding ButtonContent}"
-                    Command="{Binding AddTicketTypeCommand}"
+                    Command="{Binding AddUserCommand}"
                     Margin="100 20 450 20"
                     MinHeight="30"/>
             <Button HorizontalAlignment="Left"
-                    Content="Delete ticket type"
-                    Command="{Binding DeleteTicketTypeCommand}"
+                    Content="Delete user"
+                    Command="{Binding DeleteUserCommand}"
                     Visibility="{Binding IsDeleteButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
                     Margin="20"
                     MinHeight="30"/>

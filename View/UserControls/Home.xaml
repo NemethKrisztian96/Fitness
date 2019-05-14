@@ -115,11 +115,11 @@
                     Width="80"
                     Margin="25"
                     Command="{Binding ReportsCommand}"/>
-            <Button Content="Clients"
+            <Button Content="Users"
                     Height="25"
                     Width="80"
                     Margin="25"
-                    Command="{Binding ListClientsCommand}"/>
+                    Command="{Binding ListUsersCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>
