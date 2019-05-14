@@ -18,5 +18,6 @@ namespace Fitness.Model
         public User Inserter { get; set; }
         [Required]
         public int InserterId { get; set; }
+        public string TrainingType { get; set; }
     }
 }
