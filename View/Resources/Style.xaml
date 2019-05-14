@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!--///25-->
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
     <Style TargetType="{x:Type Button}">
@@ -20,7 +19,6 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
 
-    <!--///21-->
     <Style TargetType="TabItem">
         <Setter Property="HeaderTemplate">
             <Setter.Value>
@@ -31,7 +29,6 @@
                                MaxWidth="200"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center"></TextBlock>
-                        <!--///24-->
                         <Button Content="X"
                                 FontWeight="Bold"
                                 Margin="5 0"

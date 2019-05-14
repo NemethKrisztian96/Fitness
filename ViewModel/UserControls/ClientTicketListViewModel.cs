@@ -12,19 +12,25 @@ namespace Fitness.ViewModel.UserControls
 {
     class ClientTicketListViewModel: ViewModelBase, IClientTickets
     {
-        public ClientTicketListViewModel(Client client = null)
-        {
-            this.InitializeTicketList(client);
+        private Client mClient;
 
+        public ClientTicketListViewModel(Client client)
+        {
+            this.mClient = client;
+            this.Header = client.FirstName + " " + client.LastName + " tickets"; //change it if you want
+            this.ClientId = client.Id;
+            this.InitializeTicketList(client);
             //todo add buttons
 
 
             this.CloseTabItemCommand = new RelayCommand(this.CloseTabItemExecute);
+            this.OpenClientTabCommand = new RelayCommand(this.OpenClientTabExecute);
         }
 
         public int ClientId { get; set; }
 
         public RelayCommand CloseTabItemCommand { get; set; }
+        public RelayCommand OpenClientTabCommand { get; set; }
 
         public void CloseTabItemExecute()
         {
@@ -36,6 +42,14 @@ namespace Fitness.ViewModel.UserControls
         public bool ShowCloseButton => true;
 
         public List<Ticket> Tickets { get; set; }
+
+        public void OpenClientTabExecute()
+        {
+            if (this.mClient != null)
+            {
+                MainWindowViewModel.Instance.SetClientManageClientTab(this.mClient);
+            }
+        }
 
         private void InitializeTicketList(Client client)
         {

@@ -28,6 +28,6 @@
     </DataTemplate>
     <DataTemplate x:Key="ClientTicketListTemplate"
                   DataType="{x:Type types:IClientTickets}">
-        <userControls:ManageTicketTypes/>
+        <userControls:ClientTicketList/>
     </DataTemplate>
 </ResourceDictionary>

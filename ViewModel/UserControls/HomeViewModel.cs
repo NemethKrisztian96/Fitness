@@ -60,7 +60,7 @@ namespace Fitness.ViewModel.UserControls
         public RelayCommand ListTicketTypesCommand { get; set; }
         public RelayCommand ReportsCommand { get; set; }
         public RelayCommand ListUsersCommand { get; set; }
-        public RelayCommand OpenClientTabCommand { get; set; }
+        //public RelayCommand OpenClientTabCommand { get; set; }
         public RelayCommand ListClientTicketsCommand { get; set; }
 
         public int UserId { get; private set; }
@@ -114,7 +114,7 @@ namespace Fitness.ViewModel.UserControls
             this.CloseTabItemCommand = new RelayCommand(this.CloseTabItemExecute);
             this.CreateClientCommand = new RelayCommand(this.CreateClientExecute);
             this.SearchClientCommand = new RelayCommand(this.SearchClientExecute);
-            this.OpenClientTabCommand = new RelayCommand(this.OpenClientTabExecute);
+            //this.OpenClientTabCommand = new RelayCommand(this.OpenClientTabExecute);
             this.ListClientTicketsCommand = new RelayCommand(this.OpenClientTicketsExecute);
             if (IsAdmin)
             {
@@ -146,7 +146,7 @@ namespace Fitness.ViewModel.UserControls
                 Client client = Data.Fitness.GetClientByBarcode(SearchBarcode);
                 if (client != null)
                 {
-                    MainWindowViewModel.Instance.SetClientManageClientTab(client);
+                    MainWindowViewModel.Instance.OpenClientTicketsTab(client);
                 }
                 else
                 {
@@ -165,7 +165,7 @@ namespace Fitness.ViewModel.UserControls
                 {
                     if (this.Clients.Count == 1)
                     {   //there is only one result => open the new tab
-                        MainWindowViewModel.Instance.SetClientManageClientTab(this.Clients.First());
+                        MainWindowViewModel.Instance.OpenClientTicketsTab(this.Clients.First());
                     }
                     else
                     {   //no results found
@@ -193,14 +193,14 @@ namespace Fitness.ViewModel.UserControls
             MainWindowViewModel.Instance.OpenListUsersTab();
         }
 
-        public void OpenClientTabExecute()
-        {
-            this.ShowClientsList = false;
-            if (this.SelectedClient != null)
-            {
-                MainWindowViewModel.Instance.SetClientManageClientTab(this.SelectedClient);
-            }
-        }
+        //public void OpenClientTabExecute()
+        //{
+        //    this.ShowClientsList = false;
+        //    if (this.SelectedClient != null)
+        //    {
+        //        MainWindowViewModel.Instance.SetClientManageClientTab(this.SelectedClient);
+        //    }
+        //}
 
         public void OpenClientTicketsExecute()
         {
