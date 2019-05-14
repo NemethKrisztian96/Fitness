@@ -55,11 +55,20 @@
         <Button Grid.Row="4"
                 Grid.ColumnSpan="2"
                 Content="Search"
-                Width="50"
+                Width="80"
                 Height="25"
                 Margin="5"
                 HorizontalAlignment="Center"
                 Command="{Binding SearchClientCommand}"/>
+        <Button Grid.Row="4"
+                Grid.Column="2"
+                Content="List Tickets"
+                Width="80"
+                Height="25"
+                Margin="5"
+                Command="{Binding ListClientTicketsCommand}">
+            
+        </Button>
         
         <StackPanel Grid.Row="5"
               Grid.ColumnSpan="2"

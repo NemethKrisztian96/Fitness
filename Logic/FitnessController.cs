@@ -81,6 +81,11 @@ namespace Fitness.Logic
             return this.FitnessDatabase.TicketTypes.Max(c => c.Id) + 1;
         }
 
+        public List<Ticket> GetAllTicketOfAClient(Client client)
+        {
+            return this.FitnessDatabase.Tickets.Where(t => t.OwnerId == client.Id).ToList();
+        }
+
         public void SaveAllChanges()
         {
             this.FitnessDatabase.SaveChanges();

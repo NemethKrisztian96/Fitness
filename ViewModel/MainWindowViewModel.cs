@@ -337,5 +337,22 @@ namespace Fitness.ViewModel
                 }
             }
         }
+
+        public void OpenClientTicketsTab(Client client)
+        {
+            IClientTickets clientTickets = this.Contents.FirstOrDefault(c => c is IClientTickets && (c as IClientTickets).ClientId == client.Id) as IClientTickets;
+
+            if (clientTickets == null)
+            {
+                ClientTicketListViewModel clientTicketViewModel = new ClientTicketListViewModel(client);
+                this.Contents.Add(clientTicketViewModel);
+
+                this.SelectedContent = this.Contents.LastOrDefault();
+            }
+            else
+            {
+                this.SelectedContent = clientTickets;
+            }
+        }
     }
 }

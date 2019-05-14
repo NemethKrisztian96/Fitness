@@ -61,6 +61,7 @@ namespace Fitness.ViewModel.UserControls
         public RelayCommand ReportsCommand { get; set; }
         public RelayCommand ListClientsCommand { get; set; }
         public RelayCommand OpenClientTabCommand { get; set; }
+        public RelayCommand ListClientTicketsCommand { get; set; }
 
         public int UserId { get; private set; }
 
@@ -114,6 +115,7 @@ namespace Fitness.ViewModel.UserControls
             this.CreateClientCommand = new RelayCommand(this.CreateClientExecute);
             this.SearchClientCommand = new RelayCommand(this.SearchClientExecute);
             this.OpenClientTabCommand = new RelayCommand(this.OpenClientTabExecute);
+            this.ListClientTicketsCommand = new RelayCommand(this.OpenClientTicketsExecute);
             if (IsAdmin)
             {
                 this.ListTicketTypesCommand = new RelayCommand(this.ListTicketTypesExecute);
@@ -197,6 +199,15 @@ namespace Fitness.ViewModel.UserControls
             if (this.SelectedClient != null)
             {
                 MainWindowViewModel.Instance.SetClientManageClientTab(this.SelectedClient);
+            }
+        }
+
+        public void OpenClientTicketsExecute()
+        {
+            this.ShowClientsList = false;
+            if (this.SelectedClient != null) //for a specific client
+            {
+                MainWindowViewModel.Instance.OpenClientTicketsTab(this.SelectedClient);
             }
         }
     }
