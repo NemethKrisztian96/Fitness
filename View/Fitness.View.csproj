@@ -73,6 +73,9 @@
     <Compile Include="UserControls\ListTicketTypes.xaml.cs">
       <DependentUpon>ListTicketTypes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ListUsers.xaml.cs">
+      <DependentUpon>ListUsers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ManageClient.xaml.cs">
       <DependentUpon>ManageClient.xaml</DependentUpon>
     </Compile>
@@ -81,6 +84,9 @@
     </Compile>
     <Compile Include="UserControls\ManageTicketTypes.xaml.cs">
       <DependentUpon>ManageTicketTypes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ManageUser.xaml.cs">
+      <DependentUpon>ManageUser.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -104,6 +110,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\ListUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\ManageClient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -113,6 +123,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\ManageTicketTypes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ManageUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

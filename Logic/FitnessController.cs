@@ -20,7 +20,7 @@ namespace Fitness.Logic
         public string GetPassword(string username)
         {
             //Console.WriteLine(this.fitnessDatabase.Users.Where(u => u.UserName == username).ToList().FirstOrDefault().Password);
-            return this.FitnessDatabase.Users.Where(u => u.UserName == username).FirstOrDefault()?.Password ?? "";
+            return this.FitnessDatabase.Users.Where(u => u.UserName == username && u.Role.ToLower() != "janitor").FirstOrDefault()?.Password ?? "";
         }
 
         public User GetUserById(int id)
@@ -62,7 +62,7 @@ namespace Fitness.Logic
 
         public List<TicketType> GetActiveTicketTypes()
         {
-            return this.FitnessDatabase.TicketTypes.Where(tt=>tt.Status.ToLower()=="active").ToList();
+            return this.FitnessDatabase.TicketTypes.Where(tt => tt.Status.ToLower() == "active").ToList();
         }
 
         public List<TicketType> GetTicketTypes()
@@ -89,6 +89,37 @@ namespace Fitness.Logic
         public void SaveAllChanges()
         {
             this.FitnessDatabase.SaveChanges();
+        }
+
+        public List<User> GetUsers()
+        {
+            return this.FitnessDatabase.Users.Where(u => u.Status.ToLower() != "admin").ToList();
+        }
+
+        public List<User> GetActiveUsers()
+        {
+            return this.FitnessDatabase.Users.Where(u => u.Status.ToLower() == "active" && u.Status.ToLower() != "admin").ToList();
+        }
+
+        public void AddUser(User user)
+        {
+            this.FitnessDatabase.Users.Add(user);
+            this.FitnessDatabase.SaveChanges();
+        }
+
+        public int GetNextUserId()
+        {
+            return this.FitnessDatabase.Users.Max(c => c.Id) + 1;
+        }
+
+        public bool IsUserUsernameUnique(string username)
+        {
+            int count = this.FitnessDatabase.Users.Where(u => u.UserName == username).Count();
+            if(count == 0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

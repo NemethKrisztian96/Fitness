@@ -135,6 +135,7 @@ namespace Fitness.ViewModel.UserControls
         public List<string> StatusList { get; set; }
         public string LabelContent { get; set; }
         public string ButtonContent { get; set; }
+        public bool IsDeleteButtonVisible { get; private set; }
 
         public TicketType TicketType { get; set; }
 
@@ -157,6 +158,7 @@ namespace Fitness.ViewModel.UserControls
                 this.Header = "Add new ticket type";
                 this.LabelContent = "Please fill out the following form:";
                 this.ButtonContent = "Create the new ticket type";
+                this.IsDeleteButtonVisible = false;
             }
             else
             {
@@ -164,6 +166,7 @@ namespace Fitness.ViewModel.UserControls
                 this.CompleteForm(this.TicketType);
                 this.LabelContent = "Please modify the data you want to change in the following form:";
                 this.ButtonContent = "Modify the ticket type";
+                this.IsDeleteButtonVisible = true;
             }
             this.InitializeStatusList();
             this.CloseTabItemCommand = new RelayCommand(this.CloseTabItemExecute);
@@ -197,7 +200,7 @@ namespace Fitness.ViewModel.UserControls
                     });
 
                     //display confirmation 
-                    PopupMessage.OkButtonPopupMessage("Done", "Client added successfully!");
+                    PopupMessage.OkButtonPopupMessage("Done", "Ticket type added successfully!");
                 }
                 else
                 {
@@ -251,7 +254,7 @@ namespace Fitness.ViewModel.UserControls
 
         private bool FormIsValid()
         {
-            if (this.TicketTypeName.Length > 0)
+            if (this.TicketTypeName.Length > 2)
             {
                 if (this.TicketTypeDayNumber >= 1 && this.TicketTypeDayNumber <= 31)
                 {

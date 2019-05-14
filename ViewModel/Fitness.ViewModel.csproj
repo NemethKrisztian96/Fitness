@@ -59,9 +59,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserControls\ClientTicketListViewModel.cs" />
     <Compile Include="UserControls\ListTicketTypesViewModel.cs" />
+    <Compile Include="UserControls\ListUsersViewModel.cs" />
     <Compile Include="UserControls\ManageClientViewModel.cs" />
     <Compile Include="UserControls\HomeViewModel.cs" />
     <Compile Include="UserControls\ManageTicketTypesViewModel.cs" />
+    <Compile Include="UserControls\ManageUserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

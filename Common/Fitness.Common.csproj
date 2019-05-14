@@ -64,10 +64,13 @@
     <Compile Include="FitnessTabContents\IClientTickets.cs" />
     <Compile Include="FitnessTabContents\IFitnessContent.cs" />
     <Compile Include="FitnessTabContents\IHomeContent.cs" />
+    <Compile Include="FitnessTabContents\IListUsersContent.cs" />
     <Compile Include="FitnessTabContents\IManageClientContent.cs" />
     <Compile Include="FitnessTabContents\IListTicketTypesContent.cs" />
     <Compile Include="FitnessTabContents\IManageTicketTypeContent.cs" />
+    <Compile Include="FitnessTabContents\IManageUserContent.cs" />
     <Compile Include="Helpers\CustomDateTime.cs" />
+    <Compile Include="Helpers\CustomHash.cs" />
     <Compile Include="Helpers\PopupMessage.cs" />
     <Compile Include="MVVM\RelayCommand.cs" />
     <Compile Include="MVVM\ViewModelBase.cs" />
