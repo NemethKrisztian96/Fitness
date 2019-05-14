@@ -119,6 +119,7 @@ namespace Fitness.ViewModel.UserControls
             if (takePicture)
             {   //take picture
                 this.FormIsVisible = false;
+                this.WebcamIsVisible = true;
 
                 /*CameraCaptureUI captureUI = new CameraCaptureUI();
                 captureUI.PhotoSettings.Format = CameraCaptureUIPhotoFormat.Jpeg;
