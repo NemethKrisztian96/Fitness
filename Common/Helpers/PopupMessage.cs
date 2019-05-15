@@ -28,7 +28,7 @@
         /// <returns>True if YES is clicked or false if NO is clicked</returns>
         public static bool YesNoButtonPopupMessage(string title, string message)
         {
-            MessageBoxButtons buttons = MessageBoxButtons.OK;
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             DialogResult result = MessageBox.Show(message, title, buttons);
             if(result == DialogResult.Yes)
             {

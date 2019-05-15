@@ -119,6 +119,10 @@
       <Project>{f8d03fb7-3f98-47cd-9e07-0e2b4d21c5a2}</Project>
       <Name>Fitness.View</Name>
     </ProjectReference>
+    <ProjectReference Include="..\webcam-preview-takesnap\WebCamPreviewTakeSnap.csproj">
+      <Project>{3a831e8a-45d7-4ca6-ab85-9bb615933376}</Project>
+      <Name>WebCamPreviewTakeSnap</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

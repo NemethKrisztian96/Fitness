@@ -6,10 +6,10 @@ using Fitness.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Fitness.ViewModel.UserControls
 {
@@ -65,7 +65,10 @@ namespace Fitness.ViewModel.UserControls
         public string Gender { get; set; }
         public DateTime BirthDate { get; set; }
 
+        public Uri ImagePathUri { get; set; }
         public string ImagePath { get; set; }
+        public bool ImageIsVisible { get; set; }
+        public Image ClientImage { get; set; }
 
         public string LabelContent { get; set; }
         public string ButtonContent { get; set; }
@@ -88,6 +91,7 @@ namespace Fitness.ViewModel.UserControls
                 this.Header = "Add new client";
                 LabelContent = "Please fill out the following form:";
                 ButtonContent = "Create client";
+                this.ImageIsVisible = false;
             }
             else
             {   //modify existing mode
@@ -96,6 +100,7 @@ namespace Fitness.ViewModel.UserControls
                 this.Header = Client.FirstName + " " + Client.LastName;
                 LabelContent = "Please modify the data you want to change in the following form:";
                 ButtonContent = "Modify client";
+                this.ImageIsVisible = true;
                 this.FillForm(this.Client);
             }
             this.RaisePropertyChanged();
@@ -114,27 +119,9 @@ namespace Fitness.ViewModel.UserControls
                 return;
             }
 
-            //prompt to take picture
-            bool takePicture = PopupMessage.YesNoButtonPopupMessage("Picture", "Would you like to take a picture of the client?");
-            if (takePicture)
-            {   //take picture
-                this.FormIsVisible = false;
-                this.WebcamIsVisible = true;
-
-                /*CameraCaptureUI captureUI = new CameraCaptureUI();
-                captureUI.PhotoSettings.Format = CameraCaptureUIPhotoFormat.Jpeg;
-                captureUI.PhotoSettings.CroppedSizeInPixels = new Size(200, 200);
-
-                StorageFile photo = await captureUI.CaptureFileAsync(CameraCaptureUIMode.Photo);*/
-                //this.ImagePath =
-            }
-            else
-            {
-                this.ImagePath = "";
-            }
-
             if (this.isCreating)
             {
+                this.ImagePath = "";
                 //create client
                 Client client = new Client()
                 {
@@ -153,12 +140,24 @@ namespace Fitness.ViewModel.UserControls
                 };
                 //add client do DB
                 Data.Fitness.AddClient(client);
-
+                this.Client = client;
+                Data.Fitness.SaveAllChanges();
                 //display confirmation and close the tab
                 PopupMessage.OkButtonPopupMessage("Done", "Client added successfully!");
             }
             else
             {   //update client
+                this.Client.BarCode = this.Barcode;
+                this.Client.FirstName = this.FirstName;
+                this.Client.LastName = this.LastName;
+                this.Client.Email = this.Email;
+                this.Client.PhoneNumber = this.PhoneNumber;
+                this.Client.Sex = this.Gender[0].ToString().ToUpper();
+                this.Client.BirthDate = this.BirthDate;
+                this.Client.InsertDate = DateTime.Today;
+                this.Client.Inserter = this.Inserter;
+                this.Client.InserterId = this.Inserter.Id;
+                this.Client.ImagePath = this.ImagePath;
 
                 //commit
                 Data.Fitness.SaveAllChanges();
@@ -167,7 +166,26 @@ namespace Fitness.ViewModel.UserControls
                 PopupMessage.OkButtonPopupMessage("Done", "Client modified successfully!");
             }
 
-            this.CloseTabItemCommand.Execute(this);
+            //prompt to take picture
+            bool takePicture = PopupMessage.YesNoButtonPopupMessage("Picture", "Would you like to take a picture of the client?");
+            if (takePicture)
+            {   //take picture
+                this.FormIsVisible = false;
+                this.WebcamIsVisible = true;
+
+                Data.Fitness.LastModified = this.Client;
+                //SavePictureViewModel mVM = new SavePictureViewModel();
+                /*CameraCaptureUI captureUI = new CameraCaptureUI();
+                captureUI.PhotoSettings.Format = CameraCaptureUIPhotoFormat.Jpeg;
+                captureUI.PhotoSettings.CroppedSizeInPixels = new Size(200, 200);
+
+                StorageFile photo = await captureUI.CaptureFileAsync(CameraCaptureUIMode.Photo);*/
+                //this.ImagePath =
+            }
+            else
+            {
+                this.CloseTabItemCommand.Execute(this);
+            }
         }
 
         public bool CreateClientCanExecute()
@@ -304,6 +322,11 @@ namespace Fitness.ViewModel.UserControls
             this.Email = client.Email;
             this.Gender = ConvertGender(client.Sex);
             this.BirthDate = client.BirthDate ?? DateTime.Today;
+            //this.ImagePathUri = new Uri(client.ImagePath) ?? null;
+            if (File.Exists(client.ImagePath))
+            {
+                this.ClientImage = Image.FromFile(client.ImagePath);
+            }
         }
 
         private string ConvertGender(string gender)

@@ -9,7 +9,7 @@
     /// </summary>
     /// <seealso cref="System.Data.Entity.CreateDatabaseIfNotExists{Fitness.Model.DBContext.FitnessDB}" />
 
-    public class DBInitializer: DropCreateDatabaseAlways<FitnessDB>//CreateDatabaseIfNotExists<FitnessDB>
+    public class DBInitializer: DropCreateDatabaseIfModelChanges<FitnessDB>//CreateDatabaseIfNotExists<FitnessDB>
     {
         protected override void Seed(FitnessDB context)
         {
@@ -75,7 +75,8 @@
         public override void InitializeDatabase(FitnessDB context)
         {
             base.InitializeDatabase(context);
-            if (context.Users.Count()<1) {
+            //System.Console.WriteLine(context.Users.Count());
+            if (context.Users.Count()<5) {
                 this.Seed(context);
                 context.SaveChanges();
             }
