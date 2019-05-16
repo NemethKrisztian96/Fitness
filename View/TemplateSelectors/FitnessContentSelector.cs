@@ -43,6 +43,10 @@ namespace Fitness.View.TemplateSelectors
             {
                 return Application.Current.MainWindow.TryFindResource("ClientTicketListTemplate") as DataTemplate;
             }
+            else if (item is ITicketStatistics)
+            {
+                return Application.Current.MainWindow.TryFindResource("ITicketStatisticsTemplate") as DataTemplate;
+            }
             /*else if (item is )
             {
                 return Application.Current.MainWindow.TryFindResource("SomeTemplate") as DataTemplate;

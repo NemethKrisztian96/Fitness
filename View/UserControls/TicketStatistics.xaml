@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="Fitness.View.UserControls.TicketStatistics"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Fitness.View.UserControls"
+             xmlns:converters="clr-namespace:Fitness.Common.Converters;assembly=Fitness.Common"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converters:DataGridRowNumberConverter x:Key="DataGridRowNumberConverter"/>
+    </UserControl.Resources>
+    <StackPanel>
+        <Grid>
+            <!--todo filters-->
+            
+        </Grid>
+        <DataGrid Margin="5"
+                ItemsSource="{Binding Tickets}"
+                AutoGenerateColumns="False"
+                IsReadOnly="True">
+             <DataGrid.Columns>
+                <DataGridTextColumn Header="Type"
+                                    Width="*"
+                                    Binding="{Binding Type}"/>
+                <DataGridTextColumn Header="Buying date"
+                                    Width="auto"
+                                    Binding="{Binding BuyingDate}"/>
+                <DataGridTextColumn Header="Last using date"
+                                    Width="*"
+                                    Binding="{Binding LastUsingDate}"/>
+                <DataGridTextColumn Header="Login number"
+                                    Width="*"
+                                    Binding="{Binding LoginNumber}"/>
+                <DataGridTextColumn Header="Price"
+                                    Width="*"
+                                    Binding="{Binding Price}"/>
+                <DataGridTextColumn Header="Status"
+                                    Width="auto"
+                                    Binding="{Binding Status}"/>
+            </DataGrid.Columns>
+            <DataGrid.RowHeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource DataGridRowNumberConverter}}"
+                                Margin="2,0,2,0"/>
+                </DataTemplate>
+            </DataGrid.RowHeaderTemplate>
+        </DataGrid>
+    </StackPanel>
+</UserControl>

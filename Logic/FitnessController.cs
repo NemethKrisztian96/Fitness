@@ -88,6 +88,11 @@ namespace Fitness.Logic
             return this.FitnessDatabase.Tickets.Where(t => t.OwnerId == client.Id).ToList();
         }
 
+        public List<Ticket> GetAllTickets()
+        {
+            return this.FitnessDatabase.Tickets.ToList();
+        }
+
         public void SaveAllChanges()
         {
             this.FitnessDatabase.SaveChanges();

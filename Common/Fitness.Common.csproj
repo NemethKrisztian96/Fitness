@@ -72,6 +72,7 @@
     <Compile Include="FitnessTabContents\IManageTicketContent.cs" />
     <Compile Include="FitnessTabContents\IManageTicketTypeContent.cs" />
     <Compile Include="FitnessTabContents\IManageUserContent.cs" />
+    <Compile Include="FitnessTabContents\ITicketStatistics.cs" />
     <Compile Include="Helpers\CustomDateTime.cs" />
     <Compile Include="Helpers\CustomHash.cs" />
     <Compile Include="Helpers\PopupMessage.cs" />

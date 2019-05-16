@@ -34,4 +34,8 @@
                   DataType="{x:Type types:IManageTicketContent}">
         <userControls:ManageTicket/>
     </DataTemplate>
+    <DataTemplate x:Key="TicketStatisticsTemplate"
+                  DataType="{x:Type types:ITicketStatistics}">
+        <userControls:TicketStatistics/>
+    </DataTemplate>
 </ResourceDictionary>
