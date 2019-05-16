@@ -47,6 +47,10 @@ namespace Fitness.View.TemplateSelectors
             {
                 return Application.Current.MainWindow.TryFindResource("ListClientsTemplate") as DataTemplate;
             }
+            else if (item is IEmailContent)
+            {
+                return Application.Current.MainWindow.TryFindResource("EmailTemplate") as DataTemplate;
+            }
             /*else if (item is )
             {
                 return Application.Current.MainWindow.TryFindResource("SomeTemplate") as DataTemplate;

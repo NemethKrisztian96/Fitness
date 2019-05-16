@@ -132,6 +132,11 @@
                     Width="80"
                     Margin="25"
                     Command="{Binding ListUsersCommand}"/>
+            <Button Content="Send email to all clients"
+                    Height="25"
+                    Width="140"
+                    Margin="25"
+                    Command="{Binding SendEmailCommand}"/>
         </StackPanel>
         <StackPanel Grid.Row="7"
                     Grid.ColumnSpan="2"

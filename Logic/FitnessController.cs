@@ -152,5 +152,10 @@ namespace Fitness.Logic
         {
             return this.FitnessDatabase.Tickets.Where(t => t.Id == ticketId).FirstOrDefault();
         }
+
+        public List<string> GetClientEmails()
+        {
+            return this.FitnessDatabase.Clients.Where(c => c.IsDeleted ?? false != true && !string.IsNullOrEmpty(c.Email)).Select(c => c.Email)?.ToList() ?? null;
+        }
     }
 }

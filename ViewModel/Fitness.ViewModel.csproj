@@ -66,6 +66,7 @@
     <Compile Include="UserControls\ManageTicketTypesViewModel.cs" />
     <Compile Include="UserControls\ManageTicketViewModel.cs" />
     <Compile Include="UserControls\ManageUserViewModel.cs" />
+    <Compile Include="UserControls\SendEmailViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

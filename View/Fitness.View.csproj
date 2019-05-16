@@ -70,6 +70,9 @@
     <Compile Include="UserControls\ClientTicketList.xaml.cs">
       <DependentUpon>ClientTicketList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\SendEmail.xaml.cs">
+      <DependentUpon>SendEmail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ListClients.xaml.cs">
       <DependentUpon>ListClients.xaml</DependentUpon>
     </Compile>
@@ -109,6 +112,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\ClientTicketList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SendEmail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

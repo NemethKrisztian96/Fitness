@@ -420,5 +420,22 @@ namespace Fitness.ViewModel
                 this.SelectedContent = manTicketContent;
             }
         }
+
+        public void SendEmailTab()
+        {
+            IEmailContent emailContent = this.Contents.FirstOrDefault(c => c is IEmailContent) as IEmailContent;
+
+            if (emailContent == null)
+            {
+                SendEmailViewModel emailViewModel = new SendEmailViewModel();
+                this.Contents.Add(emailViewModel);
+
+                this.SelectedContent = this.Contents.LastOrDefault();  //has at least one element
+            }
+            else
+            {
+                this.SelectedContent = emailContent;
+            }
+        }
     }
 }
