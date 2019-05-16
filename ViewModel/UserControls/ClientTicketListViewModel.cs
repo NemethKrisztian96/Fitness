@@ -36,6 +36,8 @@ namespace Fitness.ViewModel.UserControls
         public int ClientId { get; set; }
         public Image ClientImage { get; set; }
 
+        public Ticket OriginalTicket { get; set; }
+
         public RelayCommand CloseTabItemCommand { get; set; }
         public RelayCommand OpenClientTabCommand { get; set; }
         public RelayCommand ManageTicketCommand { get; set; }
@@ -61,9 +63,9 @@ namespace Fitness.ViewModel.UserControls
 
         public void ManageTicketTabExecute()
         {
-            if(this.mTicket != null)
+            if(this.OriginalTicket != null)
             {
-                MainWindowViewModel.Instance.OpenManageTicketTab(this.mTicket);
+                MainWindowViewModel.Instance.OpenManageTicketTab(this.OriginalTicket);
             }
         }
 

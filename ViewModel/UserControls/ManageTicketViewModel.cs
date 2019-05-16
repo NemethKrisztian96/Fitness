@@ -201,13 +201,13 @@ namespace Fitness.ViewModel.UserControls
                     }
                 );
 
-                Data.Fitness.DisableTicket(TicketId);
+                Data.Fitness.DisableTicket(Id);
             }
         }
 
         private bool IsFormValid()
         {
-            Ticket original = Data.Fitness.GetTicketById(TicketId);
+            Ticket original = Data.Fitness.GetTicketById(Id);
 
             if(this.LastUsingDate == original.LastUsingDate && this.LoginNumber == original.LoginNumber) { return false; }
             if(this.LastUsingDate < original.LastUsingDate) { return false; }

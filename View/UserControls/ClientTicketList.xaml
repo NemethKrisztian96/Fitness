@@ -42,7 +42,8 @@
         <DataGrid Margin="5"
                 ItemsSource="{Binding Tickets}"
                 AutoGenerateColumns="False"
-                IsReadOnly="True">
+                IsReadOnly="True"
+                SelectedItem="{Binding OriginalTicket}">
 
             <DataGrid.InputBindings>
                 <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ManageTicketCommand}"/>
