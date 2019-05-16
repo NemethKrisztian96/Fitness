@@ -34,4 +34,8 @@
                   DataType="{x:Type types:IManageTicketContent}">
         <userControls:ManageTicket/>
     </DataTemplate>
+    <DataTemplate x:Key="ListClientsTemplate"
+                  DataType="{x:Type types:IListClientsContent}">
+        <userControls:ListClients/>
+    </DataTemplate>
 </ResourceDictionary>

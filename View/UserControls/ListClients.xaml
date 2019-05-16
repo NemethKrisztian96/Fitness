@@ -4,9 +4,68 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Fitness.View.UserControls"
+             xmlns:converters="clr-namespace:Fitness.Common.Converters;assembly=Fitness.Common"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
-    </Grid>
+    <UserControl.Resources>
+        <converters:DataGridRowNumberConverter x:Key="DataGridRowNumberConverter"/>
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Vertical">
+        <Label Content="The registered clients are:"
+               FontSize="16"/>
+        <DataGrid Margin="5"
+                  ItemsSource="{Binding ClientsList}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectedItem="{Binding SelectedClient}">
+            <DataGrid.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ManageClientCommand}"/>
+            </DataGrid.InputBindings>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Barcode"
+                                    Width="*"
+                                    Binding="{Binding BarCode}"/>
+                <DataGridTextColumn Header="First name"
+                                    Width="*"
+                                    Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Last name"
+                                    Width="*"
+                                    Binding="{Binding LastName}"/>
+                <DataGridTextColumn Header="Phone number"
+                                    Width="auto"
+                                    Binding="{Binding PhoneNumber}"/>
+                <DataGridTextColumn Header="Email"
+                                    Width="auto"
+                                    Binding="{Binding Email}"/>
+                <DataGridTextColumn Header="BirthDate"
+                                    Width="auto"
+                                    Binding="{Binding BirthDate}"/>
+                <DataGridTextColumn Header="Gender"
+                                    Width="auto"
+                                    Binding="{Binding Sex}"/>
+                <DataGridTextColumn Header="Insert date"
+                                    Width="auto"
+                                    Binding="{Binding InsertDate}"/>
+                <DataGridTextColumn Header="Inserter user"
+                                    Width="auto"
+                                    Binding="{Binding Inserter.UserName}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding Path=DataContext.DeleteClientCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" Content="Delete client"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+            <DataGrid.RowHeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource DataGridRowNumberConverter}}"
+                               Margin="2,0,2,0"/>
+                </DataTemplate>
+            </DataGrid.RowHeaderTemplate>
+        </DataGrid>
+
+    </StackPanel>
 </UserControl>
