@@ -24,8 +24,8 @@ namespace Fitness.ViewModel.UserControls
         private int ticketTypeId;
         private DateTime buyingDate;
         private DateTime firstUsingDate;
-        private DateTime lastUsingDate;
-        private int loginNumber;
+        private DateTime expirationDate;
+        private int maxLoginNumber;
         private double price;
         private User seller;
         private int sellerId;
@@ -93,16 +93,16 @@ namespace Fitness.ViewModel.UserControls
         }
         public DateTime BuyingDate { get; set; }
         public DateTime FirstUsingDate { get; set; }
-        public DateTime LastUsingDate { get; set; }
-        public int LoginNumber
+        public DateTime ExpirationDate { get; set; }
+        public int MaxLoginNumber
         {
             get
             {
-                return this.loginNumber;
+                return this.maxLoginNumber;
             }
             set
             {
-                this.loginNumber = value;
+                this.maxLoginNumber = value;
                 this.RaisePropertyChanged();
             }
         }
@@ -162,8 +162,8 @@ namespace Fitness.ViewModel.UserControls
             this.TicketTypeId = ticket.TicketTypeId;
             this.BuyingDate = ticket.BuyingDate;
             this.FirstUsingDate = ticket.FirstUsingDate;
-            this.LastUsingDate = ticket.LastUsingDate;
-            this.LoginNumber = ticket.LoginNumber;
+            this.ExpirationDate = ticket.ExpirationDate;
+            this.MaxLoginNumber = ticket.MaxLoginNumber;
             this.Price = ticket.Price;
             this.Seller = ticket.Seller;
             this.SellerId = ticket.SellerId;
@@ -192,8 +192,8 @@ namespace Fitness.ViewModel.UserControls
                         TicketTypeId = this.TicketTypeId,
                         BuyingDate = this.BuyingDate,
                         FirstUsingDate = this.FirstUsingDate,
-                        LastUsingDate = this.LastUsingDate,
-                        LoginNumber = this.LoginNumber,
+                        ExpirationDate = this.ExpirationDate,
+                        MaxLoginNumber = this.MaxLoginNumber,
                         Price = this.Price,
                         Seller = this.Seller,
                         SellerId = this.SellerId,
@@ -209,9 +209,9 @@ namespace Fitness.ViewModel.UserControls
         {
             Ticket original = Data.Fitness.GetTicketById(Id);
 
-            if(this.LastUsingDate == original.LastUsingDate && this.LoginNumber == original.LoginNumber) { return false; }
-            if(this.LastUsingDate < original.LastUsingDate) { return false; }
-            if(this.LoginNumber < original.LoginNumber) { return false; }
+            if(this.ExpirationDate == original.ExpirationDate && this.MaxLoginNumber == original.MaxLoginNumber) { return false; }
+            if(this.ExpirationDate < original.ExpirationDate) { return false; }
+            if(this.MaxLoginNumber < original.MaxLoginNumber) { return false; }
 
             return true;
         }

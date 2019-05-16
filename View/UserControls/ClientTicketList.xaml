@@ -37,6 +37,9 @@
             <Button Content="Edit client"
                     MinWidth="80"
                     Command="{Binding OpenClientTabCommand}"/>
+                <Button Content="Delete client"
+                    MinWidth="80"
+                    Command="{Binding DeleteClientCommand}"/>
             </StackPanel>
         </Grid>
         <DataGrid Margin="5"

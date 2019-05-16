@@ -24,5 +24,6 @@ namespace Fitness.Model
         [NotMapped]
         public User Inserter { get; set; }
         public int InserterId { get; set; }
+        public bool? IsDeleted { get; set; }
     }
 }

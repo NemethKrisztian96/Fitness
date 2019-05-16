@@ -17,8 +17,8 @@ namespace Fitness.Model
         public int TicketTypeId { get; set; }
         public DateTime BuyingDate { get; set; }
         public DateTime FirstUsingDate { get; set; }
-        public DateTime LastUsingDate { get; set; }
-        public int LoginNumber { get; set; }
+        public DateTime ExpirationDate { get; set; }
+        public int MaxLoginNumber { get; set; }
         public double Price { get; set; }
         [NotMapped]
         public User Seller { get; set; }

@@ -147,5 +147,11 @@ namespace Fitness.Logic
         {
             return this.FitnessDatabase.Tickets.Where(t => t.Id == ticketId).FirstOrDefault();
         }
+
+        public void DeleteClient(Client client)
+        {
+            client.IsDeleted = true;
+            this.FitnessDatabase.SaveChanges();
+        }
     }
 }
