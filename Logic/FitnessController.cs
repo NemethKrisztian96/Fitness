@@ -58,7 +58,7 @@ namespace Fitness.Logic
 
         public List<Client> GetClients()
         {
-            return this.FitnessDatabase.Clients.Where(c => c?.IsDeleted!=true).ToList();
+            return this.FitnessDatabase.Clients.Where(c => c.IsDeleted??false!=true).ToList();
         }
 
         public void AddClient(Client client)
