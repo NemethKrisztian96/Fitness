@@ -33,7 +33,10 @@
                  Grid.Column="1"
                  Height="200"
                  Margin="25"
-                 Text="{Binding Body}"/>
+                 Text="{Binding Body}"
+                 TextAlignment="Justify"
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True"/>
 
         <Button Grid.Row="2"
                 Grid.ColumnSpan="2"
