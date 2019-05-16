@@ -34,6 +34,14 @@
                   DataType="{x:Type types:IManageTicketContent}">
         <userControls:ManageTicket/>
     </DataTemplate>
+    <DataTemplate x:Key="ListClientsTemplate"
+                  DataType="{x:Type types:IListClientsContent}">
+        <userControls:ListClients/>
+    </DataTemplate>
+    <DataTemplate x:Key="EmailTemplate"
+                  DataType="{x:Type types:IEmailContent}">
+        <userControls:SendEmail/>
+    </DataTemplate>
     <DataTemplate x:Key="TicketStatisticsTemplate"
                   DataType="{x:Type types:ITicketStatistics}">
         <userControls:TicketStatistics/>

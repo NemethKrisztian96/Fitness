@@ -25,6 +25,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <Button Grid.Row="0"
@@ -100,7 +101,7 @@
                     <!--<DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Click="{Binding OpenClientTabCommand}">Edit client</Button>
+                                <Button Command="{Binding OpenClientTabCommand}">Edit client</Button>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>-->
@@ -126,16 +127,40 @@
                     Width="80"
                     Margin="25"
                     Command="{Binding ListTicketTypesCommand}"/>
-            <Button Content="Reports"
-                    Height="25"
-                    Width="80"
-                    Margin="25"
-                    Command="{Binding ReportsCommand}"/>
             <Button Content="Users"
                     Height="25"
                     Width="80"
                     Margin="25"
                     Command="{Binding ListUsersCommand}"/>
+            <Button Content="Send email to all clients"
+                    Height="25"
+                    Width="140"
+                    Margin="25"
+                    Command="{Binding SendEmailCommand}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="7"
+                    Grid.ColumnSpan="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibility}}">
+            <Label Content="Reports: "
+                   HorizontalAlignment="Left"
+                   Margin="25 25 100 25"/>
+            <Button Content="Clients"
+                    Height="25"
+                    Width="80"
+                    Margin="25"
+                    Command="{Binding ListClientsCommand}"/>
+            <Button Content="Tickets"
+                    Height="25"
+                    Width="80"
+                    Margin="25"
+                    Command="{Binding ListTicketsCommand}"/>
+            <Button Content="Entries"
+                    Height="25"
+                    Width="80"
+                    Margin="25"
+                    Command="{Binding ListEntriesCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>

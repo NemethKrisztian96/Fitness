@@ -56,6 +56,11 @@ namespace Fitness.Logic
             return this.FitnessDatabase.Clients.Max(c => c.Id) + 1;
         }
 
+        public List<Client> GetClients()
+        {
+            return this.FitnessDatabase.Clients.Where(c => c.IsDeleted??false!=true).ToList();
+        }
+
         public void AddClient(Client client)
         {
             this.FitnessDatabase.Clients.Add(client);
@@ -157,6 +162,11 @@ namespace Fitness.Logic
         {
             client.IsDeleted = true;
             this.FitnessDatabase.SaveChanges();
+        }
+
+        public List<string> GetClientEmails()
+        {
+            return this.FitnessDatabase.Clients.Where(c => c.IsDeleted ?? false != true && !string.IsNullOrEmpty(c.Email)).Select(c => c.Email)?.ToList() ?? null;
         }
     }
 }

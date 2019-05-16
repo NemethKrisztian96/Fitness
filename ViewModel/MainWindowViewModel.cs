@@ -340,6 +340,23 @@ namespace Fitness.ViewModel
             }
         }
 
+        public void OpenListClientsTab()
+        {
+            //searching for duplicates of the exact same tab (same state...)
+            IListClientsContent listClientsContent = this.Contents.FirstOrDefault(c => c is IListClientsContent) as IListClientsContent;
+            if (listClientsContent == null)
+            {
+                ListClientsViewModel listClientsViewModel = new ListClientsViewModel();
+                this.Contents.Add(listClientsViewModel);
+
+                this.SelectedContent = this.Contents.LastOrDefault();  //has at least one element
+            }
+            else
+            {
+                this.SelectedContent = listClientsContent;
+            }
+        }
+
         public void OpenManageUserTab(User user=null)
         {
             //searching for duplicates of the exact same tab (same state...)
@@ -401,6 +418,23 @@ namespace Fitness.ViewModel
             else
             {
                 this.SelectedContent = manTicketContent;
+            }
+        }
+
+        public void SendEmailTab()
+        {
+            IEmailContent emailContent = this.Contents.FirstOrDefault(c => c is IEmailContent) as IEmailContent;
+
+            if (emailContent == null)
+            {
+                SendEmailViewModel emailViewModel = new SendEmailViewModel();
+                this.Contents.Add(emailViewModel);
+
+                this.SelectedContent = this.Contents.LastOrDefault();  //has at least one element
+            }
+            else
+            {
+                this.SelectedContent = emailContent;
             }
         }
     }

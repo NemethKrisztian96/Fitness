@@ -6,6 +6,7 @@ using Fitness.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -60,6 +61,10 @@ namespace Fitness.ViewModel.UserControls
         public RelayCommand ListTicketTypesCommand { get; set; }
         public RelayCommand ReportsCommand { get; set; }
         public RelayCommand ListUsersCommand { get; set; }
+        public RelayCommand ListClientsCommand { get; set; }
+        public RelayCommand ListTicketsCommand { get; set; }
+        public RelayCommand ListEntriesCommand { get; set; }
+        public RelayCommand SendEmailCommand { get; set; }
         //public RelayCommand OpenClientTabCommand { get; set; }
         public RelayCommand ListClientTicketsCommand { get; set; }
 
@@ -121,7 +126,17 @@ namespace Fitness.ViewModel.UserControls
                 this.ListTicketTypesCommand = new RelayCommand(this.ListTicketTypesExecute);
                 this.ReportsCommand = new RelayCommand(this.ReportsExecute);
                 this.ListUsersCommand = new RelayCommand(this.ListUsersExecute);
+                this.ListClientsCommand = new RelayCommand(this.ListClientsExecute);
+                this.SendEmailCommand = new RelayCommand(this.SendEmailExecute);
+                /*this.ListTicketsCommand = new RelayCommand(this.ListTicketsExecute);
+                this.ListEntriesCommand = new RelayCommand(this.ListEntriesExecute);*/
             }
+        }
+
+        public void SendEmailExecute()
+        {
+            this.ShowClientsList = false;
+            MainWindowViewModel.Instance.SendEmailTab();
         }
 
         public void CloseTabItemExecute()
@@ -191,6 +206,12 @@ namespace Fitness.ViewModel.UserControls
         {
             this.ShowClientsList = false;
             MainWindowViewModel.Instance.OpenListUsersTab();
+        }
+
+        public void ListClientsExecute()
+        {
+            this.ShowClientsList = false;
+            MainWindowViewModel.Instance.OpenListClientsTab();
         }
 
         //public void OpenClientTabExecute()
