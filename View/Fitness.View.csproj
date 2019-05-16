@@ -143,6 +143,10 @@
       <Project>{ee19542d-4065-46a9-b01f-93d430ec8af8}</Project>
       <Name>Fitness.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\webcam-preview-takesnap\WebCamPreviewTakeSnap.csproj">
+      <Project>{3a831e8a-45d7-4ca6-ab85-9bb615933376}</Project>
+      <Name>WebCamPreviewTakeSnap</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

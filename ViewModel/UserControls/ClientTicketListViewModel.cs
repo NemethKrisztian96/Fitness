@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Fitness.Model;
 using Fitness.Logic;
+using System.Drawing;
+using System.IO;
 
 namespace Fitness.ViewModel.UserControls
 {
@@ -20,6 +22,10 @@ namespace Fitness.ViewModel.UserControls
             this.mClient = client;
             this.Header = client.FirstName + " " + client.LastName + " tickets"; //change it if you want
             this.ClientId = client.Id;
+            if (File.Exists(client.ImagePath))
+            {
+                this.ClientImage = Image.FromFile(client.ImagePath);
+            }
             this.InitializeTicketList(client);
 
             this.CloseTabItemCommand = new RelayCommand(this.CloseTabItemExecute);
@@ -28,6 +34,7 @@ namespace Fitness.ViewModel.UserControls
         }
 
         public int ClientId { get; set; }
+        public Image ClientImage { get; set; }
 
         public RelayCommand CloseTabItemCommand { get; set; }
         public RelayCommand OpenClientTabCommand { get; set; }

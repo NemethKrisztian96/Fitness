@@ -12,6 +12,8 @@ namespace Fitness.Logic
     {
         public FitnessDB FitnessDatabase { get; }
 
+        public Client LastModified { get; set; }
+
         public FitnessController()
         {
             this.FitnessDatabase = new FitnessDB();
@@ -40,7 +42,7 @@ namespace Fitness.Logic
 
         public Client GetClientByBarcode(string barcode)
         {
-            return this.FitnessDatabase.Clients.Where(c => c.BarCode == barcode).First() ?? null;
+            return this.FitnessDatabase.Clients.Where(c => c.BarCode == barcode)?.FirstOrDefault() ?? null;
         }
 
         public List<Client> GetClientsByName(string name)

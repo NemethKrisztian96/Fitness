@@ -9,6 +9,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <converters:DataGridRowNumberConverter x:Key="DataGridRowNumberConverter"/>
+        <converters:ImageConverter x:Key="ImageSourceToImage"/>
     </UserControl.Resources>
     
     <StackPanel Orientation="Vertical">
@@ -21,10 +22,22 @@
                 Content="The tickets are:"
                 FontSize="16"/>
 
-            <Button Grid.Column="1"
-                    Content="Edit client"
+            <StackPanel Orientation="Horizontal"
+                        Grid.Column="1">
+            <Image Grid.Row="8"
+               Grid.Column="1"
+               Source="{Binding ClientImage, Converter={StaticResource ImageSourceToImage}}"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Width="100"
+               Height="100"
+               Stretch="UniformToFill"
+               Margin="20,0,20,20" >
+            </Image>
+            <Button Content="Edit client"
                     MinWidth="80"
                     Command="{Binding OpenClientTabCommand}"/>
+            </StackPanel>
         </Grid>
         <DataGrid Margin="5"
                 ItemsSource="{Binding Tickets}"
