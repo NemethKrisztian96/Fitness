@@ -56,6 +56,11 @@ namespace Fitness.Logic
             return this.FitnessDatabase.Clients.Max(c => c.Id) + 1;
         }
 
+        public List<Client> GetClients()
+        {
+            return this.FitnessDatabase.Clients.Where(c => c?.IsDeleted!=true).ToList();
+        }
+
         public void AddClient(Client client)
         {
             this.FitnessDatabase.Clients.Add(client);
