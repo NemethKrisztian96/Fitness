@@ -30,4 +30,8 @@
                   DataType="{x:Type types:IClientTickets}">
         <userControls:ClientTicketList/>
     </DataTemplate>
+    <DataTemplate x:Key="ManageTicketTemplate"
+                  DataType="{x:Type types:IManageTicketContent}">
+        <userControls:ManageTicket/>
+    </DataTemplate>
 </ResourceDictionary>

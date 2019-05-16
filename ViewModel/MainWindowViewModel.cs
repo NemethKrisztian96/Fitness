@@ -386,5 +386,22 @@ namespace Fitness.ViewModel
                 this.SelectedContent = clientTickets;
             }
         }
+
+        public void OpenManageTicketTab(Ticket mTicket)
+        {
+            IManageTicketContent manTicketContent = this.Contents.FirstOrDefault(c => c is IManageTicketContent && (c as IManageTicketContent).TicketId == mTicket.Id) as IManageTicketContent;
+
+            if (manTicketContent == null)
+            {
+                ManageTicketViewModel manTicketViewModel = new ManageTicketViewModel(mTicket);
+                this.Contents.Add(manTicketViewModel);
+
+                this.SelectedContent = this.Contents.LastOrDefault();  //has at least one element
+            }
+            else
+            {
+                this.SelectedContent = manTicketContent;
+            }
+        }
     }
 }

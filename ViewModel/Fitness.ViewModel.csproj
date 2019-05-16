@@ -63,6 +63,7 @@
     <Compile Include="UserControls\ManageClientViewModel.cs" />
     <Compile Include="UserControls\HomeViewModel.cs" />
     <Compile Include="UserControls\ManageTicketTypesViewModel.cs" />
+    <Compile Include="UserControls\ManageTicketViewModel.cs" />
     <Compile Include="UserControls\ManageUserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

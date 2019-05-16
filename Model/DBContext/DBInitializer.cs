@@ -31,7 +31,7 @@
         private void AddUsers(FitnessDB context)
         {
             context.Users.Add(new User { Id = 0, UserName = "admin", Password = "8C6976E5B5410415BDE908BD4DEE15DFB167A9C873FC4BB8A81F6F2AB448A918", Role = "Admin", Salary = 10000, Status = "Admin"});
-            context.Users.Add(new User { Id = 1, UserName="nancross", FirstName = "Nancy", LastName = "Ross", Password = "CF43E029EFE6476E1F7F84691F89C876818610C2EAEAEB881103790A48745B82", Role = "Manager", Salary = 3000, Status = "Active" });
+            context.Users.Add(new User { Id = 1, UserName = "nancross", FirstName = "Nancy", LastName = "Ross", Password = "CF43E029EFE6476E1F7F84691F89C876818610C2EAEAEB881103790A48745B82", Role = "Manager", Salary = 3000, Status = "Active" });
             context.Users.Add(new User { Id = 2, UserName = "briaedwa", FirstName = "Brian", LastName = "Edwards", Password = "2DED0942480E1BAB8F783C2CA16AFE0AD2B27567E831E629801EE09DC394283A", Role = "Manager", Salary = 3000, Status = "Active" });
             context.Users.Add(new User { Id = 3, UserName = "douglong", FirstName = "Douglas", LastName = "Long", Password = "B37B03A62CF77B2767CA4261A756FB3269FB00C1D0830581778EA07A175C42F3", Role = "Receptionist",Salary = 1700, Status = "Active" });
             context.Users.Add(new User { Id = 4, UserName = "jerehend", FirstName = "Jeremy", LastName = "Henderson", Password = "D41FE7DB4D92A1DA0048E2F48227EBE18583800BEDB07A0EE0E20F96AE3FE286", Role = "Receptionist", Salary = 1800, Status = "Active" });
@@ -48,7 +48,8 @@
 
         private void AddClients(FitnessDB context)
         {
-            context.Clients.Add(new Client { Id = 1001, BarCode = "614704024060", FirstName = "Alison", LastName= "Ramirez", PhoneNumber = "0757446374", Sex="F", InsertDate = new System.DateTime(2019, 3, 24), InserterId = 3 });
+            context.Clients.Add(new Client { Id = 1000, BarCode = "123456789123", FirstName = "Guest", LastName = "Guest", Sex = "O", InsertDate = new System.DateTime(2019, 1, 1), InserterId = 0 });
+            context.Clients.Add(new Client { Id = 1001, BarCode = "614704024060", FirstName = "Alison", LastName = "Ramirez", PhoneNumber = "0757446374", Sex="F", InsertDate = new System.DateTime(2019, 3, 24), InserterId = 3 });
             context.Clients.Add(new Client { Id = 1002, BarCode = "594483537929", FirstName = "Tracy", LastName = "Berry", PhoneNumber = "0729085485", Sex = "F", InsertDate = new System.DateTime(2019, 3, 25), InserterId = 4 });
             context.Clients.Add(new Client { Id = 1003, BarCode = "760763000069", FirstName = "Toni", LastName = "Sharp", PhoneNumber = "0702794292", Sex = "M", InsertDate = new System.DateTime(2019, 3, 26), InserterId = 5 });
             context.Clients.Add(new Client { Id = 1004, BarCode = "698497100539", FirstName = "Darrel", LastName = "Hammond", PhoneNumber = "0720057803", Sex = "M", InsertDate = new System.DateTime(2019, 3, 24), InserterId = 3 });

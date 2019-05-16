@@ -82,6 +82,9 @@
     <Compile Include="UserControls\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ManageTicket.xaml.cs">
+      <DependentUpon>ManageTicket.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ManageTicketTypes.xaml.cs">
       <DependentUpon>ManageTicketTypes.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ManageTicket.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

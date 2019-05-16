@@ -30,10 +30,11 @@
                 ItemsSource="{Binding Tickets}"
                 AutoGenerateColumns="False"
                 IsReadOnly="True">
-            <!--
+
             <DataGrid.InputBindings>
-                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ManageTicketTypeCommand}"/>
-            </DataGrid.InputBindings> -->
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ManageTicketCommand}"/>
+            </DataGrid.InputBindings>
+            
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Type"
                                 Width="*"
@@ -60,7 +61,6 @@
                     <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource DataGridRowNumberConverter}}"
                             Margin="2,0,2,0"/>
                 </DataTemplate>
-                <!--todo buttons-->
             </DataGrid.RowHeaderTemplate>
         </DataGrid>
     </StackPanel>

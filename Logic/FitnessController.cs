@@ -121,5 +121,29 @@ namespace Fitness.Logic
             }
             return false;
         }
+
+        public int GetNextTicketId()
+        {
+            return this.FitnessDatabase.Tickets.Max(t => t.Id) + 1;
+        }
+
+        public void AddTicket(Ticket ticket)
+        {
+            this.FitnessDatabase.Tickets.Add(ticket);
+            this.FitnessDatabase.SaveChanges();
+        }
+
+        public void DisableTicket(int ticketId)
+        {
+            Ticket ticket = this.FitnessDatabase.Tickets.Where(t => t.Id == ticketId).FirstOrDefault();
+            ticket.Status = "Disable";
+
+            this.FitnessDatabase.SaveChanges();
+        }
+
+        public Ticket GetTicketById(int ticketId)
+        {
+            return this.FitnessDatabase.Tickets.Where(t => t.Id == ticketId).FirstOrDefault();
+        }
     }
 }
