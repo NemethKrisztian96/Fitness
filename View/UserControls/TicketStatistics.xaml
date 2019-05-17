@@ -17,30 +17,33 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="1"/>
-                <RowDefinition Height="1"/>
-                <RowDefinition Height="1"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
-            
-            <CheckBox Grid.Row="0"
+
+            <Label Grid.Row="0"
+                   Grid.Column="0"
+                   Content="Filters"/>
+            <CheckBox Grid.Row="1"
                       Grid.Column="0"
                       x:Name="CheckBoxActive"
                       Content="Active tickets"
-                      IsChecked="{Binding ActiveChecked}"/>
-            <CheckBox Grid.Row="1"
+                      IsChecked="{Binding ActiveChecked, Mode=TwoWay}"/>
+            <CheckBox Grid.Row="2"
                       Grid.Column="0"
                       x:Name="CheckBoxInactive"
                       Content="Inactive tickets"
-                      IsChecked="{Binding InactiveChecked}"/>
-            <Button Grid.Row="2"
+                      IsChecked="{Binding InactiveChecked, Mode=TwoWay}"/>
+            <Button Grid.Row="3"
                 Grid.Column="0"
                 Content="Search"
                 Width="80"
                 Height="25"
                 Margin="5"
                 HorizontalAlignment="Center"
-                Command="{Binding ListTicketStatistics}"/>
+                Command="{Binding ListTicketStatisticsCommand}"/>
 
         </Grid>
         <DataGrid Margin="5"
@@ -50,17 +53,17 @@
             
              <DataGrid.Columns>
                 <DataGridTextColumn Header="Type"
-                                    Width="*"
+                                    Width="auto"
                                     Binding="{Binding Type}"/>
                 <DataGridTextColumn Header="Buying date"
-                                    Width="auto"
+                                    Width="*"
                                     Binding="{Binding BuyingDate}"/>
                 <DataGridTextColumn Header="Last using date"
                                     Width="*"
-                                    Binding="{Binding LastUsingDate}"/>
+                                    Binding="{Binding ExpirationDate}"/>
                 <DataGridTextColumn Header="Login number"
                                     Width="*"
-                                    Binding="{Binding LoginNumber}"/>
+                                    Binding="{Binding MaxLoginNumber}"/>
                 <DataGridTextColumn Header="Price"
                                     Width="*"
                                     Binding="{Binding Price}"/>

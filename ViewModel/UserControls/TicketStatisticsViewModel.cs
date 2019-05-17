@@ -19,6 +19,7 @@ namespace Fitness.ViewModel.UserControls
             this.Header = "Ticket Statistics";
             InitializeTicketList();
 
+            this.ListTicketStatisticsCommand = new RelayCommand(this.ListTicketStatisticsExecute);
             this.CloseTabItemCommand = new RelayCommand(this.CloseTabItemExecute);
         }
 
@@ -30,7 +31,8 @@ namespace Fitness.ViewModel.UserControls
         public bool ShowCloseButton => true;
 
         private List<Ticket> tickets;
-        public List<Ticket> Tickets { get
+        public List<Ticket> Tickets {
+            get
             {
                 return this.tickets;
             }
@@ -50,7 +52,8 @@ namespace Fitness.ViewModel.UserControls
             this.Tickets = Data.Fitness.GetAllTickets();
         }
 
-        private void ListTicketStatistics()
+        public RelayCommand ListTicketStatisticsCommand { get; set; }
+        public void ListTicketStatisticsExecute()
         {
             this.Tickets = Data.Fitness.GetAllTickets();
             List<Ticket> filtered = this.Tickets;
@@ -63,6 +66,8 @@ namespace Fitness.ViewModel.UserControls
             {
                 filtered = filtered.Where(t => t.Status == "Disable" || t.Status == "Deleted").ToList();
             }
+
+            Tickets = filtered;
 
             //TODO finishing...
         }
