@@ -12,11 +12,11 @@ namespace Fitness.ViewModel.UserControls
 {
     public class TicketStatisticsViewModel : ViewModelBase, ITicketStatistics
     {
-        private List<Ticket> tickets;
         public RelayCommand CloseTabItemCommand { get; set; }
 
         public TicketStatisticsViewModel()
         {
+            this.Header = "Ticket Statistics";
             InitializeTicketList();
 
             this.CloseTabItemCommand = new RelayCommand(this.CloseTabItemExecute);

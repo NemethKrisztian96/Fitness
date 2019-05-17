@@ -95,7 +95,7 @@ namespace Fitness.Logic
 
         public List<Ticket> GetAllTickets()
         {
-            return this.FitnessDatabase.Tickets.ToList();
+            return this.FitnessDatabase.Tickets.Select(t => t).ToList();
         }
 
         public void SaveAllChanges()

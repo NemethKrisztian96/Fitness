@@ -128,8 +128,8 @@ namespace Fitness.ViewModel.UserControls
                 this.ListUsersCommand = new RelayCommand(this.ListUsersExecute);
                 this.ListClientsCommand = new RelayCommand(this.ListClientsExecute);
                 this.SendEmailCommand = new RelayCommand(this.SendEmailExecute);
-                /*this.ListTicketsCommand = new RelayCommand(this.ListTicketsExecute);
-                this.ListEntriesCommand = new RelayCommand(this.ListEntriesExecute);*/
+                this.ListTicketsCommand = new RelayCommand(this.ListTicketsExecute);
+                /*this.ListEntriesCommand = new RelayCommand(this.ListEntriesExecute);*/
             }
         }
 
@@ -230,6 +230,12 @@ namespace Fitness.ViewModel.UserControls
             {
                 MainWindowViewModel.Instance.OpenClientTicketsTab(this.SelectedClient);
             }
+        }
+
+        public void ListTicketsExecute()
+        {
+            this.ShowClientsList = false;
+            MainWindowViewModel.Instance.OpenTicketStatisticsTab();
         }
     }
 }
