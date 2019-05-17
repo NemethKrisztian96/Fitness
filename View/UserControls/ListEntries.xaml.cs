@@ -24,5 +24,17 @@ namespace Fitness.View.UserControls
         {
             InitializeComponent();
         }
+
+        public void AllowOnlyDigits(object sender, KeyEventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(e.Key.ToString(), "[0-9]"))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

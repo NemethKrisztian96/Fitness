@@ -37,6 +37,7 @@
                      MaxWidth="250"
                      MinWidth="150"
                      HorizontalAlignment="Left" 
+                     KeyDown="AllowOnlyDigits"
                      Text="{Binding SearchBarcode, Mode=TwoWay}"/>
 
             <Label Grid.Row="1" 
