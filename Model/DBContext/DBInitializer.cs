@@ -17,6 +17,7 @@
             this.AddTicketTypes(context);
             this.AddUsers(context);
             this.AddClients(context);
+            this.AddTickets(context);
         }
 
         private void AddTicketTypes(FitnessDB context)
@@ -71,6 +72,35 @@
             context.Clients.Add(new Client { Id = 1020, BarCode = "730081343503", FirstName = "Denise", LastName = "Scott", PhoneNumber = "0729541904", Sex = "F", InsertDate = new System.DateTime(2019, 3, 25), InserterId = 4, IsDeleted = false });
             context.Clients.Add(new Client { Id = 1021, BarCode = "781475044160", FirstName = "Angela", LastName = "Russell", PhoneNumber = "0733976716", Sex = "F", InsertDate = new System.DateTime(2019, 3, 26), InserterId = 5, IsDeleted = false });
             context.Clients.Add(new Client { Id = 1022, BarCode = "781475044161", FirstName = "Angela", LastName = "Murphy", PhoneNumber = "0733976717", Sex = "F", InsertDate = new System.DateTime(2019, 3, 28), InserterId = 5, IsDeleted = false });
+        }
+
+        private void AddTickets(FitnessDB context)
+        {
+            Client client = context.Clients.Where(c => c.Id == 1001).FirstOrDefault();
+            Client client2 = context.Clients.Where(c => c.Id == 1002).FirstOrDefault();
+
+            TicketType type = context.TicketTypes.Where(tt => tt.Id == 1).FirstOrDefault();
+            User seller = context.Users.Where(u => u.Id == 1).FirstOrDefault();
+
+            if (client != null && client != null && type != null && seller != null) {
+                context.Tickets.Add(new Ticket { Id = 1001, Owner = client, OwnerId = client.Id, Type = type, TicketTypeId = type.Id, BuyingDate = new System.DateTime(2019, 4, 1), FirstUsingDate = new System.DateTime(2019, 4, 1), ExpirationDate = new System.DateTime(2019, 4, 1).AddDays(30), MaxLoginNumber = 30, Price = 90, Seller = seller, SellerId = seller.Id, Status = "Active"});
+                context.Tickets.Add(new Ticket { Id = 1002, Owner = client2, OwnerId = client2.Id, Type = type, TicketTypeId = type.Id, BuyingDate = new System.DateTime(2019, 4, 1), FirstUsingDate = new System.DateTime(2019, 4, 1), ExpirationDate = new System.DateTime(2019, 4, 1).AddDays(30), MaxLoginNumber = 30, Price = 90, Seller = seller, SellerId = seller.Id, Status = "Active" });
+            }
+        }
+
+        private void AddEntries(FitnessDB context)
+        {
+            Ticket ticket = context.Tickets.Where(t => t.Id == 1001).FirstOrDefault();
+            Client client = context.Clients.Where(c => c.Id == 1001).FirstOrDefault();
+            User inserter = context.Users.Where(u => u.Id == 1).FirstOrDefault();
+            User inserter2 = context.Users.Where(u => u.Id == 2).FirstOrDefault();
+
+            if (ticket != null && client != null && inserter != null && inserter2 != null)
+            {
+                context.Entries.Add(new Entry { Id = 1001, UserTicket = ticket, UserTicketId = ticket.Id, BarCode = client.BarCode, LoginTime = new System.DateTime(2019, 4, 1, 18, 5, 32), Inserter = inserter, InserterId = inserter.Id, TrainingType = "Fittness" });
+                context.Entries.Add(new Entry { Id = 1002, UserTicket = ticket, UserTicketId = ticket.Id, BarCode = client.BarCode, LoginTime = new System.DateTime(2019, 4, 2, 18, 4, 11), Inserter = inserter2, InserterId = inserter2.Id, TrainingType = "Fittness" });
+                
+            }
         }
 
         public override void InitializeDatabase(FitnessDB context)

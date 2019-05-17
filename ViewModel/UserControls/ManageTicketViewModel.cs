@@ -201,7 +201,7 @@ namespace Fitness.ViewModel.UserControls
                     }
                 );
 
-                Data.Fitness.DisableTicket(Id);
+                //Data.Fitness.DisableTicket(Id);
             }
         }
 

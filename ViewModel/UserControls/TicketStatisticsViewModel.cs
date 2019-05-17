@@ -24,9 +24,22 @@ namespace Fitness.ViewModel.UserControls
 
         public string Header { get; private set; }
 
+        public bool ActiveChecked { get; set; }
+        public bool InactiveChecked { get; set; }
+
         public bool ShowCloseButton => true;
 
-        public List<Ticket> Tickets { get; set; }
+        private List<Ticket> tickets;
+        public List<Ticket> Tickets { get
+            {
+                return this.tickets;
+            }
+            set
+            {
+                this.tickets = value;
+                this.RaisePropertyChanged();
+            }
+        }
 
         public void CloseTabItemExecute()
         {
@@ -35,6 +48,23 @@ namespace Fitness.ViewModel.UserControls
         private void InitializeTicketList()
         {
             this.Tickets = Data.Fitness.GetAllTickets();
+        }
+
+        private void ListTicketStatistics()
+        {
+            this.Tickets = Data.Fitness.GetAllTickets();
+            List<Ticket> filtered = this.Tickets;
+
+            if (ActiveChecked && !InactiveChecked)
+            {
+                filtered = filtered.Where(t => t.Status == "Active").ToList();
+            }
+            if(!ActiveChecked && InactiveChecked)
+            {
+                filtered = filtered.Where(t => t.Status == "Disable" || t.Status == "Deleted").ToList();
+            }
+
+            //TODO finishing...
         }
     }
 }

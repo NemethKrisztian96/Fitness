@@ -31,7 +31,7 @@ namespace Fitness.ViewModel.UserControls
 
             this.CloseTabItemCommand = new RelayCommand(this.CloseTabItemExecute);
             this.OpenClientTabCommand = new RelayCommand(this.OpenClientTabExecute);
-            this.DeleteClientCommand = new RelayCommand(this.DeleteClientExecute);
+            //this.DeleteClientCommand = new RelayCommand(this.DeleteClientExecute);
             this.ManageTicketCommand = new RelayCommand(this.ManageTicketTabExecute);
         }
 
@@ -42,7 +42,7 @@ namespace Fitness.ViewModel.UserControls
 
         public RelayCommand CloseTabItemCommand { get; set; }
         public RelayCommand OpenClientTabCommand { get; set; }
-        public RelayCommand DeleteClientCommand { get; set; }
+        //public RelayCommand DeleteClientCommand { get; set; }
         public RelayCommand ManageTicketCommand { get; set; }
 
         public void CloseTabItemExecute()
@@ -64,7 +64,7 @@ namespace Fitness.ViewModel.UserControls
             }
         }
 
-        public void DeleteClientExecute()
+        /*public void DeleteClientExecute()
         {
             bool ans = PopupMessage.YesNoButtonPopupMessage("Warning!", "Are you sure you want to delete this client?");
             if (ans)
@@ -72,7 +72,7 @@ namespace Fitness.ViewModel.UserControls
                 Data.Fitness.DeleteClient(mClient);
                 CloseTabItemExecute();
             }
-        }
+        }*/
 
         public void ManageTicketTabExecute()
         {
