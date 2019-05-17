@@ -54,9 +54,9 @@ namespace Fitness.Common.Helpers
             return DateTime.Today;
         }
 
-        public static string GetFormatedString(DateTime date)
+        public static string GetFormatedString(DateTime? date)
         {
-            return date.ToString("dd MMM yyyy");
+            return date?.ToString("dd MMM yyyy")??"";
         }
     }
 }

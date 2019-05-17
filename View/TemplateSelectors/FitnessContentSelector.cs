@@ -53,7 +53,7 @@ namespace Fitness.View.TemplateSelectors
             }
             else if (item is ITicketStatistics)
             {
-                return Application.Current.MainWindow.TryFindResource("ITicketStatisticsTemplate") as DataTemplate;
+                return Application.Current.MainWindow.TryFindResource("TicketStatisticsTemplate") as DataTemplate;
             }
             /*else if (item is )
             {
