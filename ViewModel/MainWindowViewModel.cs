@@ -454,5 +454,22 @@ namespace Fitness.ViewModel
                 this.SelectedContent = ticketStatistics;
             }
         }
+
+        public void OpenListEntriesTab()
+        {
+            IListEntriesContent listEntriesContent = this.Contents.FirstOrDefault(c => c is IListEntriesContent) as IListEntriesContent;
+
+            if (listEntriesContent == null)
+            {
+                ListEntriesViewModel listEntriesViewModel = new ListEntriesViewModel();
+                this.Contents.Add(listEntriesViewModel);
+
+                this.SelectedContent = this.Contents.LastOrDefault();  //has at least one element
+            }
+            else
+            {
+                this.SelectedContent = listEntriesContent;
+            }
+        }
     }
 }

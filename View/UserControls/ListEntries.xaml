@@ -1,0 +1,137 @@
+﻿<UserControl x:Class="Fitness.View.UserControls.ListEntries"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Fitness.View.UserControls"
+             xmlns:converters="clr-namespace:Fitness.Common.Converters;assembly=Fitness.Common"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="900">
+    <UserControl.Resources>
+        <converters:DataGridRowNumberConverter x:Key="DataGridRowNumberConverter"/>
+    </UserControl.Resources>
+    
+    <StackPanel Orientation="Vertical">
+        <Label Content="Filters:"
+               FontSize="16"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" 
+                   Grid.Column="0"
+                   Content="Client barcode:"
+                   Margin="20 0 0 0"
+                   HorizontalAlignment="Left"/>
+            <TextBox Grid.Row="0"
+                     Grid.Column="1"
+                     Margin="5 5 50 5"
+                     MaxWidth="250"
+                     MinWidth="150"
+                     HorizontalAlignment="Left" 
+                     Text="{Binding SearchBarcode, Mode=TwoWay}"/>
+
+            <Label Grid.Row="1" 
+                   Grid.Column="0"
+                   Content="Client name:"
+                   Margin="20 0 0 0"
+                   HorizontalAlignment="Left"/>
+            <TextBox Grid.Row="1"
+                     Grid.Column="1"
+                     Margin="5 5 50 5"
+                     MaxWidth="250"
+                     MinWidth="150"
+                     HorizontalAlignment="Left" 
+                     Text="{Binding SearchName, Mode=TwoWay}"/>
+
+            <Label Grid.Row="2" 
+                   Grid.Column="0"
+                   Content="Ticket type:"
+                   Margin="20 0 0 0"
+                   HorizontalAlignment="Left"/>
+            <ComboBox Grid.Row="2"
+                     Grid.Column="1"
+                     Margin="5 5 50 5"
+                     MaxWidth="250"
+                     MinWidth="150"
+                     HorizontalAlignment="Left" 
+                     ItemsSource="{Binding TicketTypesList}"
+                     SelectedValue="{Binding SelectedTicketType, Mode=TwoWay}"/>
+
+            <Label Grid.Row="3" 
+                   Grid.Column="0"
+                   Content="Date:"
+                   Margin="20 0 0 0"
+                   HorizontalAlignment="Left"/>
+            <DatePicker Grid.Row="3"
+                        Grid.Column="1"
+                        SelectedDate="{Binding SearchDate, Mode=TwoWay}"
+                        Margin="5 5 50 5"
+                        Width="150"
+                        HorizontalAlignment="Left"/>
+
+            <StackPanel Grid.Row="4"
+                        Grid.ColumnSpan="2"
+                        HorizontalAlignment="Center">
+                <Button Content="Filter"
+                        Command="{Binding FilterCommand}"
+                        MinHeight="35"
+                        MinWidth="60"/>
+                <Button Content="Reset"
+                        Command="{Binding ResetCommand}"
+                        MinHeight="35"
+                        MinWidth="60"/>
+            </StackPanel>
+        </Grid>
+        <DataGrid Margin="5"
+                  x:Name="DataGrid"
+                  ItemsSource="{Binding EntriesList}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True">
+            <!--<DataGrid.InputBindings>
+                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ManageClientCommand}"/>
+            </DataGrid.InputBindings>-->
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Ticket id"
+                                    Width="auto"
+                                    Binding="{Binding UserTicketId}"/>
+                <DataGridTextColumn Header="Ticket type"
+                                    Width="*"
+                                    Binding="{Binding UserTicket.Type.Name}"/>
+                <DataGridTextColumn Header="Barcode"
+                                    Width="*"
+                                    Binding="{Binding UserTicket.Owner.BarCode}"/>
+                <DataGridTextColumn Header="First name"
+                                    Width="*"
+                                    Binding="{Binding UserTicket.Owner.FirstName}"/>
+                <DataGridTextColumn Header="Last name"
+                                    Width="*"
+                                    Binding="{Binding UserTicket.Owner.LastName}"/>
+                <DataGridTextColumn Header="Date"
+                                    Width="auto"
+                                    Binding="{Binding LoginTime}"/>
+                <DataGridTextColumn Header="Inserter user"
+                                    Width="*"
+                                    Binding="{Binding Inserter.UserName}"/>
+                <DataGridTextColumn Header="Training type"
+                                    Width="auto"
+                                    Binding="{Binding TrainingType}"/>
+            </DataGrid.Columns>
+
+            <DataGrid.RowHeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Converter={StaticResource DataGridRowNumberConverter}}"
+                               Margin="2,0,2,0"/>
+                </DataTemplate>
+            </DataGrid.RowHeaderTemplate>
+        </DataGrid>
+    </StackPanel>
+</UserControl>

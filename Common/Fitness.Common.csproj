@@ -68,6 +68,7 @@
     <Compile Include="FitnessTabContents\IFitnessContent.cs" />
     <Compile Include="FitnessTabContents\IHomeContent.cs" />
     <Compile Include="FitnessTabContents\IListClientsContent.cs" />
+    <Compile Include="FitnessTabContents\IListEntriesContent.cs" />
     <Compile Include="FitnessTabContents\IListUsersContent.cs" />
     <Compile Include="FitnessTabContents\IManageClientContent.cs" />
     <Compile Include="FitnessTabContents\IListTicketTypesContent.cs" />

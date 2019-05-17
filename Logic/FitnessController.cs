@@ -168,5 +168,37 @@ namespace Fitness.Logic
         {
             return this.FitnessDatabase.Clients.Where(c => c.IsDeleted ?? false != true && !string.IsNullOrEmpty(c.Email)).Select(c => c.Email)?.ToList() ?? null;
         }
+
+        public List<Entry> GetEntries()
+        {
+            //return this.FitnessDatabase.Entries.Include("UserTicket").Include("Inserter").Include("UserTicket.Type").Include("UserTicket.Owner").ToList();
+            //return this.FitnessDatabase.Entries.ToList();
+            List<Entry> list = this.FitnessDatabase.Entries.ToList();
+            foreach (Entry item in list)
+            {
+                item.UserTicket = this.GetTicketById(item.UserTicketId);
+                item.Inserter = this.GetUserById(item.InserterId);
+                if(item.UserTicket?.Type == null)
+                {
+                    item.UserTicket.Type = this.FitnessDatabase.TicketTypes.Where(tt => tt.Id == item.UserTicket.TicketTypeId).First() ?? null;
+                }
+                if (item?.UserTicket?.Owner == null)
+                {
+                    item.UserTicket.Owner = this.FitnessDatabase.Clients.Where(c => c.Id == item.UserTicket.OwnerId).First() ?? null;
+                }
+            }
+            return list;
+        }
+
+        public List<string> GetTicketTypeNames()
+        {
+            //List<string> list = new List<string>();
+            //foreach(TicketType item in this.FitnessDatabase.TicketTypes.ToList())
+            //{
+            //    list.Add(item.Name);
+            //}
+            //return list;
+            return this.FitnessDatabase.TicketTypes.Select(tt => tt.Name).ToList();
+        }
     }
 }
