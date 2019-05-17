@@ -33,9 +33,9 @@ namespace Fitness.ViewModel.UserControls
         public void SendEmailExecute()
         {
             string adminEmailAddress = "nkmiklos96@gmail.com";
-            //List<string> emails = Data.Fitness.GetClientEmails();
-            List<string> emails = new List<string>();
-            emails.Add("fuloptimea1427@gmail.com");
+            List<string> emails = Data.Fitness.GetClientEmails();
+            //List<string> emails = new List<string>();
+            //emails.Add("fuloptimea1427@gmail.com");
             try
             {
                 using (MailMessage mail = new MailMessage())
@@ -47,13 +47,6 @@ namespace Fitness.ViewModel.UserControls
                     mail.Subject = Subject;
                     mail.From = new MailAddress(adminEmailAddress);
                     mail.Body = Body;
-
-                    //SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587)
-                    //{
-                    //    Credentials = new NetworkCredential(adminEmailAddress, "1234asdfQWER"),
-                    //    EnableSsl = true
-                    //};
-                    //smtp.Send(mail);
 
                     using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
                     {
