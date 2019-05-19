@@ -52,6 +52,7 @@ namespace Fitness.ViewModel
 
         private MainWindowViewModel()
         {
+            this.DeactivateExpiredTickets();
             this.CloseCommand = new RelayCommand(this.CloseCommandExecute);
             this.LogOutCommand = new RelayCommand(this.LogOutCommandExecute);
             this.SignInCommand = new RelayCommand(this.SignInCommandExecute);
@@ -470,6 +471,11 @@ namespace Fitness.ViewModel
             {
                 this.SelectedContent = listEntriesContent;
             }
+        }
+
+        private void DeactivateExpiredTickets()
+        {
+            Data.Fitness.RefreshTicketsStatus();
         }
     }
 }

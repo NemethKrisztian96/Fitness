@@ -11,10 +11,16 @@
         <converters:DataGridRowNumberConverter x:Key="DataGridRowNumberConverter"/>
     </UserControl.Resources>
     
-    <StackPanel Orientation="Vertical">
-        <Label Content="Filters:"
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0"
+               Content="Filters:"
                FontSize="16"/>
-        <Grid>
+        <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -92,7 +98,8 @@
                         MinWidth="60"/>
             </StackPanel>
         </Grid>
-        <DataGrid Margin="5"
+        <DataGrid Grid.Row="2"
+                  Margin="5"
                   x:Name="DataGrid"
                   ItemsSource="{Binding EntriesList}"
                   AutoGenerateColumns="False"
@@ -134,5 +141,5 @@
                 </DataTemplate>
             </DataGrid.RowHeaderTemplate>
         </DataGrid>
-    </StackPanel>
+    </Grid>
 </UserControl>

@@ -34,12 +34,24 @@
                Stretch="UniformToFill"
                Margin="20,0,20,20" >
             </Image>
-            <Button Content="Edit client"
-                    MinWidth="80"
-                    Command="{Binding OpenClientTabCommand}"/>
-                <!--<Button Content="Delete client"
-                    MinWidth="80"
-                    Command="{Binding DeleteClientCommand}"/>-->
+                <StackPanel Orientation="Vertical"
+                        Grid.Column="1">
+                    <Button Content="Edit client"
+                            MinWidth="90"
+                            Margin="10"
+                            Height="40"
+                            Command="{Binding OpenClientTabCommand}"/>
+                    
+                    <!--<Button Content="Delete client"
+                            MinWidth="80"
+                            Command="{Binding DeleteClientCommand}"/>-->
+
+                    <Button Content="One time entry"
+                            MinWidth="90"
+                            Margin="10"
+                            Height="40"
+                            Command="{Binding OneTimeEntryCommand}"/>
+                </StackPanel>
             </StackPanel>
         </Grid>
         <DataGrid Margin="5"
@@ -55,7 +67,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Type"
                                 Width="*"
-                                Binding="{Binding Type}"/>
+                                Binding="{Binding Type.Name}"/>
                 <DataGridTextColumn Header="Buying date"
                                 Width="auto"
                                 Binding="{Binding BuyingDate}"/>
@@ -71,6 +83,20 @@
                 <DataGridTextColumn Header="Status"
                                 Width="auto"
                                 Binding="{Binding Status}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding Path=DataContext.UseTicketCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" Content="Use ticket"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding Path=DataContext.ExtendTicketCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" Content="Extend ticket"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
 
             <DataGrid.RowHeaderTemplate>

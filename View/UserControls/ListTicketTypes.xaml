@@ -11,10 +11,17 @@
         <converters:DataGridRowNumberConverter x:Key="DataGridRowNumberConverter"/>
     </UserControl.Resources>
     
-    <StackPanel Orientation="Vertical">
-        <Label Content="The ticket types are:"
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0"
+               Content="The ticket types are:"
                FontSize="16"/>
-        <DataGrid Margin="5"
+        <DataGrid Grid.Row="1"
+                  Margin="5"
                   ItemsSource="{Binding TicketTypes}"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
@@ -45,9 +52,10 @@
             </DataGrid.RowHeaderTemplate>
         </DataGrid>
 
-        <Button Content="Add new ticket type"
+        <Button Grid.Row="2"
+                Content="Add new ticket type"
                 Command="{Binding AddNewTicketTypeCommand}"
                 Height="25"
                 MaxWidth="150"/>
-    </StackPanel>
+    </Grid>
 </UserControl>

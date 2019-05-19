@@ -11,14 +11,23 @@
         <converters:DataGridRowNumberConverter x:Key="DataGridRowNumberConverter"/>
     </UserControl.Resources>
 
-    <StackPanel Orientation="Vertical">
-        <Label Content="The registered clients are:"
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0"
+               Content="The registered clients are:"
                FontSize="16"/>
-        <DataGrid Margin="5"
+        <DataGrid Grid.Row="1"
+                  Margin="5"
                   ItemsSource="{Binding ClientsList}"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
-                  SelectedItem="{Binding SelectedClient}">
+                  SelectedItem="{Binding SelectedClient}"
+                  ScrollViewer.CanContentScroll="True" 
+                  ScrollViewer.VerticalScrollBarVisibility="Auto">
             <DataGrid.InputBindings>
                 <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ManageClientCommand}"/>
             </DataGrid.InputBindings>
@@ -66,8 +75,9 @@
                 </DataTemplate>
             </DataGrid.RowHeaderTemplate>
         </DataGrid>
-        <Button Content="Export clients"
+        <Button Grid.Row="2"
+                Content="Export clients"
                 Command="{Binding ExportCommand}"
                 MaxWidth="120"/>
-    </StackPanel>
+    </Grid>
 </UserControl>

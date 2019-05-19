@@ -10,10 +10,12 @@ using Fitness.Logic;
 using System.Drawing;
 using System.IO;
 using Fitness.Common.Helpers;
+using System.Windows.Forms;
+using System.Windows;
 
 namespace Fitness.ViewModel.UserControls
 {
-    class ClientTicketListViewModel: ViewModelBase, IClientTickets
+    class ClientTicketListViewModel : ViewModelBase, IClientTickets
     {
         private Client mClient;
         private Ticket mTicket;
@@ -33,6 +35,9 @@ namespace Fitness.ViewModel.UserControls
             this.OpenClientTabCommand = new RelayCommand(this.OpenClientTabExecute);
             //this.DeleteClientCommand = new RelayCommand(this.DeleteClientExecute);
             this.ManageTicketCommand = new RelayCommand(this.ManageTicketTabExecute);
+            this.UseTicketCommand = new RelayCommand(this.UseTicketExecute);
+            this.ExtendTicketCommand = new RelayCommand(this.ExtendTicketExecute);
+            this.OneTimeEntryCommand = new RelayCommand(this.OneTimeEntryExecute);
         }
 
         public int ClientId { get; set; }
@@ -44,6 +49,9 @@ namespace Fitness.ViewModel.UserControls
         public RelayCommand OpenClientTabCommand { get; set; }
         //public RelayCommand DeleteClientCommand { get; set; }
         public RelayCommand ManageTicketCommand { get; set; }
+        public RelayCommand UseTicketCommand { get; set; }
+        public RelayCommand ExtendTicketCommand { get; set; }
+        public RelayCommand OneTimeEntryCommand { get; set; }
 
         public void CloseTabItemExecute()
         {
@@ -76,7 +84,7 @@ namespace Fitness.ViewModel.UserControls
 
         public void ManageTicketTabExecute()
         {
-            if(this.OriginalTicket != null)
+            if (this.OriginalTicket != null)
             {
                 MainWindowViewModel.Instance.OpenManageTicketTab(this.OriginalTicket);
             }
@@ -85,6 +93,70 @@ namespace Fitness.ViewModel.UserControls
         private void InitializeTicketList(Client client)
         {
             this.Tickets = Data.Fitness.GetAllTicketOfAClient(client);
+        }
+
+        public void ExtendTicketExecute()
+        {
+            //___________________________________________TODO_________________________________________
+        }
+
+        public void UseTicketExecute()
+        {
+            if (OriginalTicket.Status.ToLower() == "active")
+            {
+                //AerobicOrFitnessPromptViewModel promptVM = new AerobicOrFitnessPromptViewModel(this.mClient.BarCode, this.OriginalTicket.Id, MainWindowViewModel.Instance.SignedInUser.Id);
+
+                this.AddEntry(this.OriginalTicket.Id);
+
+                this.NotifyExpiration();
+            }
+            else
+            {
+                PopupMessage.OkButtonPopupMessage("Warning", "The selected ticket is expired!");
+            }
+
+        }
+
+        public void OneTimeEntryExecute()
+        {
+            this.AddEntry(0);
+        }
+
+        private void AddEntry(int ticketId)
+        {
+            MessageBoxResult result = WPFCustomMessageBox.CustomMessageBox.ShowYesNo("Please select what activity will be the client doing", "Activity", "Aerobic", "Fitness");
+            Console.WriteLine(result);
+            if (result == MessageBoxResult.Yes)
+            {
+                CreateNewEntry(ticketId, "Aerobic");
+                ConfirmMessage();
+            }
+            else
+            {
+                if (result == MessageBoxResult.No)
+                {
+                    CreateNewEntry(ticketId, "Fitness");
+                    ConfirmMessage();
+                }
+            }
+        }
+
+        private void CreateNewEntry(int ticketId, string entryType)
+        {
+            Data.Fitness.AddEntry(this.mClient.BarCode, MainWindowViewModel.Instance.SignedInUser.Id, ticketId, entryType);
+        }
+
+        private void ConfirmMessage()
+        {
+            PopupMessage.OkButtonPopupMessage("Success", "The client can enter the gym");
+        }
+
+        private void NotifyExpiration()
+        {
+            if (OriginalTicket?.ExpirationDate.Date.CompareTo(DateTime.Today.AddDays(-2)) < 0 || OriginalTicket.MaxLoginNumber - Data.Fitness.GetLoginCount(OriginalTicket.Id) < 2)
+            {
+                PopupMessage.OkButtonPopupMessage("Attention", "The client's ticket will expire soon!");
+            }
         }
     }
 }

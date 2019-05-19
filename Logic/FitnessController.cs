@@ -58,7 +58,16 @@ namespace Fitness.Logic
 
         public List<Client> GetClients()
         {
-            return this.FitnessDatabase.Clients.Where(c => c.IsDeleted??false!=true).ToList();
+            //return this.FitnessDatabase.Clients.Include().Where(c => c.IsDeleted != true).ToList();
+            List<Client> list = this.FitnessDatabase.Clients.Where(c => c.IsDeleted != true).ToList();
+            foreach (Client item in list)
+            {
+                if (item?.Inserter == null)
+                {
+                    item.Inserter = this.GetUserById(item.InserterId);
+                }
+            }
+            return list;
         }
 
         public void AddClient(Client client)
@@ -90,12 +99,33 @@ namespace Fitness.Logic
 
         public List<Ticket> GetAllTicketOfAClient(Client client)
         {
-            return this.FitnessDatabase.Tickets.Where(t => t.OwnerId == client.Id).ToList();
+            List<Ticket> list = this.FitnessDatabase.Tickets.Where(t => t.OwnerId == client.Id).ToList();
+            foreach (Ticket item in list)
+            {
+                if (item?.Type == null)
+                {
+                    item.Type = this.GetTicketTypeById(item.TicketTypeId);
+                }
+            }
+            return list;
+        }
+
+        public TicketType GetTicketTypeById(int ticketTypeId)
+        {
+            return this.FitnessDatabase.TicketTypes.Where(tt => tt.Id == ticketTypeId).FirstOrDefault();
         }
 
         public List<Ticket> GetAllTickets()
         {
-            return this.FitnessDatabase.Tickets.Select(t => t).ToList();
+            List<Ticket> list = this.FitnessDatabase.Tickets.Select(t => t).ToList();
+            foreach (Ticket item in list)
+            {
+                if (item?.Type == null)
+                {
+                    item.Type = this.GetTicketTypeById(item.TicketTypeId);
+                }
+            }
+            return list;
         }
 
         public void SaveAllChanges()
@@ -127,7 +157,7 @@ namespace Fitness.Logic
         public bool IsUserUsernameUnique(string username)
         {
             int count = this.FitnessDatabase.Users.Where(u => u.UserName == username).Count();
-            if(count == 0)
+            if (count == 0)
             {
                 return true;
             }
@@ -176,11 +206,16 @@ namespace Fitness.Logic
             List<Entry> list = this.FitnessDatabase.Entries.ToList();
             foreach (Entry item in list)
             {
-                item.UserTicket = this.GetTicketById(item.UserTicketId);
                 item.Inserter = this.GetUserById(item.InserterId);
-                if(item.UserTicket?.Type == null)
+                item.UserTicket = this.GetTicketById(item.UserTicketId);
+                if (item.UserTicket == null)
                 {
-                    item.UserTicket.Type = this.FitnessDatabase.TicketTypes.Where(tt => tt.Id == item.UserTicket.TicketTypeId).First() ?? null;
+                    item.UserTicket = new Ticket() { Owner = this.GetClientByBarcode(item.BarCode) };
+                    continue;
+                }
+                if (item.UserTicket?.Type == null)
+                {
+                    item.UserTicket.Type = this.FitnessDatabase.TicketTypes.Where(tt => tt.Id != 0 && tt.Id == item.UserTicket.TicketTypeId).First() ?? null;
                 }
                 if (item?.UserTicket?.Owner == null)
                 {
@@ -210,6 +245,38 @@ namespace Fitness.Logic
             int typeId = GetTincketTypeIdByName(selectedTicketTypeName);
             var temp = this.FitnessDatabase.Tickets.Where(t => t.TicketTypeId == typeId).ToList();
             return temp;
+        }
+
+        public void RefreshTicketsStatus()
+        {
+            List<Ticket> list = this.FitnessDatabase.Tickets.Where(t => t.Status.ToLower() == "active").ToList();
+            foreach (Ticket item in list)
+            {
+                if (item.ExpirationDate.Date.CompareTo(DateTime.Today.Date) < 0)
+                {
+                    item.Status = "Expired";
+                }
+            }
+            this.SaveAllChanges();
+        }
+
+        public void AddEntry(string barcode, int inserterId, int ticketId, string trainigType)
+        {
+            Entry entry = new Entry()
+            {
+                BarCode = barcode,
+                InserterId = inserterId,
+                LoginTime = DateTime.Today,
+                TrainingType = trainigType,
+                UserTicketId = ticketId
+            };
+            this.FitnessDatabase.Entries.Add(entry);
+            this.SaveAllChanges();
+        }
+
+        public int GetLoginCount(int ticketId)
+        {
+            return this.FitnessDatabase.Entries.Where(e => e.UserTicketId == ticketId)?.Count() ?? 0;
         }
     }
 }

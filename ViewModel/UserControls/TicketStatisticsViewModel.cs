@@ -130,7 +130,7 @@ namespace Fitness.ViewModel.UserControls
             }
             if(!ActiveChecked && InactiveChecked)
             {
-                filtered = filtered.Where(t => t.Status == "Disable" || t.Status == "Deleted").ToList();
+                filtered = filtered.Where(t => t.Status == "Expired" || t.Status == "Disable" || t.Status == "Deleted").ToList();
             }
 
             if (this.SelectedSellingDate?.Date.CompareTo(DateTime.Today.Date) <= 0)

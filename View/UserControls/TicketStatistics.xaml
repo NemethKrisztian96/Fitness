@@ -82,7 +82,7 @@
              <DataGrid.Columns>
                 <DataGridTextColumn Header="Type"
                                     Width="auto"
-                                    Binding="{Binding Type}"/>
+                                    Binding="{Binding Type.Name}"/>
                 <DataGridTextColumn Header="Buying date"
                                     Width="*"
                                     Binding="{Binding BuyingDate}"/>

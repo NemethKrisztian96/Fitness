@@ -11,10 +11,17 @@
         <converters:DataGridRowNumberConverter x:Key="DataGridRowNumberConverter"/>
     </UserControl.Resources>
 
-    <StackPanel Orientation="Vertical">
-        <Label Content="The registered users are:"
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0"
+               Content="The registered users are:"
                FontSize="16"/>
-        <DataGrid Margin="5"
+        <DataGrid Grid.Row="1"
+                  Margin="5"
                   ItemsSource="{Binding UsersList}"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
@@ -51,9 +58,10 @@
             </DataGrid.RowHeaderTemplate>
         </DataGrid>
 
-        <Button Content="Add new user"
+        <Button Grid.Row="2"
+                Content="Add new user"
                 Command="{Binding AddNewUserCommand}"
                 Height="25"
                 MaxWidth="150"/>
-    </StackPanel>
+    </Grid>
 </UserControl>
