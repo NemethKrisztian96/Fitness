@@ -15,8 +15,10 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -25,7 +27,8 @@
 
             <Label Grid.Row="0"
                    Grid.Column="0"
-                   Content="Filters"/>
+                   Content="Filters"
+                   FontSize="16"/>
             <CheckBox Grid.Row="1"
                       Grid.Column="0"
                       x:Name="CheckBoxActive"
@@ -36,7 +39,7 @@
                       x:Name="CheckBoxInactive"
                       Content="Inactive tickets"
                       IsChecked="{Binding InactiveChecked, Mode=TwoWay}"/>
-            <Button Grid.Row="3"
+            <Button Grid.Row="4"
                 Grid.Column="0"
                 Content="Search"
                 Width="80"
@@ -44,6 +47,31 @@
                 Margin="5"
                 HorizontalAlignment="Center"
                 Command="{Binding ListTicketStatisticsCommand}"/>
+
+            <Label Grid.Row="1"
+                   Grid.Column="1"
+                   Content="Ticket type:"/>
+
+            <Label Grid.Row="2"
+                   Grid.Column="1"
+                   Content="Selling date:"/>
+
+            <Label Grid.Row="3"
+                   Grid.Column="1"
+                   Content="Expiration date:"/>
+
+            <ComboBox Grid.Row="1"
+                      Grid.Column="2"
+                      ItemsSource="{Binding TicketTypeNameList}"
+                      SelectedValue="{Binding SelectedTicketTypeName, Mode=TwoWay}"/>
+
+            <DatePicker Grid.Row="2"
+                        Grid.Column="2"
+                        SelectedDate="{Binding SelectedSellingDate, Mode=TwoWay}"/>
+
+            <DatePicker Grid.Row="3"
+                        Grid.Column="2"
+                        SelectedDate="{Binding SelectedExpirationDate, Mode=TwoWay}"/>
 
         </Grid>
         <DataGrid Margin="5"

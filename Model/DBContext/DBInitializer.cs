@@ -19,6 +19,7 @@
             this.AddClients(context);
             context.SaveChanges();
             this.AddTickets(context);
+            context.SaveChanges();
             this.AddEntries(context);
         }
 

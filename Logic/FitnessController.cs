@@ -200,5 +200,16 @@ namespace Fitness.Logic
             //return list;
             return this.FitnessDatabase.TicketTypes.Select(tt => tt.Name).ToList();
         }
+
+        public int GetTincketTypeIdByName(string name)
+        {
+            return this.FitnessDatabase.TicketTypes.Where(tt => tt.Name == name).Select(t => t.Id).FirstOrDefault();
+        }
+        public List<Ticket> GetTicketsByTypeName(string selectedTicketTypeName)
+        {
+            int typeId = GetTincketTypeIdByName(selectedTicketTypeName);
+            var temp = this.FitnessDatabase.Tickets.Where(t => t.TicketTypeId == typeId).ToList();
+            return temp;
+        }
     }
 }

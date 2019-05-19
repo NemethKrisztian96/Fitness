@@ -12,12 +12,19 @@ namespace Fitness.ViewModel.UserControls
 {
     public class TicketStatisticsViewModel : ViewModelBase, ITicketStatistics
     {
+        private List<Ticket> tickets;
+        private List<string> ticketTypeNameList;
+        private string selectedTicketTypeName;
+        private DateTime? selectedSellingDate;
+        private DateTime? selectedExpirationDate;
+
+
         public RelayCommand CloseTabItemCommand { get; set; }
 
         public TicketStatisticsViewModel()
         {
             this.Header = "Ticket Statistics";
-            InitializeTicketList();
+            Initialize();
 
             this.ListTicketStatisticsCommand = new RelayCommand(this.ListTicketStatisticsExecute);
             this.CloseTabItemCommand = new RelayCommand(this.CloseTabItemExecute);
@@ -28,9 +35,9 @@ namespace Fitness.ViewModel.UserControls
         public bool ActiveChecked { get; set; }
         public bool InactiveChecked { get; set; }
 
+        
         public bool ShowCloseButton => true;
 
-        private List<Ticket> tickets;
         public List<Ticket> Tickets {
             get
             {
@@ -43,19 +50,78 @@ namespace Fitness.ViewModel.UserControls
             }
         }
 
+        public List<string> TicketTypeNameList
+        {
+            get
+            {
+                return this.ticketTypeNameList;
+            }
+            set
+            {
+                this.ticketTypeNameList = value;
+                this.RaisePropertyChanged();
+            }
+        }
+        public string SelectedTicketTypeName
+        {
+            get
+            {
+                return this.selectedTicketTypeName;
+            }
+            set
+            {
+                this.selectedTicketTypeName = value;
+                this.RaisePropertyChanged();
+            }
+        }
+        public DateTime? SelectedSellingDate
+        {
+            get
+            {
+                return this.selectedSellingDate;
+            }
+            set
+            {
+                this.selectedSellingDate = value;
+                this.RaisePropertyChanged();
+            }
+        }
+        public DateTime? SelectedExpirationDate
+        {
+            get
+            {
+                return this.selectedExpirationDate;
+            }
+            set
+            {
+                this.selectedExpirationDate = value;
+                this.RaisePropertyChanged();
+            }
+        }
+
+
         public void CloseTabItemExecute()
         {
             MainWindowViewModel.Instance.CloseTabItem(this);
         }
-        private void InitializeTicketList()
+        private void Initialize()
         {
             this.Tickets = Data.Fitness.GetAllTickets();
+            this.TicketTypeNameList = Data.Fitness.GetTicketTypeNames();
         }
 
         public RelayCommand ListTicketStatisticsCommand { get; set; }
         public void ListTicketStatisticsExecute()
         {
-            this.Tickets = Data.Fitness.GetAllTickets();
+            if (!string.IsNullOrEmpty(this.SelectedTicketTypeName))
+            {
+                this.Tickets = Data.Fitness.GetTicketsByTypeName(SelectedTicketTypeName);
+            }
+            else
+            {
+                this.Tickets = Data.Fitness.GetAllTickets();
+            }
+            
             List<Ticket> filtered = this.Tickets;
 
             if (ActiveChecked && !InactiveChecked)
@@ -67,9 +133,29 @@ namespace Fitness.ViewModel.UserControls
                 filtered = filtered.Where(t => t.Status == "Disable" || t.Status == "Deleted").ToList();
             }
 
-            Tickets = filtered;
+            if (this.SelectedSellingDate?.Date.CompareTo(DateTime.Today.Date) <= 0)
+            {
+                if(this.SelectedExpirationDate?.Date.CompareTo(DateTime.Today.Date) <= 0)
+                {
+                    // both date setted
+                    filtered = filtered.Where(t => t.BuyingDate.CompareTo(SelectedSellingDate) >= 0).Where(t => t.ExpirationDate.CompareTo(SelectedExpirationDate) <=0).ToList();
+                }
+                else
+                {
+                    //only selling date
+                    filtered = filtered.Where(t => t.BuyingDate.CompareTo(SelectedSellingDate) >= 0).ToList();
+                }
+            }
+            else
+            {
+                if (this.SelectedExpirationDate?.Date.CompareTo(DateTime.Today.Date) <= 0)
+                {
+                    //only expiration date
+                    filtered = filtered.Where(t => t.ExpirationDate.CompareTo(SelectedExpirationDate) <= 0).ToList();
+                }
+            }
 
-            //TODO finishing...
+            Tickets = filtered;
         }
     }
 }
