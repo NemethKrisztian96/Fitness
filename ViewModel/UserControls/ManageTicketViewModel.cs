@@ -13,6 +13,7 @@ namespace Fitness.ViewModel.UserControls
     public class ManageTicketViewModel : ViewModelBase, IManageTicketContent
     {
         public RelayCommand CloseTabItemCommand { get; set; }
+        public RelayCommand CreateClientCommand { get; set; }
         public string Header { get; private set; }
         public bool ShowCloseButton => true;
         public int TicketId { get; set; }
@@ -171,7 +172,7 @@ namespace Fitness.ViewModel.UserControls
             this.SellerId = ticket.SellerId;
             this.status = ticket.Status;
 
-           
+            this.CreateClientCommand = new RelayCommand(SaveChanges);
             this.CloseTabItemCommand = new RelayCommand(this.CloseTabItemExecute);
         }
 
@@ -204,6 +205,7 @@ namespace Fitness.ViewModel.UserControls
                 );
 
                 //Data.Fitness.DisableTicket(Id);
+                MainWindowViewModel.Instance.RefreshClientTickets(Owner);
             }
         }
 

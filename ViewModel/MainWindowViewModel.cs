@@ -404,6 +404,7 @@ namespace Fitness.ViewModel
                 this.SelectedContent = clientTickets;
             }
         }
+
         public void RefreshClientTickets(Client client)
         {
             IClientTickets clientTickets = this.Contents.FirstOrDefault(c => c is IClientTickets && (c as IClientTickets).ClientId == client.Id) as IClientTickets;
@@ -501,6 +502,7 @@ namespace Fitness.ViewModel
                 this.SelectedContent = newTicketContent;
             }
         }
+
 
         private void DeactivateExpiredTickets()
         {

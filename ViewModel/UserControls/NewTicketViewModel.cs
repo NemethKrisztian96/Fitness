@@ -131,7 +131,7 @@ namespace Fitness.ViewModel.UserControls
             Data.Fitness.AddTicket(new Model.Ticket { Owner = customer, OwnerId = customer.Id, Type = ticType, TicketTypeId = ticType.Id, BuyingDate = DateTime.Now, FirstUsingDate = SelectedValidityDate, ExpirationDate = SelectedValidityDate.AddDays(ticType.DayNumber ?? 30), MaxLoginNumber = ticType.OccasionNumber ?? Int32.MaxValue, Price = ticType.Price, Seller = seller, SellerId = seller.Id, Status = "Active"});
 
             //todo pop up
-
+            MainWindowViewModel.Instance.RefreshClientTickets(customer);
             CloseTabItemExecute();
         }
     }

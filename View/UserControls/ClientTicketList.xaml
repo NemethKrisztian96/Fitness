@@ -96,13 +96,13 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
+                <!--<DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Command="{Binding Path=DataContext.ExtendTicketCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" Content="Extend ticket"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                </DataGridTemplateColumn>-->
             </DataGrid.Columns>
 
             <DataGrid.RowHeaderTemplate>

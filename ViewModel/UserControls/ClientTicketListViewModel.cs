@@ -129,6 +129,11 @@ namespace Fitness.ViewModel.UserControls
             this.AddEntry(0);
         }
 
+        //public void RefreshList()
+        //{
+        //    this.InitializeTicketList(mClient);
+        //}
+
         private void AddEntry(int ticketId)
         {
             MessageBoxResult result = WPFCustomMessageBox.CustomMessageBox.ShowYesNo("Please select what activity will be the client doing", "Activity", "Aerobic", "Fitness");
