@@ -404,6 +404,18 @@ namespace Fitness.ViewModel
                 this.SelectedContent = clientTickets;
             }
         }
+        public void RefreshClientTickets(Client client)
+        {
+            IClientTickets clientTickets = this.Contents.FirstOrDefault(c => c is IClientTickets && (c as IClientTickets).ClientId == client.Id) as IClientTickets;
+            if (clientTickets != null)
+            {
+                ClientTicketListViewModel clientTicketViewModel = clientTickets as ClientTicketListViewModel;
+                if (clientTicketViewModel != null)
+                {
+                    clientTicketViewModel.RefreshList(client);
+                }
+            }
+        }
 
         public void OpenManageTicketTab(Ticket mTicket)
         {
@@ -470,6 +482,23 @@ namespace Fitness.ViewModel
             else
             {
                 this.SelectedContent = listEntriesContent;
+            }
+        }
+
+        public void OpenNewTicketTab(Client client)
+        {
+            INewTicketContent newTicketContent = this.Contents.FirstOrDefault(c => c is INewTicketContent) as INewTicketContent;
+
+            if (newTicketContent == null)
+            {
+                NewTicketViewModel newTicketViewModel = new NewTicketViewModel(SignedInUser.Id, client.Id);
+                this.Contents.Add(newTicketViewModel);
+
+                this.SelectedContent = this.Contents.LastOrDefault();  //has at least one element
+            }
+            else
+            {
+                this.SelectedContent = newTicketContent;
             }
         }
 

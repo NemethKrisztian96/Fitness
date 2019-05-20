@@ -157,6 +157,8 @@ namespace Fitness.ViewModel.UserControls
 
         public ManageTicketViewModel(Ticket ticket = null)
         {
+            this.Header = "Extend ticket";
+
             this.OwnerId = ticket.OwnerId;
             this.Type = ticket.Type;
             this.TicketTypeId = ticket.TicketTypeId;

@@ -76,6 +76,9 @@
     <Compile Include="UserControls\ListEntries.xaml.cs">
       <DependentUpon>ListEntries.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\NewTicket.xaml.cs">
+      <DependentUpon>NewTicket.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\SendEmail.xaml.cs">
       <DependentUpon>SendEmail.xaml</DependentUpon>
     </Compile>
@@ -129,6 +132,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\ListEntries.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\NewTicket.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

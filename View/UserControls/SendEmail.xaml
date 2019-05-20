@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Fitness.View.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+    <Grid MaxWidth="750">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="3*"/>
@@ -41,9 +41,10 @@
         <Button Grid.Row="2"
                 Grid.ColumnSpan="2"
                 Content="Send email to all clients"
-                Height="25"
-                MaxWidth="180"
-                Margin="25"
+                Height="30"
+                MinWidth="80"
+                Margin="5 10"
+                MaxWidth="120"
                 Command="{Binding SendEmailCommand}"/>
     </Grid>
 </UserControl>

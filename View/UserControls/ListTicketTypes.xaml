@@ -55,7 +55,9 @@
         <Button Grid.Row="2"
                 Content="Add new ticket type"
                 Command="{Binding AddNewTicketTypeCommand}"
-                Height="25"
-                MaxWidth="150"/>
+                Height="30"
+                MinWidth="80"
+                MaxWidth="120"
+                Margin="5 10"/>
     </Grid>
 </UserControl>

@@ -50,4 +50,8 @@
                   DataType="{x:Type types:IListEntriesContent}">
         <userControls:ListEntries/>
     </DataTemplate>
+    <DataTemplate x:Key="NewTicketTemplate"
+                  DataType="{x:Type types:INewTicketContent}">
+        <userControls:NewTicket/>
+    </DataTemplate>
 </ResourceDictionary>

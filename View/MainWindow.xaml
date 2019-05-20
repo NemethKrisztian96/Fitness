@@ -7,10 +7,10 @@
         xmlns:controls="clr-namespace:Fitness.View.UserControls"
         xmlns:templateSelectors="clr-namespace:Fitness.View.TemplateSelectors"
         mc:Ignorable="d"
-        Title="Fitness" Height="350" Width="525"
+        Title="Fitness" Height="500" Width="800"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResize"
-        WindowState="Maximized">
+        >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -43,7 +43,9 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" 
                Grid.ColumnSpan="2"
-               Content="Sign in:"/>
+               Content="Sign in:"
+               FontSize="16"
+               Margin="50 10"/>
             <Label Grid.Row="1" 
                Grid.Column="0"
                Content="Username:"
@@ -51,7 +53,7 @@
             <TextBox Grid.Row="1"
                  Grid.Column="1"
                  Text="{Binding Username, Mode=TwoWay}"
-                 Margin="5"
+                 Margin="5 5 50 5"
                  Name="userTB"/>
             <Label Grid.Row="2" 
                Grid.Column="0"
@@ -59,7 +61,7 @@
                HorizontalAlignment="Center"/>
             <PasswordBox Grid.Row="2"
                  Grid.Column="1"
-                 Margin="5"
+                 Margin="5 5 50 5"
                  PasswordChar="*"
                  PasswordChanged="PasswordChanged"
                  Name="passPB"/>
@@ -67,8 +69,9 @@
                 Grid.ColumnSpan="2"
                 HorizontalAlignment="Center"
                 Content="Sign in"
-                Width="90"
                 Height="30"
+                MinWidth="80"
+                Margin="5 10"
                 Command="{Binding SignInCommand}"/>
         </Grid>
         
@@ -88,12 +91,18 @@
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"
                 Content="Log out"
+                Height="30"
+                MinWidth="80"
+                Margin="5 10"
                 Visibility="{Binding IsSignedIn, Converter={StaticResource BooleanToVisibilityConverter}}"
                 Command="{Binding LogOutCommand}"/>
             <Button
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"
                 Content="Close"
+                Height="30"
+                MinWidth="80"
+                 Margin="5 10"
                 Command="{Binding CloseCommand}"/>
         </StackPanel>
     </Grid>

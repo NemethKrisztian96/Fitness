@@ -11,7 +11,7 @@
         <converters:DataGridRowNumberConverter x:Key="DataGridRowNumberConverter"/>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid MaxWidth="750">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
@@ -78,6 +78,9 @@
         <Button Grid.Row="2"
                 Content="Export clients"
                 Command="{Binding ExportCommand}"
+                Height="30"
+                MinWidth="80"
+                Margin="5 10"
                 MaxWidth="120"/>
     </Grid>
 </UserControl>

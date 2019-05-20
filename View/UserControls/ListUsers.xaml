@@ -11,7 +11,7 @@
         <converters:DataGridRowNumberConverter x:Key="DataGridRowNumberConverter"/>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid MaxWidth="750">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
@@ -61,7 +61,9 @@
         <Button Grid.Row="2"
                 Content="Add new user"
                 Command="{Binding AddNewUserCommand}"
-                Height="25"
-                MaxWidth="150"/>
+                Height="30"
+                MinWidth="80"
+                Margin="5 10"
+                MaxWidth="120"/>
     </Grid>
 </UserControl>

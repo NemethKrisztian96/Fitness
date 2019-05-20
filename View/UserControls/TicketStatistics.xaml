@@ -31,11 +31,13 @@
                    FontSize="16"/>
             <CheckBox Grid.Row="1"
                       Grid.Column="0"
+                      VerticalAlignment="Center"
                       x:Name="CheckBoxActive"
                       Content="Active tickets"
                       IsChecked="{Binding ActiveChecked, Mode=TwoWay}"/>
             <CheckBox Grid.Row="2"
                       Grid.Column="0"
+                      VerticalAlignment="Center"
                       x:Name="CheckBoxInactive"
                       Content="Inactive tickets"
                       IsChecked="{Binding InactiveChecked, Mode=TwoWay}"/>
@@ -62,6 +64,7 @@
 
             <ComboBox Grid.Row="1"
                       Grid.Column="2"
+                      Margin="5"
                       ItemsSource="{Binding TicketTypeNameList}"
                       SelectedValue="{Binding SelectedTicketTypeName, Mode=TwoWay}"/>
 

@@ -31,6 +31,10 @@ namespace Fitness.View.TemplateSelectors
             {
                 return Application.Current.MainWindow.TryFindResource("ManageTicketTypeTemplate") as DataTemplate;
             }
+            else if (item is IManageTicketContent)
+            {
+                return Application.Current.MainWindow.TryFindResource("ManageTicketTemplate") as DataTemplate;
+            }
             else if (item is IListUsersContent)
             {
                 return Application.Current.MainWindow.TryFindResource("ListUsersTemplate") as DataTemplate;
@@ -58,6 +62,10 @@ namespace Fitness.View.TemplateSelectors
             else if (item is IListEntriesContent)
             {
                 return Application.Current.MainWindow.TryFindResource("ListEntriesTemplate") as DataTemplate;
+            }
+            else if (item is INewTicketContent)
+            {
+                return Application.Current.MainWindow.TryFindResource("NewTicketTemplate") as DataTemplate;
             }
             /*else if (item is )
             {

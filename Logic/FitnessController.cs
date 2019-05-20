@@ -236,13 +236,19 @@ namespace Fitness.Logic
             return this.FitnessDatabase.TicketTypes.Select(tt => tt.Name).ToList();
         }
 
-        public int GetTincketTypeIdByName(string name)
+        public int GetTicketTypeIdByName(string name)
         {
             return this.FitnessDatabase.TicketTypes.Where(tt => tt.Name == name).Select(t => t.Id).FirstOrDefault();
         }
+
+        public TicketType GetTicketTypeByName(string name)
+        {
+            return this.FitnessDatabase.TicketTypes.Where(tt => tt.Name == name).FirstOrDefault();
+        }
+
         public List<Ticket> GetTicketsByTypeName(string selectedTicketTypeName)
         {
-            int typeId = GetTincketTypeIdByName(selectedTicketTypeName);
+            int typeId = GetTicketTypeIdByName(selectedTicketTypeName);
             var temp = this.FitnessDatabase.Tickets.Where(t => t.TicketTypeId == typeId).ToList();
             return temp;
         }
@@ -277,6 +283,11 @@ namespace Fitness.Logic
         public int GetLoginCount(int ticketId)
         {
             return this.FitnessDatabase.Entries.Where(e => e.UserTicketId == ticketId)?.Count() ?? 0;
+        }
+
+        public Client GetClientById(int id)
+        {
+            return this.FitnessDatabase.Clients.Where(u => u.Id == id)?.FirstOrDefault();
         }
     }
 }

@@ -14,7 +14,7 @@
             <converters:ImageConverter x:Key="ImageSourceToImage"/>
         </ResourceDictionary>
     </UserControl.Resources>
-    <StackPanel>
+    <StackPanel MaxWidth="750">
         <Grid Visibility="{Binding FormIsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

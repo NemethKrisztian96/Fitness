@@ -12,7 +12,8 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
         <converters:DataGridRowNumberConverter x:Key="DataGridRowNumberConverter"/>
     </UserControl.Resources>
-    <Grid>
+    <Grid Margin="50, 10"
+          MaxWidth="750">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2*"/>
@@ -31,12 +32,17 @@
         <Button Grid.Row="0"
                 Grid.ColumnSpan="2"
                 Content="Add new client"
-                Width="90"
                 Height="30"
+                MinWidth="80"
+                MaxWidth="120"
+                Margin="5 10"
                 Command="{Binding CreateClientCommand}"/>
         <Label Grid.Row="1" 
                Grid.ColumnSpan="2"
-               Content="Search for a client:"/>
+               Content="Search for a client:"
+               HorizontalAlignment="Left"
+               Margin="50 0"
+               FontSize="16"/>
         <Label Grid.Row="2" 
                Grid.Column="0"
                Content="by barcode:"
@@ -56,9 +62,9 @@
         <Button Grid.Row="4"
                 Grid.ColumnSpan="2"
                 Content="Search"
-                Width="80"
-                Height="25"
-                Margin="5"
+                Height="30"
+                MinWidth="80"
+                Margin="5 10"
                 HorizontalAlignment="Center"
                 Command="{Binding SearchClientCommand}"/>
         <!--<Button Grid.Row="4"
@@ -78,6 +84,7 @@
                   ItemsSource="{Binding Clients}"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
+                  MaxWidth="750"
                   SelectedItem="{Binding SelectedClient}">
                 <DataGrid.InputBindings>
                     <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ListClientTicketsCommand}"/>
@@ -121,21 +128,22 @@
                     Grid.ColumnSpan="2"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center"
+                    MaxWidth="750"
                     Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibility}}">
             <Button Content="Ticket types"
-                    Height="25"
-                    Width="80"
-                    Margin="25"
+                    Height="30"
+                    MinWidth="80"
+                    Margin="5 10"
                     Command="{Binding ListTicketTypesCommand}"/>
             <Button Content="Users"
-                    Height="25"
-                    Width="80"
-                    Margin="25"
+                    Height="30"
+                    MinWidth="80"
+                    Margin="5 10"
                     Command="{Binding ListUsersCommand}"/>
             <Button Content="Send email to all clients"
-                    Height="25"
-                    Width="140"
-                    Margin="25"
+                    Height="30"
+                    MinWidth="80"
+                    Margin="5 10"
                     Command="{Binding SendEmailCommand}"/>
         </StackPanel>
         <StackPanel Grid.Row="7"
@@ -144,22 +152,21 @@
                     HorizontalAlignment="Center"
                     Visibility="{Binding IsAdmin, Converter={StaticResource BooleanToVisibility}}">
             <Label Content="Reports: "
-                   HorizontalAlignment="Left"
-                   Margin="25 25 100 25"/>
+                   VerticalAlignment="Center"/>
             <Button Content="Clients"
-                    Height="25"
-                    Width="80"
-                    Margin="25"
+                    Height="30"
+                    MinWidth="80"
+                    Margin="5 10"
                     Command="{Binding ListClientsCommand}"/>
             <Button Content="Tickets"
-                    Height="25"
-                    Width="80"
-                    Margin="25"
+                    Height="30"
+                    MinWidth="80"
+                    Margin="5 10"
                     Command="{Binding ListTicketsCommand}"/>
             <Button Content="Entries"
-                    Height="25"
-                    Width="80"
-                    Margin="25"
+                    Height="30"
+                    MinWidth="80"
+                    Margin="5 10"
                     Command="{Binding ListEntriesCommand}"/>
         </StackPanel>
     </Grid>

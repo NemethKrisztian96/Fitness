@@ -36,8 +36,9 @@ namespace Fitness.ViewModel.UserControls
             //this.DeleteClientCommand = new RelayCommand(this.DeleteClientExecute);
             this.ManageTicketCommand = new RelayCommand(this.ManageTicketTabExecute);
             this.UseTicketCommand = new RelayCommand(this.UseTicketExecute);
-            this.ExtendTicketCommand = new RelayCommand(this.ExtendTicketExecute);
+            this.ExtendTicketCommand = new RelayCommand(this.ManageTicketTabExecute);
             this.OneTimeEntryCommand = new RelayCommand(this.OneTimeEntryExecute);
+            this.BuyNewTicketCommand = new RelayCommand(this.BuyNewTicketExecute);
         }
 
         public int ClientId { get; set; }
@@ -52,6 +53,7 @@ namespace Fitness.ViewModel.UserControls
         public RelayCommand UseTicketCommand { get; set; }
         public RelayCommand ExtendTicketCommand { get; set; }
         public RelayCommand OneTimeEntryCommand { get; set; }
+        public RelayCommand BuyNewTicketCommand { get; set; }
 
         public void CloseTabItemExecute()
         {
@@ -91,6 +93,11 @@ namespace Fitness.ViewModel.UserControls
         }
 
         private void InitializeTicketList(Client client)
+        {
+            this.Tickets = Data.Fitness.GetAllTicketOfAClient(client);
+        }
+
+        public void RefreshList(Client client)
         {
             this.Tickets = Data.Fitness.GetAllTicketOfAClient(client);
         }
@@ -157,6 +164,11 @@ namespace Fitness.ViewModel.UserControls
             {
                 PopupMessage.OkButtonPopupMessage("Attention", "The client's ticket will expire soon!");
             }
+        }
+
+        private void BuyNewTicketExecute()
+        {
+            MainWindowViewModel.Instance.OpenNewTicketTab(mClient);
         }
     }
 }

@@ -87,8 +87,8 @@
 
             if (client != null && client2 != null && type != null && seller != null)
             {
-                context.Tickets.Add(new Ticket { Owner = client, OwnerId = client.Id, Type = type, TicketTypeId = type.Id, BuyingDate = new System.DateTime(2019, 4, 1), FirstUsingDate = new System.DateTime(2019, 4, 1), ExpirationDate = new System.DateTime(2019, 4, 1).AddDays(30), MaxLoginNumber = 30, Price = 90, Seller = seller, SellerId = seller.Id, Status = "Active" });
-                context.Tickets.Add(new Ticket { Owner = client2, OwnerId = client2.Id, Type = type, TicketTypeId = type.Id, BuyingDate = new System.DateTime(2019, 4, 1), FirstUsingDate = new System.DateTime(2019, 4, 1), ExpirationDate = new System.DateTime(2019, 4, 1).AddDays(30), MaxLoginNumber = 30, Price = 90, Seller = seller, SellerId = seller.Id, Status = "Active" });
+                context.Tickets.Add(new Ticket { Owner = client, OwnerId = client.Id, Type = type, TicketTypeId = type.Id, BuyingDate = new System.DateTime(2019, 4, 1), FirstUsingDate = new System.DateTime(2019, 4, 1), ExpirationDate = new System.DateTime(2019, 4, 1).AddDays(30), MaxLoginNumber = 30, LoginNumber = 2, Price = 90, Seller = seller, SellerId = seller.Id, Status = "Active" });
+                context.Tickets.Add(new Ticket { Owner = client2, OwnerId = client2.Id, Type = type, TicketTypeId = type.Id, BuyingDate = new System.DateTime(2019, 4, 1), FirstUsingDate = new System.DateTime(2019, 4, 1), ExpirationDate = new System.DateTime(2019, 4, 1).AddDays(30), MaxLoginNumber = 30, LoginNumber = 0, Price = 90, Seller = seller, SellerId = seller.Id, Status = "Active" });
             }
         }
 

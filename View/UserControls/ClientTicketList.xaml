@@ -12,7 +12,7 @@
         <converters:ImageConverter x:Key="ImageSourceToImage"/>
     </UserControl.Resources>
     
-    <StackPanel Orientation="Vertical">
+    <StackPanel Orientation="Vertical" MaxWidth="750">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -37,9 +37,9 @@
                 <StackPanel Orientation="Vertical"
                         Grid.Column="1">
                     <Button Content="Edit client"
-                            MinWidth="90"
-                            Margin="10"
-                            Height="40"
+                            Height="30"
+                            MinWidth="80"
+                            Margin="5 10"
                             Command="{Binding OpenClientTabCommand}"/>
                     
                     <!--<Button Content="Delete client"
@@ -47,10 +47,16 @@
                             Command="{Binding DeleteClientCommand}"/>-->
 
                     <Button Content="One time entry"
-                            MinWidth="90"
-                            Margin="10"
-                            Height="40"
+                            Height="30"
+                            MinWidth="80"
+                            Margin="5 10"
                             Command="{Binding OneTimeEntryCommand}"/>
+
+                    <Button Content="Buy mew ticket"
+                            Height="30"
+                            MinWidth="80"
+                            Margin="5 10"
+                            Command="{Binding BuyNewTicketCommand}"/>
                 </StackPanel>
             </StackPanel>
         </Grid>

@@ -19,6 +19,7 @@ namespace Fitness.Model
         public DateTime FirstUsingDate { get; set; }
         public DateTime ExpirationDate { get; set; }
         public int MaxLoginNumber { get; set; }
+        public int? LoginNumber { get; set; }
         public double Price { get; set; }
         [NotMapped]
         public User Seller { get; set; }
